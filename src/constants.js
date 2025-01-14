@@ -4,7 +4,7 @@ export const API_HOST_URL = ".api.noroff.dev";
 export const API_VERSION = "v2";
 export const API_BASE_URL = `https://${API_VERSION}${API_HOST_URL}`;
 export const API_HOLIDAZE_BASE = "/holidaze";
-export const API_HOLIDAZE_URL = `https://${API_VERSION}${API_HOST_URL}${API_AUCTION_BASE}`;
+export const API_HOLIDAZE_URL = `https://${API_VERSION}${API_HOST_URL}${API_HOLIDAZE_BASE}`;
 
 export const NO_VENUE_IMG_URL =
   "https://images.pexels.com/photos/28216688/pexels-photo-28216688/free-photo-of-autumn-camping.png";
