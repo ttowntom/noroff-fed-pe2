@@ -1,18 +1,29 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { QueryClientProvider } from "@tanstack/react-query";
+
+import { queryClient } from "./utils/http";
 import "./App.css";
+import RootLayout from "./pages/RootLayout";
+import Signup from "./pages/Signup";
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <RootLayout />,
+      children: [{ index: true, element: <Signup /> }],
+    },
+  ]);
+
   return (
-    <>
-      <h1 className="font-bold text-red-600">Vite + React</h1>
-      <p className="mt-4 underline">Dependencies:</p>
-      <ul>
-        <li>Tailwind CSS</li>
-        <li>FontAwesome ("Catch all" kit)</li>
-        <li>Prettier</li>
-        <li>ESLint</li>
-        <li>React Router DOM</li>
-      </ul>
-    </>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider
+        future={{
+          v7_startTransition: true,
+        }}
+        router={router}
+      />
+    </QueryClientProvider>
   );
 }
 
