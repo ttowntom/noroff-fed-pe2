@@ -1,8 +1,8 @@
 import { QueryClient } from "@tanstack/react-query";
 
-import { API_HOLIDAZE_URL, API_KEY } from "../constants";
+import { API_BASE_URL, API_KEY } from "../constants";
 
-const baseUrl = `${API_HOLIDAZE_URL}`;
+const baseUrl = `${API_BASE_URL}`;
 
 export const queryClient = new QueryClient();
 
@@ -19,7 +19,9 @@ export async function fetchFn({ queryKey }) {
     const data = await res.json();
 
     if (!response.ok) {
-      throw new Error(data.error || "An error occurred while fetching data");
+      throw new Error(
+        data.errors?.[0]?.message || "An error occurred while fetching data"
+      );
     }
 
     return data;
@@ -42,8 +44,12 @@ export async function postFn({ url, body, token }) {
 
     const data = await response.json();
 
+    console.log(data);
+
     if (!response.ok) {
-      throw new Error(data.error || "An error occurred while posting data");
+      throw new Error(
+        data.errors?.[0]?.message || "An error occurred while posting data"
+      );
     }
 
     return data;
@@ -67,7 +73,9 @@ export async function putFn({ url, body, token }) {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.error || "An error occurred while updating data");
+      throw new Error(
+        data.errors?.[0]?.message || "An error occurred while updating data"
+      );
     }
 
     return data;
@@ -90,7 +98,9 @@ export async function deleteFn({ url, token }) {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.error || "An error occurred while deleting data");
+      throw new Error(
+        data.errors?.[0]?.message || "An error occurred while deleting data"
+      );
     }
 
     return data;
