@@ -10,7 +10,7 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="relative mx-auto w-full max-w-[1536px] space-y-4 bg-light-bg-alternate px-2 py-8 dark:bg-dark-bg-secondary sm:px-4">
+    <footer className="relative z-10 mx-auto w-full max-w-[1536px] space-y-4 bg-light-bg-alternate px-2 py-8 dark:bg-dark-bg-secondary sm:px-4">
       <div className="absolute inset-0 -top-12 -z-10 h-44 skew-y-[-3deg] transform bg-gradient-to-r from-light-bg-alternate to-light-bg-alternate dark:from-dark-bg-secondary dark:to-dark-bg-secondary"></div>
       <div>
         <img src="/holidazeLogo.svg" alt="Holidaze Logo" className="w-32" />
