@@ -44,8 +44,6 @@ export async function postFn({ url, body, token }) {
 
     const data = await response.json();
 
-    console.log(data);
-
     if (!response.ok) {
       throw new Error(
         data.errors?.[0]?.message || "An error occurred while posting data"
