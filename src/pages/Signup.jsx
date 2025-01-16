@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
 import { z } from "zod";
 import { useFormValidation } from "../hooks/useFormValidation";
+import { useLoginMutation } from "../hooks/useLoginMutation";
 import { postFn } from "../utils/http";
 import signupSchema from "../schemas/signup";
 import InputTextField from "../components/InputTextField";
@@ -21,17 +22,17 @@ export default function Signup() {
       },
       signupSchema
     );
-  const navigate = useNavigate();
+
+  const { mutate: loginMutate } = useLoginMutation();
+  // const navigate = useNavigate();
 
   const { mutate, isPending, isError, error } = useMutation({
     mutationFn: (body) => postFn({ url: "/auth/register", body }),
-    onSuccess: (data) => {
-      console.log(data);
-      // TODO: Login user and redirect to dashboard
-      // navigate("/");
-    },
-    onError: (error) => {
-      console.error(error);
+    onSuccess: () => {
+      loginMutate({
+        email: formData.email,
+        password: formData.password,
+      });
     },
   });
 
