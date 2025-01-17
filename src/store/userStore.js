@@ -6,7 +6,7 @@ const useUserStore = create((set) => ({
   user: loadLocal("user") || null,
   login: (user) => set({ user }),
   logout: () => set({ user: null }),
-  theme: loadLocal("user").preferredTheme || "light",
+  theme: loadLocal("user")?.preferredTheme || "light",
   setTheme: (theme) => set({ theme }),
 }));
 
