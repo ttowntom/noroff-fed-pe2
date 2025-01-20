@@ -7,6 +7,7 @@ import RootLayout from "./pages/RootLayout";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Venues from "./pages/Venues";
+import Profile from "./pages/Profile";
 
 function App() {
   const router = createBrowserRouter([
@@ -17,6 +18,7 @@ function App() {
         { index: true, element: <Venues /> },
         { path: "signup", element: <Signup /> },
         { path: "login", element: <Login /> },
+        { path: "profile/:name", element: <Profile /> },
       ],
     },
   ]);
