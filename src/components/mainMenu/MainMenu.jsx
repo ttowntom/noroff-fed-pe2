@@ -7,6 +7,7 @@ import MainMenuNavLink from "./NavLink";
 import toggleTheme from "../../utils/toggleTheme.js";
 
 export default function MainMenu({ isOpen, onClose }) {
+  const user = useUserStore((state) => state.user);
   const theme = useUserStore((state) => state.theme);
   const setTheme = useUserStore((state) => state.setTheme);
   const handleLogout = useLogout(onClose);
@@ -35,7 +36,11 @@ export default function MainMenu({ isOpen, onClose }) {
       } absolute right-0 top-16 w-full overflow-hidden rounded-lg border border-light-border-secondary bg-light-bg-primary shadow-lg dark:border-dark-border-tertiary dark:bg-dark-bg-secondary sm:right-4 sm:w-80`}
     >
       <ul className="py-2">
-        <MainMenuNavLink to="profile" desc="Profile" onClose={onClose} />
+        <MainMenuNavLink
+          to={`profile/${user?.name}`}
+          desc="Profile"
+          onClose={onClose}
+        />
         <MainMenuNavLink to="bookings" desc="Bookings" onClose={onClose} />
         <MainMenuNavLink
           to="venue-manager"

@@ -4,7 +4,7 @@ export default function InputTextField({
   label,
   name,
   type,
-  value,
+  defaultValue,
   placeholder,
   onChange,
   onBlur,
@@ -19,7 +19,7 @@ export default function InputTextField({
         type={type}
         id={label}
         name={name}
-        value={value}
+        defaultValue={defaultValue}
         placeholder={placeholder}
         onChange={onChange}
         onBlur={onBlur}
