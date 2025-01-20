@@ -6,20 +6,20 @@ const baseUrl = `${API_BASE_URL}`;
 
 export const queryClient = new QueryClient();
 
-export async function fetchFn({ queryKey }) {
-  const [url, token] = queryKey;
+export async function fetchFn({ queryKey, token }) {
+  const [url] = queryKey;
 
   try {
-    const res = await fetch(`${baseUrl}${url}`, {
+    const response = await fetch(`${baseUrl}${url}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
         "X-Noroff-API-Key": API_KEY,
       },
     });
-    const data = await res.json();
+    const data = await response.json();
 
-    if (!res.ok) {
+    if (!response.ok) {
       throw new Error(
         data.errors?.[0]?.message || "An error occurred while fetching data"
       );
@@ -45,7 +45,7 @@ export async function postFn({ url, body, token }) {
 
     const data = await response.json();
 
-    if (!res.ok) {
+    if (!response.ok) {
       throw new Error(
         data.errors?.[0]?.message || "An error occurred while posting data"
       );
@@ -71,7 +71,7 @@ export async function putFn({ url, body, token }) {
 
     const data = await response.json();
 
-    if (!res.ok) {
+    if (!response.ok) {
       throw new Error(
         data.errors?.[0]?.message || "An error occurred while updating data"
       );
@@ -96,7 +96,7 @@ export async function deleteFn({ url, token }) {
 
     const data = await response.json();
 
-    if (!res.ok) {
+    if (!response.ok) {
       throw new Error(
         data.errors?.[0]?.message || "An error occurred while deleting data"
       );
