@@ -37,7 +37,7 @@ export default function MainMenu({ isOpen, onClose }) {
     >
       <ul className="py-2">
         <MainMenuNavLink
-          to={`profile/${user.name}`}
+          to={`profile/${user?.name}`}
           desc="Profile"
           onClose={onClose}
         />
