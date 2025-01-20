@@ -13,12 +13,13 @@ export async function fetchFn({ queryKey }) {
     const res = await fetch(`${baseUrl}${url}`, {
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
         "X-Noroff-API-Key": API_KEY,
       },
     });
     const data = await res.json();
 
-    if (!response.ok) {
+    if (!res.ok) {
       throw new Error(
         data.errors?.[0]?.message || "An error occurred while fetching data"
       );
@@ -44,7 +45,7 @@ export async function postFn({ url, body, token }) {
 
     const data = await response.json();
 
-    if (!response.ok) {
+    if (!res.ok) {
       throw new Error(
         data.errors?.[0]?.message || "An error occurred while posting data"
       );
@@ -70,7 +71,7 @@ export async function putFn({ url, body, token }) {
 
     const data = await response.json();
 
-    if (!response.ok) {
+    if (!res.ok) {
       throw new Error(
         data.errors?.[0]?.message || "An error occurred while updating data"
       );
@@ -95,7 +96,7 @@ export async function deleteFn({ url, token }) {
 
     const data = await response.json();
 
-    if (!response.ok) {
+    if (!res.ok) {
       throw new Error(
         data.errors?.[0]?.message || "An error occurred while deleting data"
       );
