@@ -47,6 +47,9 @@ export default function Venues() {
       }))
     ) ?? [];
 
+  const firstVenues = allVenues.slice(0, 8);
+  const restOfVenues = allVenues.slice(8);
+
   const handleSortChange = (e) => {
     setSortBy(e.target.value);
   };
@@ -98,16 +101,26 @@ export default function Venues() {
         )}
       </div>
       {data && (
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] justify-items-center gap-4 px-4 md:grid-cols-[repeat(auto-fit,minmax(min(100%/4,300px),1fr))]">
-          {allVenues.map((venue) => (
-            <VenueCard key={venue.key} venue={venue} />
-          ))}
-
-          {/* Infinite scroll trigger */}
-          <div ref={loadMoreRef} className="col-span-full h-10">
-            {isFetchingNextPage && <div>Loading more...</div>}
+        <>
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] justify-items-center gap-4 px-4 md:grid-cols-[repeat(auto-fit,minmax(min(100%/4,300px),1fr))]">
+            {firstVenues.map((venue) => (
+              <VenueCard key={venue.key} venue={venue} />
+            ))}
           </div>
-        </div>
+
+          {/* Call to action */}
+          <div className="-mx-4 bg-red-400">CTA</div>
+
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] justify-items-center gap-4 px-4 md:grid-cols-[repeat(auto-fit,minmax(min(100%/4,300px),1fr))]">
+            {restOfVenues.map((venue) => (
+              <VenueCard key={venue.key} venue={venue} />
+            ))}
+            {/* Infinite scroll trigger */}
+            <div ref={loadMoreRef} className="col-span-full h-10">
+              {isFetchingNextPage && <div>Loading more...</div>}
+            </div>
+          </div>
+        </>
       )}
     </>
   );
