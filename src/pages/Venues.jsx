@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteScroll } from "../hooks/useInfiniteScroll.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
 import { fetchFn } from "../utils/http.js";
@@ -15,7 +16,46 @@ export default function Venues() {
   );
   const [searchInput, setSearchInput] = useState(searchParams.get("q") || "");
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
+  const loadMoreRef = useRef();
 
+  const getEndpoint = (pageParam = 1) => {
+    const baseUrl = `/holidaze/venues${searchQuery ? "/search" : ""}`;
+    const queryParams = new URLSearchParams({
+      ...(searchQuery && { q: searchQuery }),
+      sort: sortBy,
+      sortOrder: sortOrder,
+      limit: "50",
+      page: pageParam.toString(),
+    });
+
+    return `${baseUrl}?${queryParams.toString()}`;
+  };
+
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+    isError,
+    error,
+  } = useInfiniteQuery({
+    queryKey: ["venues", sortBy, sortOrder, searchQuery],
+    queryFn: ({ pageParam = 1 }) =>
+      fetchFn({ queryKey: [getEndpoint(pageParam)] }),
+    getNextPageParam: (lastPage) => {
+      if (lastPage.meta.isLastPage) return undefined;
+      return lastPage.meta.nextPage;
+    },
+  });
+
+  useInfiniteScroll(loadMoreRef, () => {
+    if (hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  }, [hasNextPage, isFetchingNextPage]);
+
+  // Keep URL params synced
   useEffect(() => {
     const params = {};
     if (sortBy) params.sort = sortBy;
@@ -24,17 +64,14 @@ export default function Venues() {
     setSearchParams(params);
   }, [sortBy, sortOrder, searchQuery, setSearchParams]);
 
-  const getEndpoint = () => {
-    if (searchQuery) {
-      return `/holidaze/venues/search?q=${searchQuery}&sort=${sortBy}&sortOrder=${sortOrder}`;
-    }
-    return `/holidaze/venues?sort=${sortBy}&sortOrder=${sortOrder}`;
-  };
-
-  const { data, isLoading, isError, error } = useQuery({
-    queryKey: [getEndpoint()],
-    queryFn: fetchFn,
-  });
+  // When rendering data, map through pages
+  const allVenues =
+    data?.pages.flatMap((page, pageIndex) =>
+      page.data.map((venue) => ({
+        ...venue,
+        key: `${venue.id}-${pageIndex}`,
+      }))
+    ) ?? [];
 
   const handleSortChange = (e) => {
     setSortBy(e.target.value);
@@ -93,7 +130,7 @@ export default function Venues() {
           )}
         </form>
       </div>
-      {data && data.data.length > 0 && (
+      {data?.pages[0]?.data?.length > 0 && (
         <div className="mt-8 flex items-center justify-end">
           <select
             value={sortBy}
@@ -138,7 +175,7 @@ export default function Venues() {
       <div className="mx-auto mt-4 flex max-w-[55ch] flex-col items-center gap-4 dark:text-dark-text-primary">
         {isLoading && <div>Loading...</div>}
         {isError && <Notification type="error">{error.message}</Notification>}
-        {data && data.data.length === 0 && (
+        {data?.pages[0]?.meta?.totalCount === 0 && (
           <div className="mt-12">
             <Notification type="info">
               No venues found matching the search criteria. Please try again.
@@ -148,9 +185,14 @@ export default function Venues() {
       </div>
       {data && (
         <div className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] justify-items-center gap-4 px-4 md:grid-cols-[repeat(auto-fit,minmax(min(100%/4,300px),1fr))]">
-          {data?.data.map((venue) => (
-            <VenueCard key={venue.id} venue={venue} />
+          {allVenues.map((venue) => (
+            <VenueCard key={venue.key} venue={venue} />
           ))}
+
+          {/* Infinite scroll trigger */}
+          <div ref={loadMoreRef} className="col-span-full h-10">
+            {isFetchingNextPage && <div>Loading more...</div>}
+          </div>
         </div>
       )}
     </>
