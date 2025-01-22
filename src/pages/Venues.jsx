@@ -147,7 +147,7 @@ export default function Venues() {
         )}
       </div>
       {data && (
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] justify-items-center gap-4 px-4 md:grid-cols-[repeat(auto-fit,minmax(min(100%/4,300px),1fr))]">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] justify-items-center gap-4 md:grid-cols-[repeat(auto-fit,minmax(min(100%/4,300px),1fr))]">
           {data?.data.map((venue) => (
             <VenueCard key={venue.id} venue={venue} />
           ))}
