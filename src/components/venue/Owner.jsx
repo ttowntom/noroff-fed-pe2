@@ -1,6 +1,6 @@
 export default function Owner({ venue }) {
   return (
-    <>
+    <section>
       <hr className="my-6" />
       <div className="flex flex-col items-center gap-4 py-2 text-light-text-primary dark:text-dark-text-primary xs:flex-row">
         <img
@@ -15,6 +15,6 @@ export default function Owner({ venue }) {
         </div>
       </div>
       <hr className="my-4" />
-    </>
+    </section>
   );
 }
