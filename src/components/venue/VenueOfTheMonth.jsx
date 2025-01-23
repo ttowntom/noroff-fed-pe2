@@ -1,14 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
-import { fetchFn } from "../../utils/http.js";
+import { useVenueDetails } from "../../hooks/useVenueDetails.js";
 
 export default function VenueOfTheMonth({ venueId }) {
-  const { data } = useQuery({
-    queryKey: [`/holidaze/venues/${venueId}`],
-    queryFn: fetchFn,
-  });
+  const { data } = useVenueDetails(venueId);
 
   if (data) {
     return (
