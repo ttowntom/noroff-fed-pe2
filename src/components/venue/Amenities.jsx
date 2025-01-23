@@ -35,7 +35,7 @@ function Meta({ meta, metaKey, icon, iconType }) {
 
 export default function ({ venue }) {
   return (
-    <ul className="grid grid-cols-1 gap-1 sm:grid-cols-2">
+    <ul className="grid grid-cols-1 gap-1 text-light-text-primary dark:text-dark-text-primary sm:grid-cols-2">
       <li className="flex items-center gap-2">
         <FontAwesomeIcon
           icon={
