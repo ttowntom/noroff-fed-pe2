@@ -3,13 +3,14 @@ import { useSearchParams } from "react-router-dom";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInfiniteScroll } from "../hooks/useInfiniteScroll.js";
 import { useVenues } from "../hooks/useVenues.js";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
 import { fetchFn } from "../utils/http.js";
 import Notification from "../components/Notification.jsx";
 import VenueCard from "../components/venue/VenueCard.jsx";
 import VenueSearch from "../components/venue/VenueSearch.jsx";
 import VenueSorting from "../components/venue/VenueSorting.jsx";
+import Cta from "../components/Cta.jsx";
+import Button from "../components/Button.jsx";
+import VenueOfTheMonth from "../components/venue/VenueOfTheMonth.jsx";
 
 export default function Venues() {
   const loadMoreRef = useRef();
@@ -109,8 +110,13 @@ export default function Venues() {
           </div>
 
           {/* Call to action */}
-          <div className="-mx-4 bg-red-400">CTA</div>
+          <div className="-mx-4 mb-16 mt-12">
+            <Cta>
+              <VenueOfTheMonth venueId="95ca436a-abe3-4e33-a3ce-5299bd2e78ed" />
+            </Cta>
+          </div>
 
+          {/* Rest of the venues */}
           <div className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] justify-items-center gap-4 px-4 md:grid-cols-[repeat(auto-fit,minmax(min(100%/4,300px),1fr))]">
             {restOfVenues.map((venue) => (
               <VenueCard key={venue.key} venue={venue} />
