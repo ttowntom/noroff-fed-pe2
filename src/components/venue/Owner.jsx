@@ -2,11 +2,11 @@ export default function Owner({ venue }) {
   return (
     <>
       <hr className="my-6" />
-      <div className="flex flex-wrap gap-4 py-2 text-light-text-primary dark:text-dark-text-primary">
+      <div className="flex flex-col items-center gap-4 py-2 text-light-text-primary dark:text-dark-text-primary xs:flex-row">
         <img
           src={venue.owner.avatar.url}
           alt={venue.owner.name}
-          className="h-12 w-12 rounded-full"
+          className="h-16 w-16 rounded-full"
         />
         <div>
           <h2>Owner</h2>
