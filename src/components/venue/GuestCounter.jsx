@@ -20,7 +20,13 @@ export default function GuestCounter({
           className="text-light-button-primary dark:text-dark-button-primary"
         />
       </button>
-      <input type="number" className="hidden" readOnly value={guests} />
+      <input
+        type="number"
+        name="guests"
+        className="hidden"
+        readOnly
+        value={guests}
+      />
       <p className="font-semibold">{guests}</p>
       <button
         type="button"
