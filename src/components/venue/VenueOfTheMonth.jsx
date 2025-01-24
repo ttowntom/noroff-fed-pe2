@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
 import { useVenueDetails } from "../../hooks/useVenueDetails.js";
+import LinkButton from "../LinkButton.jsx";
 
 export default function VenueOfTheMonth({ venueId }) {
   const { data } = useVenueDetails(venueId);
@@ -47,12 +47,7 @@ export default function VenueOfTheMonth({ venueId }) {
           </ul>
 
           <div>
-            <Link
-              to={`venues/${venueId}`}
-              className="rounded-full bg-light-button-primary p-2 px-4 text-color-neutral-white hover:opacity-85 focus:outline-none focus:ring-1 focus:ring-dark-border-tertiary dark:bg-dark-button-primary dark:text-dark-text-primary dark:focus:ring-dark-border-primary"
-            >
-              View Venue details
-            </Link>
+            <LinkButton to={`venues/${venueId}`}>View Venue details</LinkButton>
           </div>
         </div>
         <img
