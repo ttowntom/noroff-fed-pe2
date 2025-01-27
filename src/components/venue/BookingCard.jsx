@@ -4,8 +4,6 @@ import DatePicker from "react-datepicker";
 import { format } from "date-fns";
 import { enGB } from "date-fns/locale";
 import { differenceInDays } from "date-fns";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
 import { queryClient } from "../../utils/http";
 import { getBookedRanges } from "../../utils/bookingLogic";
 import { postFn } from "../../utils/http.js";
@@ -14,7 +12,7 @@ import GuestCounter from "./GuestCounter";
 import useUserStore from "../../store/userStore.js";
 import BookingPriceSummary from "./BookingPriceSummary";
 import LinkButton from "../LinkButton";
-import Modal from "../Modal";
+import BookingModal from "./BookingModal";
 import "react-datepicker/dist/react-datepicker.css";
 import "../../styles/datepicker.css";
 
@@ -132,76 +130,19 @@ export default function BookingCard({ venue }) {
 
           {!user && <LinkButton to="/login">Log in to book</LinkButton>}
         </form>
+        {isModalOpen && (
+          <BookingModal
+            venue={venue}
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+            isBookingSuccess={isBookingSuccess}
+            setIsBookingSuccess={setIsBookingSuccess}
+            dateRange={dateRange}
+            setDateRange={setDateRange}
+            guests={guests}
+          />
+        )}
       </aside>
-      {isModalOpen && (
-        <Modal onClose={closeModal}>
-          {!isBookingSuccess && (
-            <div className="flex max-w-[65ch] flex-col gap-4">
-              <h2 className="text-2xl font-semibold">Confirm Booking</h2>
-              <p>
-                Please confirm your booking at{" "}
-                <span className="font-semibold">{venue.name}</span> for{" "}
-                <span className="font-semibold">{guests} guests</span> at{" "}
-                <span className="font-semibold">
-                  {format(startDate, "MMM dd, yyyy")} -{" "}
-                  {format(endDate, "MMM dd, yyyy")}
-                </span>
-              </p>
-              <div className="flex flex-col gap-4">
-                {isError && (
-                  <Notification type="error">{error.message}</Notification>
-                )}
-                <div className="mt-4 flex justify-end gap-4">
-                  <button
-                    onClick={closeModal}
-                    className="text-light-text-primary hover:underline dark:text-dark-text-primary"
-                  >
-                    Cancel booking
-                  </button>
-                  <Button
-                    type="submit"
-                    onClick={handleConfirm}
-                    disabled={isPending}
-                  >
-                    Book now
-                  </Button>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {isBookingSuccess && (
-            <div className="flex max-w-[65ch] flex-col gap-4">
-              <div className="flex items-center gap-4">
-                <h2 className="text-2xl font-semibold">Booking Successful!</h2>
-                <FontAwesomeIcon
-                  icon={byPrefixAndName.fas["party-horn"]}
-                  className="text-2xl text-light-text-success dark:text-dark-text-success"
-                />
-              </div>
-              <p>
-                Your booking at{" "}
-                <span className="font-semibold">{venue.name}</span> for{" "}
-                <span className="font-semibold">{guests} guests</span> at{" "}
-                <span className="font-semibold">
-                  {format(startDate, "MMM dd, yyyy")} -{" "}
-                  {format(endDate, "MMM dd, yyyy")}
-                </span>{" "}
-                has been confirmed.
-              </p>
-              <div className="mt-4 flex justify-end gap-4">
-                <button
-                  onClick={closeConfirm}
-                  className="text-light-text-primary hover:underline dark:text-dark-text-primary"
-                >
-                  Close
-                </button>
-                <LinkButton to="/profile/bookings">View bookings</LinkButton>
-              </div>
-            </div>
-          )}
-        </Modal>
-      )}
     </>
   );
 }
