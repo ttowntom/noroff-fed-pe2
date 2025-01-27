@@ -1,0 +1,7 @@
+.my-custom-bullet {
+  @apply h-2 w-2 rounded-full;
+}
+
+.my-custom-bullet-active {
+  @apply h-2 w-2 !bg-light-link-primary dark:bg-dark-link-primary !important;
+}
