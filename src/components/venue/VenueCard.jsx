@@ -19,10 +19,16 @@ export default function VenueCard({ venue }) {
       <RatingStars rating={venue.rating} />
       <div className="flex flex-col">
         <h2 className="text-lg font-medium">{venue.name}</h2>
-        <p>
-          in <span className="font-medium">{venue.location.city}</span> for{" "}
-          <span className="font-medium">${venue.price}</span>/night
-        </p>
+        {venue.location.city ? (
+          <p>
+            in <span className="font-medium">{venue.location.city}</span> for{" "}
+            <span className="font-medium">${venue.price}</span>/night
+          </p>
+        ) : (
+          <p>
+            for <span className="font-medium">${venue.price}</span>/night
+          </p>
+        )}
       </div>
     </Link>
   );
