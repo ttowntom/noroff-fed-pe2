@@ -32,7 +32,6 @@ export default function BookingModal({
         token,
       }),
     onSuccess: () => {
-      // Re-fetch or invalidate queries
       queryClient.invalidateQueries({
         queryKey: [`/holidaze/venues/${venue.id}?_owner=true&_bookings=true`],
       });
