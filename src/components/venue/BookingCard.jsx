@@ -13,17 +13,10 @@ export default function BookingCard({ venue }) {
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
   const [guests, setGuests] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isBookingSuccess, setIsBookingSuccess] = useState(false);
 
   const bookedRanges = getBookedRanges(venue.bookings);
-  const excludeDates = bookedRanges.flatMap((range) => {
-    const dates = [];
-    let current = new Date(range.start);
-    while (current <= range.end) {
-      dates.push(new Date(current));
-      current.setDate(current.getDate() + 1);
-    }
-    return dates;
-  });
 
   function openModal() {
     setIsModalOpen(true);

@@ -7,6 +7,7 @@ import LinkButton from "../LinkButton";
 
 export default function BookingForm({
   user,
+
   startDate,
   endDate,
   setDateRange,
