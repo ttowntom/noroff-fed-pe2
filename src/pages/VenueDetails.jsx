@@ -5,6 +5,7 @@ import Amenities from "../components/venue/Amenities";
 import Owner from "../components/venue/Owner";
 import Location from "../components/venue/Location";
 import BookingCard from "../components/venue/BookingCard";
+import Notification from "../components/Notification";
 
 export default function VenueDetails() {
   const venueId = useParams().id;
@@ -16,6 +17,8 @@ export default function VenueDetails() {
     return (
       <>
         <div className="text-light-text-primary dark:text-dark-text-primary">
+          {isError && <Notification message={error.message} />}
+          {isLoading && <p>Loading...</p>}
           <img
             src={venue.media[0]?.url}
             alt={venue.name}
