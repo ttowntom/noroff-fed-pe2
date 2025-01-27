@@ -140,6 +140,7 @@ export default function BookingCard({ venue }) {
             dateRange={dateRange}
             setDateRange={setDateRange}
             guests={guests}
+            setGuests={setGuests}
           />
         )}
       </aside>

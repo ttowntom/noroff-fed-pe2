@@ -18,6 +18,7 @@ export default function BookingModal({
   dateRange,
   setDateRange,
   guests,
+  setGuests,
 }) {
   const user = useUserStore((state) => state.user);
   const [startDate, endDate] = dateRange;
@@ -46,6 +47,7 @@ export default function BookingModal({
   function closeConfirm() {
     setIsBookingSuccess(false);
     setDateRange([null, null]);
+    setGuests(1);
     closeModal();
   }
 
