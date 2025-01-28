@@ -41,7 +41,11 @@ export default function MainMenu({ isOpen, onClose }) {
           desc="Profile"
           onClose={onClose}
         />
-        <MainMenuNavLink to="bookings" desc="Bookings" onClose={onClose} />
+        <MainMenuNavLink
+          to={`profile/${user?.name}/bookings`}
+          desc="Bookings"
+          onClose={onClose}
+        />
         <MainMenuNavLink
           to="venue-manager"
           desc="Venue Manager"
