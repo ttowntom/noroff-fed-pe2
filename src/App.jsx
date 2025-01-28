@@ -13,6 +13,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Venues from "./pages/Venues";
 import Profile from "./pages/Profile";
+import VenueDetails from "./pages/VenueDetails";
 
 function App() {
   const user = useUserStore((state) => state.user);
@@ -24,6 +25,8 @@ function App() {
         { index: true, element: <Venues /> },
         { path: "signup", element: <Signup /> },
         { path: "login", element: <Login /> },
+        { path: "venues", element: <Venues /> },
+        { path: "venues/:id", element: <VenueDetails /> },
         {
           path: "profile/:name",
           element: user ? <Profile /> : <Navigate to="/login" />,

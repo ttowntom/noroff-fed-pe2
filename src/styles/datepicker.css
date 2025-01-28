@@ -1,0 +1,95 @@
+.react-datepicker {
+  @apply w-fit border-light-border-secondary bg-light-bg-primary font-sans shadow-2xl dark:border-dark-border-secondary dark:bg-dark-bg-primary;
+}
+
+.react-datepicker__header {
+  @apply border-light-border-secondary bg-light-bg-secondary dark:border-dark-border-secondary dark:bg-dark-bg-primary;
+}
+
+.react-datepicker__day-name {
+  @apply text-light-text-primary dark:text-dark-text-primary;
+}
+
+.react-datepicker__current-month {
+  @apply font-semibold text-light-text-primary dark:text-dark-text-primary;
+}
+
+.react-datepicker__day {
+  @apply rounded-full border border-transparent text-light-text-primary hover:bg-light-bg-alternate dark:text-dark-text-primary dark:hover:bg-dark-bg-secondary;
+}
+
+.react-datepicker__day--selected {
+  @apply bg-light-button-primary text-color-neutral-white dark:bg-dark-button-primary dark:text-dark-text-primary;
+}
+
+.react-datepicker__day--keyboard-selected {
+  @apply bg-light-button-primary text-light-text-alternate dark:bg-dark-button-primary dark:text-dark-text-primary;
+}
+
+.react-datepicker__day--in-range {
+  @apply border border-light-border-tertiary bg-light-bg-secondary dark:border-dark-border-secondary dark:bg-dark-bg-secondary;
+}
+
+.react-datepicker__day--in-range:not([aria-disabled="true"]):hover {
+  @apply bg-light-bg-secondary dark:bg-dark-bg-secondary;
+}
+
+.react-datepicker__day--keyboard-selected:not([aria-disabled="true"]):hover {
+  @apply bg-light-bg-secondary dark:bg-dark-bg-secondary;
+}
+
+.react-datepicker__day--in-selecting-range {
+  @apply border border-light-border-tertiary bg-light-bg-alternate dark:border-dark-border-secondary dark:bg-dark-bg-secondary;
+}
+
+.react-datepicker__day--in-selecting-range:not(
+    .react-datepicker__day--in-range,
+    .react-datepicker__month-text--in-range,
+    .react-datepicker__quarter-text--in-range,
+    .react-datepicker__year-text--in-range
+  ) {
+  @apply border border-light-border-tertiary bg-light-bg-secondary text-light-text-primary dark:border-dark-border-secondary dark:bg-dark-bg-secondary dark:text-dark-text-primary;
+}
+
+.react-datepicker__day--disabled {
+  @apply cursor-not-allowed text-light-text-secondary hover:bg-transparent dark:text-dark-text-secondary;
+}
+
+.react-datepicker__navigation-icon {
+  @apply text-light-text-primary dark:text-dark-text-primary;
+}
+
+..react-datepicker__input-container {
+  @apply relative;
+}
+
+.react-datepicker__input-container input {
+  @apply w-full rounded-md border border-light-border-secondary bg-light-bg-primary dark:border-dark-border-secondary dark:bg-dark-bg-primary;
+}
+
+.react-datepicker__view-calendar-icon input {
+  @apply pl-2;
+}
+
+.react-datepicker__calendar-icon {
+  @apply m-1 overflow-hidden bg-light-bg-primary text-light-text-primary dark:bg-dark-bg-primary dark:text-dark-text-primary;
+}
+
+.react-datepicker__input-container.react-datepicker__view-calendar-icon
+  svg.react-datepicker__calendar-icon {
+  @apply text-light-text-primary dark:text-dark-text-primary;
+}
+
+.react-datepicker__input-container.react-datepicker__view-calendar-icon
+  svg.react-datepicker__calendar-icon
+  path {
+  @apply fill-light-text-primary dark:fill-dark-text-primary;
+}
+
+.react-datepicker__input-container {
+  @apply relative flex flex-row-reverse items-center;
+}
+
+.react-datepicker__view-calendar-icon input {
+  @apply pl-2;
+}

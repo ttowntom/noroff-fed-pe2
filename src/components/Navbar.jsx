@@ -14,14 +14,14 @@ export default function Navbar() {
   };
 
   return (
-    <header className="relative z-10 mx-auto w-full max-w-[1536px] space-y-4 bg-light-bg-primary px-2 pb-0 pt-4 dark:bg-dark-bg-secondary sm:px-4">
+    <header className="relative z-20 mx-auto w-full max-w-[1536px] space-y-4 bg-light-bg-primary px-2 pb-0 pt-4 dark:bg-dark-bg-secondary sm:px-4">
       <div className="flex items-center justify-between gap-2">
         <Link to="/">
           <img src="/holidazeLogo.svg" alt="Holidaze Logo" className="w-28" />
         </Link>
         {/* Not logged in */}
         {!user && (
-          <div className="xs:flex-row flex flex-col items-center space-x-4">
+          <div className="flex flex-col items-center space-x-4 xs:flex-row">
             <Link
               to="/signup"
               className="text-light-link-primary hover:underline dark:text-dark-link-primary"
@@ -30,7 +30,7 @@ export default function Navbar() {
             </Link>
             <Link
               to="/login"
-              className="xs:rounded-full xs:border xs:border-light-border-secondary xs:bg-light-button-primary xs:px-4 xs:py-2 xs:text-light-text-alternate xs:hover:cursor-pointer xs:hover:bg-light-button-border-primary xs:hover:shadow-md xs:dark:border-dark-border-primary xs:dark:bg-dark-bg-primary xs:dark:text-dark-text-primary xs:dark:hover:bg-color-neutral-neutral-darkest xs:font-normal font-medium text-light-link-primary hover:underline dark:text-dark-link-primary"
+              className="font-medium text-light-link-primary hover:underline dark:text-dark-link-primary xs:rounded-full xs:border xs:border-light-border-secondary xs:bg-light-button-primary xs:px-4 xs:py-2 xs:font-normal xs:text-light-text-alternate xs:hover:cursor-pointer xs:hover:bg-light-button-border-primary xs:hover:shadow-md xs:dark:border-dark-border-primary xs:dark:bg-dark-bg-primary xs:dark:text-dark-text-primary xs:dark:hover:bg-color-neutral-neutral-darkest"
             >
               Log in
             </Link>

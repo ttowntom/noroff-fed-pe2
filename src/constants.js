@@ -1,4 +1,5 @@
 export const API_KEY = import.meta.env.VITE_API_KEY;
+export const API_MAPBOX = import.meta.env.VITE_API_MAPBOX;
 
 export const API_HOST_URL = ".api.noroff.dev";
 export const API_VERSION = "v2";

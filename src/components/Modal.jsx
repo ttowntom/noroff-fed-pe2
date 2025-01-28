@@ -26,7 +26,7 @@ export default function Modal({ children, onClose }) {
       onClose={handleClose}
       className="min-w-[80%] max-w-[90%] rounded-lg bg-light-bg-primary p-6 text-light-text-primary backdrop:bg-black/50 dark:bg-dark-bg-primary dark:text-dark-text-primary md:min-w-[45ch]"
     >
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col">
         <div></div>
         {children}
       </div>
