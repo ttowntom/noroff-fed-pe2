@@ -10,7 +10,6 @@ export default function Gallery({ venue }) {
       <img
         src={venue.media[0]?.url || NO_VENUE_IMG_URL}
         alt={venue.name}
-        onClick={() => handleImageClick(venue.media[0]?.url)}
         className="mb-8 h-96 w-full rounded-lg object-cover"
       />
     );
