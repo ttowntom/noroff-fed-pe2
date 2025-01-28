@@ -21,10 +21,12 @@ export default function useProfileData(name, token) {
           }),
       },
       {
-        queryKey: [`/holidaze/profiles/${name}/bookings`],
+        queryKey: ["bookings", name],
         queryFn: () =>
           fetchFn({
-            queryKey: [`/holidaze/profiles/${name}/bookings`],
+            queryKey: [
+              `/holidaze/profiles/${name}/bookings?_venue=true&sort=dateFrom&sortOrder=asc`,
+            ],
             token,
           }),
       },
