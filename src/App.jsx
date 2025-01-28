@@ -14,6 +14,7 @@ import Login from "./pages/Login";
 import Venues from "./pages/Venues";
 import Profile from "./pages/Profile";
 import VenueDetails from "./pages/VenueDetails";
+import Bookings from "./pages/Bookings";
 
 function App() {
   const user = useUserStore((state) => state.user);
@@ -30,6 +31,10 @@ function App() {
         {
           path: "profile/:name",
           element: user ? <Profile /> : <Navigate to="/login" />,
+        },
+        {
+          path: "profile/:name/bookings",
+          element: user ? <Bookings /> : <Navigate to="/login" />,
         },
       ],
     },

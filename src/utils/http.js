@@ -94,6 +94,10 @@ export async function deleteFn({ url, token }) {
       },
     });
 
+    if (response.status === 204) {
+      return { message: "Successfully deleted" };
+    }
+
     const data = await response.json();
 
     if (!response.ok) {
