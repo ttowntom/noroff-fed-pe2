@@ -6,6 +6,7 @@ import Owner from "../components/venue/Owner";
 import Location from "../components/venue/Location";
 import BookingCard from "../components/venue/BookingCard";
 import Notification from "../components/Notification";
+import Gallery from "../components/venue/Gallery";
 
 export default function VenueDetails() {
   const venueId = useParams().id;
@@ -16,14 +17,11 @@ export default function VenueDetails() {
 
     return (
       <>
-        <div className="text-light-text-primary dark:text-dark-text-primary">
+        <div className="flex flex-col gap-6 text-light-text-primary dark:text-dark-text-primary">
           {isError && <Notification message={error.message} />}
           {isLoading && <p>Loading...</p>}
-          <img
-            src={venue.media[0]?.url}
-            alt={venue.name}
-            className="mb-8 h-96 w-full rounded-lg object-cover"
-          />
+
+          <Gallery venue={venue} />
           <div className="flex flex-col gap-4 md:flex-row md:justify-between md:gap-12 lg:gap-24">
             <div className="w-full lg:w-2/3">
               <h1 className="mb-4 font-notoSerif text-4xl font-semibold md:text-5xl">
