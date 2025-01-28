@@ -110,7 +110,9 @@ export default function BookingModal({
             >
               Close
             </button>
-            <LinkButton to="/profile/bookings">View bookings</LinkButton>
+            <LinkButton to={`/profile/${user.name}/bookings`}>
+              View bookings
+            </LinkButton>
           </div>
         </div>
       )}
