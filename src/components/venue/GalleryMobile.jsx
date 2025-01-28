@@ -1,8 +1,9 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, A11y } from "swiper/modules";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
+import GalleryModal from "./GalleryModal";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -10,6 +11,18 @@ import "../../styles/swiperSlider.css";
 
 export default function GalleryMobile({ venue }) {
   const swiperRef = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeImageUrl, setActiveImageUrl] = useState(null);
+
+  function handleImageClick(imageUrl) {
+    setActiveImageUrl(imageUrl);
+    setIsOpen(true);
+  }
+
+  function handleClose() {
+    setIsOpen(false);
+    setActiveImageUrl(null);
+  }
 
   return (
     <div className="relative mb-4 md:hidden">
@@ -33,6 +46,7 @@ export default function GalleryMobile({ venue }) {
             <img
               src={image.url}
               alt={`${venue.name} - Image ${index + 1}`}
+              onClick={() => handleImageClick(image.url)}
               className="h-full w-full rounded-md object-cover"
             />
           </SwiperSlide>
@@ -60,6 +74,13 @@ export default function GalleryMobile({ venue }) {
           />
         </div>
       </button>
+      {isOpen && (
+        <GalleryModal
+          venue={venue}
+          onClose={handleClose}
+          activeImageUrl={activeImageUrl}
+        />
+      )}
     </div>
   );
 }
