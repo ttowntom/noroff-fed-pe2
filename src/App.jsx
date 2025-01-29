@@ -16,6 +16,7 @@ import Profile from "./pages/Profile";
 import VenueDetails from "./pages/VenueDetails";
 import Bookings from "./pages/Bookings";
 import VenueManager from "./pages/VenueManager";
+import NewEditVenueForm from "./pages/NewEditVenueForm";
 
 function App() {
   const user = useUserStore((state) => state.user);
@@ -27,6 +28,10 @@ function App() {
         { index: true, element: <Venues /> },
         { path: "signup", element: <Signup /> },
         { path: "login", element: <Login /> },
+        {
+          path: "venues/new-edit",
+          element: user ? <NewEditVenueForm /> : <Navigate to="/login" />,
+        },
         { path: "venues", element: <Venues /> },
         { path: "venues/:id", element: <VenueDetails /> },
         {
