@@ -4,10 +4,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
 import MainMenu from "./mainMenu/MainMenu";
 import useUserStore from "../store/userStore";
+import { NO_USER_IMG_URL } from "../constants.js";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const user = useUserStore((state) => state.user);
+
+  let avatar;
+  if (
+    user.avatar ===
+    "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400"
+  ) {
+    avatar = NO_USER_IMG_URL;
+  }
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -47,7 +56,7 @@ export default function Navbar() {
               className="text-light-text-primary dark:text-dark-text-primary"
             />
             {user != null ? (
-              <img src={user.avatar} className="h-4 w-4 rounded-full" />
+              <img src={avatar} className="h-4 w-4 rounded-full" />
             ) : (
               <FontAwesomeIcon
                 icon={byPrefixAndName.fas["circle-user"]}
