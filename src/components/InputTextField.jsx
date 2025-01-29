@@ -25,7 +25,11 @@ export default function InputTextField({
         onBlur={onBlur}
         className="rounded-md border border-light-border-secondary p-2 focus:outline-none focus:ring-1 focus:ring-light-border-primary dark:border-dark-border-primary dark:bg-dark-bg-primary dark:text-dark-text-primary dark:focus:ring-dark-border-primary"
       />
-      {error && <Notification type="error">{error}</Notification>}
+      {error && (
+        <Notification type="error">
+          <p>{error}</p>
+        </Notification>
+      )}
     </div>
   );
 }

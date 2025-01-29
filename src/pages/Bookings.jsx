@@ -74,13 +74,15 @@ export default function Bookings() {
       )}
 
       {data?.data?.length === 0 && (
-        <Notification type="info">You have no bookings.</Notification>
+        <Notification type="info">
+          <p>You have no bookings.</p>
+        </Notification>
       )}
 
       {isLoading && <p>Loading...</p>}
       {isError && (
         <Notification type="error">
-          {error?.message || "Could not load booking data"}
+          <p>{error?.message || "Could not load booking data"}</p>
         </Notification>
       )}
     </div>

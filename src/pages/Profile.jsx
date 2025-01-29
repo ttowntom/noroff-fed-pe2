@@ -34,7 +34,9 @@ export default function Profile() {
       <div className="mx-auto flex max-w-[55ch] flex-col items-center gap-4 dark:text-dark-text-primary">
         {isLoading && <div>Loading...</div>}
         {isError && (
-          <Notification type="error">{errors[0]?.message}</Notification>
+          <Notification type="error">
+            <p>{errors[0]?.message}</p>
+          </Notification>
         )}
       </div>
       {profile && (
@@ -43,7 +45,7 @@ export default function Profile() {
           <section>
             <h2>Venues</h2>
           </section>
-          {isSelf && bookings.data.length > 0 && (
+          {isSelf && bookings?.data?.length > 0 && (
             <section>
               <div className="mt-6 flex flex-wrap justify-between gap-2">
                 <h2 className="mb-2 text-3xl font-bold text-light-text-primary dark:text-dark-text-primary">

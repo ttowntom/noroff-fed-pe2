@@ -18,7 +18,11 @@ export default function VenueDetails() {
     return (
       <>
         <div className="flex flex-col gap-6 text-light-text-primary dark:text-dark-text-primary">
-          {isError && <Notification message={error.message} />}
+          {isError && (
+            <Notification type="error">
+              <p>{error.message}</p>
+            </Notification>
+          )}
           {isLoading && <p>Loading...</p>}
 
           <Gallery venue={venue} />

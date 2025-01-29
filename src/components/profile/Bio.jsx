@@ -99,7 +99,9 @@ export default function bio({ data, isSelf }) {
                 name="bio"
               />
               {isError && (
-                <Notification type="error">{error.message}</Notification>
+                <Notification type="error">
+                  <p>{error.message}</p>
+                </Notification>
               )}
               <div className="mt-4 flex justify-end gap-4">
                 <button

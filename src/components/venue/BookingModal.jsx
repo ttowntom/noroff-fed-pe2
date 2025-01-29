@@ -75,7 +75,9 @@ export default function BookingModal({
           </p>
           <div className="flex flex-col gap-4">
             {isError && (
-              <Notification type="error">{error?.message}</Notification>
+              <Notification type="error">
+                <p>{error?.message}</p>
+              </Notification>
             )}
             <div className="mt-4 flex justify-end gap-4">
               <button

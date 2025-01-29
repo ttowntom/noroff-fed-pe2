@@ -17,7 +17,7 @@ export default function Notification({ type, children, ...props }) {
         icon={byPrefixAndName.fas["circle-exclamation"]}
         className="text-xl"
       />
-      <p>{children}</p>
+      {children}
     </div>
   );
 }

@@ -92,11 +92,17 @@ export default function Venues() {
       )}
       <div className="mx-auto mt-4 flex max-w-[55ch] flex-col items-center gap-4 dark:text-dark-text-primary">
         {isLoading && <div>Loading...</div>}
-        {isError && <Notification type="error">{error.message}</Notification>}
+        {isError && (
+          <Notification type="error">
+            <p>{error.message}</p>
+          </Notification>
+        )}
         {data?.pages[0]?.meta?.totalCount === 0 && (
           <div className="mt-12">
             <Notification type="info">
-              No venues found matching the search criteria. Please try again.
+              <p>
+                No venues found matching the search criteria. Please try again.
+              </p>
             </Notification>
           </div>
         )}
