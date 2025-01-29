@@ -12,6 +12,7 @@ import Notification from "../Notification.jsx";
 
 export default function bio({ data, isSelf }) {
   const user = useUserStore((state) => state.user);
+  const login = useUserStore((state) => state.login);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const defaultImg =
     "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400";
@@ -23,7 +24,13 @@ export default function bio({ data, isSelf }) {
         body: { avatar: { url: avatar }, bio },
         token,
       }),
-    onSuccess: () => {
+    onSuccess: (updatedProfile) => {
+      // updatedProfile.data.avatar.url contains the new avatar URL
+      login({
+        ...user,
+        avatar: updatedProfile.data.avatar.url,
+      });
+
       queryClient.invalidateQueries({
         queryKey: [`/holidaze/profiles/${user.name}`],
       });
