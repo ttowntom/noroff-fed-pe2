@@ -1,3 +1,4 @@
+import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,6 +13,8 @@ import Button from "../components/Button";
 import Notification from "../components/Notification";
 
 export default function Signup() {
+  const [venueManager, setVenueManager] = useState(false);
+  const checkboxRef = useRef(null);
   const { formData, formErrors, handleBlur, handleChange, setFormErrors } =
     useFormValidation(
       {
@@ -23,8 +26,12 @@ export default function Signup() {
       signupSchema
     );
 
+  const handleToggleManager = () => {
+    setVenueManager((prev) => !prev);
+    checkboxRef.current.checked = !venueManager;
+  };
+
   const { mutate: loginMutate } = useLoginMutation();
-  // const navigate = useNavigate();
 
   const { mutate, isPending, isError, error } = useMutation({
     mutationFn: (body) => postFn({ url: "/auth/register", body }),
@@ -45,6 +52,7 @@ export default function Signup() {
         name: formData.name,
         email: formData.email,
         password: formData.password,
+        venueManager,
       });
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -104,6 +112,31 @@ export default function Signup() {
             onBlur={handleBlur}
             error={formErrors.passwordConfirm}
           />
+          <div className="flex items-center justify-between gap-4">
+            <p>Sign up as a Venue Manager</p>
+            <input
+              type="checkbox"
+              name="venueManager"
+              id="venueManager"
+              className="hidden"
+              ref={checkboxRef}
+              checked={venueManager}
+              onChange={(e) => setVenueManager(e.target.checked)}
+            />
+            <button type="button" onClick={handleToggleManager}>
+              {venueManager ? (
+                <FontAwesomeIcon
+                  icon={byPrefixAndName.fas["toggle-on"]}
+                  className="text-2xl"
+                />
+              ) : (
+                <FontAwesomeIcon
+                  icon={byPrefixAndName.fat["toggle-off"]}
+                  className="text-2xl"
+                />
+              )}
+            </button>
+          </div>
           <Button type="submit" onClick={handleSubmit} disabled={isPending}>
             Sign up
           </Button>
