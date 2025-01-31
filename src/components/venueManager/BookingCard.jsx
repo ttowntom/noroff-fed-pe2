@@ -7,7 +7,7 @@ export default function BookingCard({ booking }) {
     <article className="flex flex-grow flex-col items-center justify-center gap-2 rounded-lg border border-light-border-primary bg-light-bg-secondary p-2 shadow-md dark:border-dark-border-primary dark:bg-dark-bg-secondary sm:px-6 sm:py-4">
       <h4 className="-mb-2 text-lg font-bold">{booking.customer.name}</h4>
       <p>{booking.customer.email}</p>
-      <div className="flex items-center justify-center gap-2">
+      <div className="flex flex-col items-center justify-center gap-2 xs:flex-row">
         <DateBox date={booking.dateFrom} />
         <FontAwesomeIcon
           icon={byPrefixAndName.fas["horizontal-rule"]}
