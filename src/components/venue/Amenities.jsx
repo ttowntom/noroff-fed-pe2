@@ -33,7 +33,7 @@ function Meta({ meta, metaKey, icon, iconType }) {
   }
 }
 
-export default function ({ venue }) {
+export default function Amenities({ venue }) {
   return (
     <section>
       <ul className="grid w-fit grid-cols-1 gap-1 text-light-text-primary dark:text-dark-text-primary sm:grid-cols-2 sm:gap-x-12">

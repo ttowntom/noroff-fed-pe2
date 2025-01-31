@@ -1,9 +1,8 @@
 import Notification from "./Notification";
 
-export default function InputTextField({
+export default function InputTextArea({
   label,
   name,
-  type,
   defaultValue,
   placeholder,
   onChange,
@@ -16,8 +15,7 @@ export default function InputTextField({
       <label htmlFor={name} className="font-medium">
         {label}
       </label>
-      <input
-        type={type}
+      <textarea
         id={label}
         name={name}
         defaultValue={defaultValue}

@@ -47,12 +47,11 @@ export default function MainMenu({ isOpen, onClose }) {
           onClose={onClose}
         />
         <MainMenuNavLink
-          to="venue-manager"
+          to={`profile/${user?.name}/venue-manager`}
           desc="Venue Manager"
           onClose={onClose}
         />
-        <MainMenuNavLink to="login" desc="Login" onClose={onClose} />
-        <MainMenuNavLink to="signup" desc="Sign Up" onClose={onClose} />
+
         <hr className="border-light-border-secondary dark:border-dark-border-tertiary" />
         <div className="flex w-full cursor-default items-center justify-between bg-light-bg-primary px-4 py-3 hover:bg-light-bg-secondary dark:bg-dark-bg-secondary dark:text-dark-text-primary dark:hover:bg-dark-bg-primary">
           <p>Toggle Dark Mode</p>

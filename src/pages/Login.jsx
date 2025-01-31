@@ -79,7 +79,9 @@ export default function Login() {
         </form>
         {isError && (
           <div className="mt-2">
-            <Notification type="error">{error.message}</Notification>
+            <Notification type="error">
+              <p>{error.message}</p>
+            </Notification>
           </div>
         )}
         <div className="flex flex-wrap items-center justify-center gap-4">

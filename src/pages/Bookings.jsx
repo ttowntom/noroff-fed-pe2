@@ -30,11 +30,13 @@ export default function Bookings() {
   }
 
   let hasPastBookings = false;
-  const filteredBookings = data?.data?.filter((booking) => {
-    const hasExpired = new Date(booking.dateTo) < new Date();
-    hasPastBookings = hasExpired || hasPastBookings;
-    return showExpired ? hasExpired : !hasExpired;
-  });
+  const filteredBookings = data?.data
+    ?.filter((booking) => {
+      const hasExpired = new Date(booking.dateTo) < new Date();
+      hasPastBookings = hasExpired || hasPastBookings;
+      return showExpired ? hasExpired : !hasExpired;
+    })
+    .sort((a, b) => new Date(a.dateFrom) - new Date(b.dateFrom));
 
   return (
     <div className="flex flex-col items-center justify-center gap-6 text-light-text-primary dark:text-dark-text-primary">
@@ -65,7 +67,7 @@ export default function Bookings() {
               <p className="text-sm">Show past bookings</p>
             </div>
           )}
-          <div className="grid w-full grid-cols-[repeat(auto-fit,minmax(250px,1fr))] justify-items-center gap-4 md:grid-cols-[repeat(auto-fit,minmax(min(100%/3,400px),1fr))]">
+          <div className="grid w-full grid-cols-[repeat(auto-fit,minmax(150px,1fr))] justify-items-center gap-4 md:grid-cols-[repeat(auto-fit,minmax(min(100%/3,400px),1fr))]">
             {filteredBookings.map((booking) => (
               <BookingCard key={booking.id} booking={booking} />
             ))}
@@ -74,13 +76,15 @@ export default function Bookings() {
       )}
 
       {data?.data?.length === 0 && (
-        <Notification type="info">You have no bookings.</Notification>
+        <Notification type="info">
+          <p>You have no bookings.</p>
+        </Notification>
       )}
 
       {isLoading && <p>Loading...</p>}
       {isError && (
         <Notification type="error">
-          {error?.message || "Could not load booking data"}
+          <p>{error?.message || "Could not load booking data"}</p>
         </Notification>
       )}
     </div>

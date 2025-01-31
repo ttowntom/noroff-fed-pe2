@@ -9,7 +9,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "../../styles/swiperSlider.css";
 
-export default function GalleryMobile({ venue }) {
+export default function GalleryMobile({ venue, desktopHidden = true }) {
   const swiperRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const [activeImageUrl, setActiveImageUrl] = useState(null);
@@ -25,7 +25,11 @@ export default function GalleryMobile({ venue }) {
   }
 
   return (
-    <div className="relative mb-4 md:hidden">
+    <div
+      className={`relative mb-4 w-full ${
+        desktopHidden === true ? "md:hidden" : ""
+      }`}
+    >
       <Swiper
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
@@ -33,16 +37,17 @@ export default function GalleryMobile({ venue }) {
         modules={[Navigation, Pagination, A11y]}
         spaceBetween={10}
         slidesPerView={1}
+        loop={true}
         pagination={{
           clickable: true,
           bulletClass: "swiper-pagination-bullet my-custom-bullet",
           bulletActiveClass:
             "swiper-pagination-bullet-active my-custom-bullet-active",
         }}
-        className="h-96"
+        className="h-96 w-full"
       >
         {venue.media.map((image, index) => (
-          <SwiperSlide key={image.url}>
+          <SwiperSlide key={image.url} className="h-full !w-full">
             <img
               src={image.url}
               alt={`${venue.name} - Image ${index + 1}`}

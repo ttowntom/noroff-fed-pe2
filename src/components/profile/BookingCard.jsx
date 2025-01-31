@@ -8,6 +8,7 @@ import useUserStore from "../../store/userStore.js";
 import { deleteFn, queryClient } from "../../utils/http.js";
 import Modal from "../Modal.jsx";
 import Button from "../Button.jsx";
+import DateBox from "../DateBox.jsx";
 
 export default function BookingCard({ booking }) {
   const user = useUserStore((state) => state.user);
@@ -33,30 +34,9 @@ export default function BookingCard({ booking }) {
     mutate();
   }
 
-  function RenderDate({ date }) {
-    const dateObj = new Date(date);
-
-    return (
-      <div className="mt-4 flex flex-col items-center gap-1 rounded-md border border-light-border-primary bg-light-bg-primary px-4 py-2 dark:border-dark-border-primary dark:bg-dark-bg-primary">
-        <p className="text-center">
-          {dateObj.toLocaleDateString("en-GB", { weekday: "short" })}
-        </p>
-        <p className="text-center font-bold">
-          {dateObj.toLocaleDateString("en-GB", { day: "numeric" })}
-        </p>
-        <p className="text-center">
-          {dateObj.toLocaleDateString("en-GB", {
-            month: "short",
-            year: "numeric",
-          })}
-        </p>
-      </div>
-    );
-  }
-
   return (
     <div
-      className={`${hasExpired && "border border-light-border-error bg-light-bg-error dark:bg-dark-bg-primary"} ${!hasExpired && "bg-light-bg-secondary dark:bg-dark-bg-secondary"} group flex w-full flex-col gap-2 rounded-md border p-4 text-light-text-primary hover:shadow-md dark:text-dark-text-primary`}
+      className={`${hasExpired && "border border-light-border-error bg-light-bg-error dark:bg-dark-bg-primary"} ${!hasExpired && "bg-light-bg-secondary dark:bg-dark-bg-secondary"} group flex w-full max-w-fit flex-col gap-2 rounded-md border p-4 text-light-text-primary hover:shadow-md dark:text-dark-text-primary`}
     >
       <div className="overflow-hidden rounded-sm">
         <img
@@ -67,38 +47,34 @@ export default function BookingCard({ booking }) {
       </div>
       <h2 className="text-xl font-bold">{booking.venue.name}</h2>
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <div className="flex items-center gap-4">
-          <Link
-            to={`/venues/${booking.venue.id}`}
-            className="text-light-link-primary hover:opacity-80 dark:text-dark-link-primary"
-          >
-            View venue details
-          </Link>
+        <Link
+          to={`/venues/${booking.venue.id}`}
+          className="flex items-center gap-2 text-light-link-primary hover:underline dark:text-dark-link-primary"
+        >
+          View venue details
           <FontAwesomeIcon
             icon={byPrefixAndName.fas["chevron-right"]}
             className="text-sm text-light-text-primary dark:text-dark-text-primary"
           />
-        </div>
-        <div className="flex items-center gap-2">
-          <button
-            onClick={handleClickDelete}
-            className="text-sm text-light-text-error dark:text-dark-text-error"
-          >
-            Delete booking
-          </button>
+        </Link>
+        <button
+          onClick={handleClickDelete}
+          className="flex items-center gap-2 text-sm text-light-text-error hover:underline dark:text-dark-text-error"
+        >
+          Delete booking
           <FontAwesomeIcon
-            icon={byPrefixAndName.fas["chevron-right"]}
-            className="text-sm text-light-text-primary dark:text-dark-text-primary"
+            icon={byPrefixAndName.fas["cancel"]}
+            className="text-sm text-color-system-error-red dark:text-color-system-error-red"
           />
-        </div>
+        </button>
       </div>
-      <div className="flex items-center justify-center gap-2">
-        <RenderDate date={booking.dateFrom} />
+      <div className="flex flex-col items-center justify-center gap-2 xs:flex-row">
+        <DateBox date={booking.dateFrom} />
         <FontAwesomeIcon
           icon={byPrefixAndName.fas["horizontal-rule"]}
           className="text-light-text-primary dark:text-dark-text-primary"
         />
-        <RenderDate date={booking.dateTo} />
+        <DateBox date={booking.dateTo} />
       </div>
       {showModal && (
         <Modal>
@@ -116,7 +92,9 @@ export default function BookingCard({ booking }) {
                 >
                   Cancel
                 </button>
-                <Button onClick={handleConfirmDelete}>Delete now</Button>
+                <Button variant="danger" onClick={handleConfirmDelete}>
+                  Delete now
+                </Button>
               </div>
             </div>
           </div>
