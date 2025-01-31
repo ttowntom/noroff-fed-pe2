@@ -67,7 +67,7 @@ export default function Bookings() {
               <p className="text-sm">Show past bookings</p>
             </div>
           )}
-          <div className="grid w-full grid-cols-[repeat(auto-fit,minmax(250px,1fr))] justify-items-center gap-4 md:grid-cols-[repeat(auto-fit,minmax(min(100%/3,400px),1fr))]">
+          <div className="grid w-full grid-cols-[repeat(auto-fit,minmax(150px,1fr))] justify-items-center gap-4 md:grid-cols-[repeat(auto-fit,minmax(min(100%/3,400px),1fr))]">
             {filteredBookings.map((booking) => (
               <BookingCard key={booking.id} booking={booking} />
             ))}
