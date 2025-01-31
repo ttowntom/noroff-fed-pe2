@@ -30,11 +30,13 @@ export default function Bookings() {
   }
 
   let hasPastBookings = false;
-  const filteredBookings = data?.data?.filter((booking) => {
-    const hasExpired = new Date(booking.dateTo) < new Date();
-    hasPastBookings = hasExpired || hasPastBookings;
-    return showExpired ? hasExpired : !hasExpired;
-  });
+  const filteredBookings = data?.data
+    ?.filter((booking) => {
+      const hasExpired = new Date(booking.dateTo) < new Date();
+      hasPastBookings = hasExpired || hasPastBookings;
+      return showExpired ? hasExpired : !hasExpired;
+    })
+    .sort((a, b) => new Date(a.dateFrom) - new Date(b.dateFrom));
 
   return (
     <div className="flex flex-col items-center justify-center gap-6 text-light-text-primary dark:text-dark-text-primary">
