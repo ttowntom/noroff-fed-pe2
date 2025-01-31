@@ -45,7 +45,7 @@ export default function VenueManager() {
               >
                 <button
                   onClick={() => toggleVenue(venue.id)}
-                  className="group mb-4 flex w-full items-center justify-between rounded-md bg-light-bg-secondary p-4 hover:shadow-md dark:bg-dark-bg-secondary"
+                  className="group mb-6 flex w-full items-center justify-between rounded-md bg-light-bg-secondary p-4 hover:shadow-md dark:bg-dark-bg-secondary"
                 >
                   {!openVenues[venue.id] ? (
                     <h2 className="text-xl font-semibold">{venue.name}</h2>
