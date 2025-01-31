@@ -8,6 +8,7 @@ import useUserStore from "../../store/userStore.js";
 import { deleteFn, queryClient } from "../../utils/http.js";
 import Modal from "../Modal.jsx";
 import Button from "../Button.jsx";
+import DateBox from "../DateBox.jsx";
 
 export default function BookingCard({ booking }) {
   const user = useUserStore((state) => state.user);
@@ -31,27 +32,6 @@ export default function BookingCard({ booking }) {
 
   function handleConfirmDelete() {
     mutate();
-  }
-
-  function RenderDate({ date }) {
-    const dateObj = new Date(date);
-
-    return (
-      <div className="mt-4 flex flex-col items-center gap-1 rounded-md border border-light-border-primary bg-light-bg-primary px-4 py-2 dark:border-dark-border-primary dark:bg-dark-bg-primary">
-        <p className="text-center">
-          {dateObj.toLocaleDateString("en-GB", { weekday: "short" })}
-        </p>
-        <p className="text-center font-bold">
-          {dateObj.toLocaleDateString("en-GB", { day: "numeric" })}
-        </p>
-        <p className="text-center">
-          {dateObj.toLocaleDateString("en-GB", {
-            month: "short",
-            year: "numeric",
-          })}
-        </p>
-      </div>
-    );
   }
 
   return (
@@ -93,12 +73,12 @@ export default function BookingCard({ booking }) {
         </div>
       </div>
       <div className="flex items-center justify-center gap-2">
-        <RenderDate date={booking.dateFrom} />
+        <DateBox date={booking.dateFrom} />
         <FontAwesomeIcon
           icon={byPrefixAndName.fas["horizontal-rule"]}
           className="text-light-text-primary dark:text-dark-text-primary"
         />
-        <RenderDate date={booking.dateTo} />
+        <DateBox date={booking.dateTo} />
       </div>
       {showModal && (
         <Modal>
