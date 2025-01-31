@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
@@ -10,6 +11,7 @@ import VenueOverview from "../components/venueManager/VenueOverview.jsx";
 
 export default function VenueManager() {
   const user = useUserStore((state) => state.user);
+  const [openVenues, setOpenVenues] = useState({});
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: [`/holidaze/profiles/${user.name}/venues?_bookings=true`],
@@ -19,6 +21,10 @@ export default function VenueManager() {
         token: user.token,
       }),
   });
+
+  const toggleVenue = (id) => {
+    setOpenVenues((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
 
   return (
     <>
@@ -31,8 +37,37 @@ export default function VenueManager() {
         </div>
         {!user.venueManager && <NotManagerMsg />}
         {user.venueManager && (
-          <div className="flex flex-col gap-4">
-            {data && <VenueOverview venue={data.data[0]} />}
+          <div className="mt-6 flex w-full flex-col gap-4">
+            {data?.data.map((venue) => (
+              <div
+                key={venue.id}
+                className="w-full rounded-sm border-t border-light-border-primary dark:border-dark-border-primary"
+              >
+                <button
+                  onClick={() => toggleVenue(venue.id)}
+                  className="group mb-4 flex w-full items-center justify-between rounded-md bg-light-bg-secondary p-4 hover:shadow-md dark:bg-dark-bg-secondary"
+                >
+                  {!openVenues[venue.id] ? (
+                    <h2 className="text-xl font-semibold">{venue.name}</h2>
+                  ) : (
+                    <p className="group-hover:font-medium">
+                      Close venue details
+                    </p>
+                  )}
+                  <FontAwesomeIcon
+                    icon={
+                      byPrefixAndName.fas[
+                        openVenues[venue.id]
+                          ? "circle-chevron-up"
+                          : "circle-chevron-down"
+                      ]
+                    }
+                    className="text-light-link-primary dark:text-dark-link-primary"
+                  />
+                </button>
+                {openVenues[venue.id] && <VenueOverview venue={venue} />}
+              </div>
+            ))}
           </div>
         )}
       </div>

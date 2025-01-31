@@ -95,15 +95,15 @@ export default function VenueOverview({ venue }) {
         </div>
       </section>
       <section className="flex flex-col gap-4">
-        <div className="flex flex-col items-center justify-between sm:flex-row">
-          <h3 className="mb-2 text-3xl font-bold">
+        <div className="flex flex-col justify-between sm:flex-row">
+          <h3 className="mb-2 text-left text-3xl font-bold">
             Bookings{" "}
             <span className="text-2xl font-normal">
               ({venue.bookings.length})
             </span>
           </h3>
           {hasPastBookings && (
-            <div className="flex w-full items-center gap-2 sm:flex-row-reverse">
+            <div className="flex w-full gap-2 sm:flex-row">
               <button onClick={handleToggleExpired}>
                 {showExpired ? (
                   <FontAwesomeIcon
