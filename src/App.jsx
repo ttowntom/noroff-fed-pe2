@@ -32,6 +32,10 @@ function App() {
           path: "venues/new-edit",
           element: user ? <NewEditVenueForm /> : <Navigate to="/login" />,
         },
+        {
+          path: "venues/new-edit/:id",
+          element: user ? <NewEditVenueForm /> : <Navigate to="/login" />,
+        },
         { path: "venues", element: <Venues /> },
         { path: "venues/:id", element: <VenueDetails /> },
         {

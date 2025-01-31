@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { z } from "zod";
-import { useMutation } from "@tanstack/react-query";
-import { postFn } from "../utils/http";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { postFn, fetchFn } from "../utils/http";
 import { useFormValidation } from "../hooks/useFormValidation";
 import { useVenueTransform } from "../hooks/useVenueTransform";
 import useUserStore from "../store/userStore";
@@ -19,10 +19,19 @@ import PriceCapacitySection from "../components/venueManager/PriceCapacitySectio
 export default function NewEditVenueForm() {
   const user = useUserStore((state) => state.user);
   const navigate = useNavigate();
+  const { id } = useParams();
+  const isEditing = Boolean(id);
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
   const [formIsValid, setFormIsValid] = useState(undefined);
   const { transformToApiFormat } = useVenueTransform();
+
+  // Fetch existing venue data if editing
+  const { data: venueData } = useQuery({
+    queryKey: [`/holidaze/venues/${id}?_owner=true`],
+    queryFn: fetchFn,
+    enabled: isEditing, // Only fetch if editing
+  });
 
   const {
     formData,
@@ -53,6 +62,31 @@ export default function NewEditVenueForm() {
     newEditVenueSchema
   );
 
+  // Populate form when editing and data is loaded
+  useEffect(() => {
+    if (isEditing && venueData) {
+      const venue = venueData.data;
+      setFormData({
+        venueName: venue.name,
+        description: venue.description,
+        price: venue.price,
+        maxGuests: venue.maxGuests,
+        rating: venue.rating,
+        address: venue.location.address,
+        city: venue.location.city,
+        country: venue.location.country,
+        zip: venue.location.zip,
+        lat: venue.location.lat,
+        lng: venue.location.lng,
+        images: venue.media.map((img) => img.url),
+        wifi: venue.meta.wifi,
+        parking: venue.meta.parking,
+        breakfast: venue.meta.breakfast,
+        pets: venue.meta.pets,
+      });
+    }
+  }, [isEditing, venueData, setFormData]);
+
   function handleCancel() {
     navigate(-1);
   }
@@ -76,13 +110,34 @@ export default function NewEditVenueForm() {
     }));
   }
 
+  // const { mutate, isPending, isError, error } = useMutation({
+  //   mutationFn: ({ venueData, token }) =>
+  //     postFn({
+  //       url: "/holidaze/venues",
+  //       body: venueData,
+  //       token,
+  //     }),
+  //   onSuccess: (data) => {
+  //     navigate(`/venues/${data.data.id}`);
+  //   },
+  // });
+
+  // Use mutation for either creating or updating
   const { mutate, isPending, isError, error } = useMutation({
-    mutationFn: ({ venueData, token }) =>
-      postFn({
+    mutationFn: ({ venueData, token }) => {
+      if (isEditing) {
+        return putFn({
+          url: `/holidaze/venues/${id}`,
+          body: venueData,
+          token,
+        });
+      }
+      return postFn({
         url: "/holidaze/venues",
         body: venueData,
         token,
-      }),
+      });
+    },
     onSuccess: (data) => {
       navigate(`/venues/${data.data.id}`);
     },
@@ -117,10 +172,12 @@ export default function NewEditVenueForm() {
     <div className="flex flex-col justify-center gap-6 text-light-text-primary dark:text-dark-text-primary">
       <div className="space-y-4 text-center">
         <h1 className="font-notoSerif text-4xl font-semibold sm:text-5xl">
-          Add a new venue
+          {isEditing ? "Edit venue" : "Add new venue"}
         </h1>
         <p>
-          Enter the details below to list a new venue on the Holidaze platform.
+          {isEditing
+            ? "Edit the details below to make changes to your venue listing."
+            : "Enter the details below to list a new venue on the Holidaze platform."}
         </p>
       </div>
       <form className="mx-auto mt-6 flex w-full max-w-[65ch] flex-col gap-4">
@@ -168,7 +225,7 @@ export default function NewEditVenueForm() {
           )}
           {isError && <Notification type="error">{error.message}</Notification>}
           <Button onClick={handleSubmit} type="submit">
-            Add venue
+            {isEditing ? "Edit venue" : "Add venue"}
           </Button>
           <Button
             type="button"

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
@@ -64,10 +65,13 @@ export default function VenueOverview({ venue }) {
               <FontAwesomeIcon icon={byPrefixAndName.fas["trash"]} />
               <p className="group-hover:underline">Delete venue</p>
             </button>
-            <button className="group flex items-center gap-4 text-light-link-primary dark:text-dark-link-primary">
+            <Link
+              to={`/venues/new-edit/${venue.id}`}
+              className="group flex items-center gap-4 text-light-link-primary dark:text-dark-link-primary"
+            >
               <p className="group-hover:underline">Edit venue</p>
               <FontAwesomeIcon icon={byPrefixAndName.fas["chevron-right"]} />
-            </button>
+            </Link>
           </div>
           <h2 className="mb-2 text-3xl font-bold">{venue.name}</h2>
           <p>{venue.description}</p>
