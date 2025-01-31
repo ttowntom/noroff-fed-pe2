@@ -1,34 +1,14 @@
-import { useState } from "react";
-
 import SetLocation from "./SetLocation";
 import InputTextField from "../InputTextField";
 
 export default function LocationSection({
+  formData,
   formErrors,
   handleBlur,
   handleChange,
 }) {
-  const [locationData, setLocationData] = useState({
-    address: "",
-    city: "",
-    country: "",
-    zip: "",
-    lat: 0,
-    lng: 0,
-  });
-
   function handleLocationSet(location) {
-    // Update local state
-    setLocationData({
-      address: location.address || "",
-      city: location.city || "",
-      country: location.country || "",
-      zip: location.postcode || "",
-      lat: location.lat,
-      lng: location.lng,
-    });
-
-    // Update parent state by simulating change events
+    // Update parent form state with location data
     ["address", "city", "country", "zip"].forEach((field) => {
       const value = field === "zip" ? location.postcode : location[field];
       handleChange({
@@ -36,78 +16,74 @@ export default function LocationSection({
       });
     });
 
-    // Update lat/lng in parent
+    // Update coordinates
     handleChange({ target: { name: "lat", value: location.lat } });
     handleChange({ target: { name: "lng", value: location.lng } });
-  }
-
-  function handleCombinedChange(e) {
-    // Handle form validation
-    handleChange(e);
-
-    // Handle local state
-    const { name, value } = e.target;
-    setLocationData((prev) => ({ ...prev, [name]: value }));
   }
 
   return (
     <section className="mb-4 flex flex-col gap-4">
       <h2 className="mt-4 text-xl font-bold sm:text-2xl">Location</h2>
       <p className="-mb-2 text-sm">
-        Click on the map to set the location of the venue.
+        Click on the map to set the venue location.
       </p>
-      <SetLocation onLocationSet={handleLocationSet} />
+
+      <SetLocation
+        onLocationSet={handleLocationSet}
+        initialLat={formData.lat}
+        initialLng={formData.lng}
+      />
+
       <div className="flex flex-col gap-4 sm:flex-row">
         <div className="flex-grow">
           <InputTextField
             label="Address"
             name="address"
             type="text"
+            value={formData.address}
+            defaultValue={formData.address}
+            onChange={handleChange}
             onBlur={handleBlur}
             error={formErrors.address}
             placeholder="Enter address"
-            value={locationData.address}
-            defaultValue={locationData.address}
-            onChange={handleCombinedChange}
           />
         </div>
         <InputTextField
           label="Country"
           name="country"
           type="text"
+          value={formData.country}
+          defaultValue={formData.country}
+          onChange={handleChange}
           onBlur={handleBlur}
           error={formErrors.country}
           placeholder="Enter country"
-          value={locationData.country}
-          defaultValue={locationData.country}
-          onChange={handleCombinedChange}
         />
       </div>
+
       <div className="flex flex-col gap-4 sm:flex-row">
         <InputTextField
-          label="Zip code"
+          label="City"
+          name="city"
+          type="text"
+          defaultValue={formData.city}
+          value={formData.city}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          error={formErrors.city}
+          placeholder="Enter city"
+        />
+        <InputTextField
+          label="ZIP"
           name="zip"
           type="text"
+          defaultValue={formData.zip}
+          value={formData.zip}
+          onChange={handleChange}
           onBlur={handleBlur}
           error={formErrors.zip}
-          placeholder="Enter zip code"
-          value={locationData.zip}
-          defaultValue={locationData.zip}
-          onChange={handleCombinedChange}
+          placeholder="Enter ZIP code"
         />
-        <div className="flex-grow">
-          <InputTextField
-            label="City"
-            name="city"
-            type="text"
-            onBlur={handleBlur}
-            error={formErrors.city}
-            placeholder="Enter city"
-            value={locationData.city}
-            defaultValue={locationData.city}
-            onChange={handleCombinedChange}
-          />
-        </div>
       </div>
     </section>
   );

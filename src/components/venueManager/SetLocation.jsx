@@ -4,12 +4,32 @@ import Map, { Marker } from "react-map-gl";
 import { useReverseGeocoding } from "../../hooks/useReverseGeocoding";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-export default function SetLocation({ onLocationSet }) {
-  const [marker, setMarker] = useState(null);
+export default function SetLocation({ onLocationSet, initialLat, initialLng }) {
+  const [marker, setMarker] = useState(
+    initialLat && initialLng
+      ? {
+          longitude: initialLng,
+          latitude: initialLat,
+        }
+      : null
+  );
   const { locationData, isLoading } = useReverseGeocoding(
     marker?.longitude,
     marker?.latitude
   );
+
+  useEffect(() => {
+    if (
+      initialLat &&
+      initialLng &&
+      (marker?.latitude !== initialLat || marker?.longitude !== initialLng)
+    ) {
+      setMarker({
+        longitude: initialLng,
+        latitude: initialLat,
+      });
+    }
+  }, [initialLat, initialLng]);
 
   function handleMapClick(event) {
     const { lng, lat } = event.lngLat;
@@ -19,7 +39,6 @@ export default function SetLocation({ onLocationSet }) {
     });
   }
 
-  // When location data is received, pass it up to parent
   useEffect(() => {
     if (locationData && !isLoading) {
       onLocationSet(locationData);
@@ -30,9 +49,9 @@ export default function SetLocation({ onLocationSet }) {
     <div className="text-light-text-primary dark:text-dark-text-primary">
       <Map
         initialViewState={{
-          longitude: 10.3,
-          latitude: 63.4,
-          zoom: 2,
+          longitude: initialLng || 10.3,
+          latitude: initialLat || 63.4,
+          zoom: initialLat && initialLng ? 13 : 2,
         }}
         style={{
           width: "100%",
