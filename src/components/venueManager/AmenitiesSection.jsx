@@ -1,6 +1,7 @@
 import InputCheckRadio from "../InputCheckRadio";
 
 export default function AmenitiesSection({
+  formData,
   handleChange,
   handleBlur,
   formErrors,
@@ -14,6 +15,7 @@ export default function AmenitiesSection({
           name="wifi"
           type="checkbox"
           value="wifi"
+          checked={formData.wifi}
           onChange={handleChange}
           onBlur={handleBlur}
           error={formErrors.wifi}
@@ -23,6 +25,7 @@ export default function AmenitiesSection({
           name="parking"
           type="checkbox"
           value="parking"
+          checked={formData.parking}
           onChange={handleChange}
           onBlur={handleBlur}
           error={formErrors.parking}
@@ -32,6 +35,7 @@ export default function AmenitiesSection({
           name="breakfast"
           type="checkbox"
           value="breakfast"
+          checked={formData.breakfast}
           onChange={handleChange}
           onBlur={handleBlur}
           error={formErrors.breakfast}
@@ -41,6 +45,7 @@ export default function AmenitiesSection({
           name="pets"
           type="checkbox"
           value="pets"
+          checked={formData.pets}
           onChange={handleChange}
           onBlur={handleBlur}
           error={formErrors.pets}

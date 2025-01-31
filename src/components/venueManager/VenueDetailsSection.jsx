@@ -2,6 +2,7 @@ import InputTextField from "../InputTextField";
 import InputTextArea from "../InputTextArea";
 
 export default function VenueDetailsSection({
+  formData,
   handleChange,
   handleBlur,
   formErrors,
@@ -13,6 +14,8 @@ export default function VenueDetailsSection({
         label="Venue name"
         name="venueName"
         type="text"
+        value={formData.venueName}
+        defaultValue={formData.venueName}
         onChange={handleChange}
         onBlur={handleBlur}
         error={formErrors.venueName}
@@ -22,6 +25,8 @@ export default function VenueDetailsSection({
       <InputTextArea
         label="Description"
         name="description"
+        value={formData.description}
+        defaultValue={formData.description}
         onChange={handleChange}
         onBlur={handleBlur}
         error={formErrors.description}

@@ -1,6 +1,7 @@
 import InputTextField from "../InputTextField";
 
 export default function PriceCapacitySection({
+  formData,
   handleChange,
   handleBlur,
   formErrors,
@@ -33,6 +34,8 @@ export default function PriceCapacitySection({
           label="Price per night"
           name="price"
           type="number"
+          value={formData.price}
+          defaultValue={formData.price}
           onChange={handleNumberChange}
           onBlur={handleNumberBlur}
           error={formErrors.price}
@@ -42,6 +45,8 @@ export default function PriceCapacitySection({
           label="Max guests"
           name="maxGuests"
           type="number"
+          value={formData.maxGuests}
+          defaultValue={formData.maxGuests}
           onChange={handleNumberChange}
           onBlur={handleNumberBlur}
           error={formErrors.maxGuests}

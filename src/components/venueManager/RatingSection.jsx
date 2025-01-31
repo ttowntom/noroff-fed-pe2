@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
 
-export default function RatingSection({ onRatingChange }) {
-  const [rating, setRating] = useState(0);
+export default function RatingSection({ onRatingChange, formData }) {
+  const [rating, setRating] = useState(formData.rating || 0);
   const [hover, setHover] = useState(0);
+
+  useEffect(() => {
+    setRating(formData.rating || 0);
+  }, [formData.rating]);
 
   const handleRatingChange = (value) => {
     setRating(value);

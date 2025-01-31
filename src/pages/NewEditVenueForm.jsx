@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { z } from "zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { postFn, fetchFn } from "../utils/http";
+import { postFn, fetchFn, putFn } from "../utils/http";
 import { useFormValidation } from "../hooks/useFormValidation";
 import { useVenueTransform } from "../hooks/useVenueTransform";
 import useUserStore from "../store/userStore";
@@ -27,7 +27,7 @@ export default function NewEditVenueForm() {
   const { transformToApiFormat } = useVenueTransform();
 
   // Fetch existing venue data if editing
-  const { data: venueData } = useQuery({
+  const { data: venueData, isLoading } = useQuery({
     queryKey: [`/holidaze/venues/${id}?_owner=true`],
     queryFn: fetchFn,
     enabled: isEditing, // Only fetch if editing
@@ -180,63 +180,74 @@ export default function NewEditVenueForm() {
             : "Enter the details below to list a new venue on the Holidaze platform."}
         </p>
       </div>
-      <form className="mx-auto mt-6 flex w-full max-w-[65ch] flex-col gap-4">
-        <VenueDetailsSection
-          formErrors={formErrors}
-          handleBlur={handleBlur}
-          handleChange={handleChange}
-        />
-        <LocationSection
-          formErrors={formErrors}
-          handleChange={handleChange}
-          handleBlur={handleBlur}
-        />
-        <PriceCapacitySection
-          handleChange={handleChange}
-          handleBlur={handleBlur}
-          formErrors={formErrors}
-        />
+      {isEditing && isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <form className="mx-auto mt-6 flex w-full max-w-[65ch] flex-col gap-4">
+          <VenueDetailsSection
+            formData={formData}
+            formErrors={formErrors}
+            handleBlur={handleBlur}
+            handleChange={handleChange}
+          />
+          <LocationSection
+            formData={formData}
+            formErrors={formErrors}
+            handleChange={handleChange}
+            handleBlur={handleBlur}
+          />
+          <PriceCapacitySection
+            formData={formData}
+            handleChange={handleChange}
+            handleBlur={handleBlur}
+            formErrors={formErrors}
+          />
 
-        <AmenitiesSection
-          handleChange={handleChange}
-          handleBlur={handleBlur}
-          formErrors={formErrors}
-        />
+          <AmenitiesSection
+            formData={formData}
+            handleChange={handleChange}
+            handleBlur={handleBlur}
+            formErrors={formErrors}
+          />
 
-        <RatingSection
-          onRatingChange={(value) =>
-            setFormData((prev) => ({ ...prev, rating: value }))
-          }
-        />
-        <ImagesSection
-          images={formData.images}
-          onImageAdd={handleImageAdd}
-          onImageDelete={handleImageDelete}
-          handleChange={handleChange}
-          handleBlur={handleBlur}
-          formErrors={formErrors}
-        />
+          <RatingSection
+            formData={formData}
+            onRatingChange={(value) =>
+              setFormData((prev) => ({ ...prev, rating: value }))
+            }
+          />
+          <ImagesSection
+            images={formData.images}
+            onImageAdd={handleImageAdd}
+            onImageDelete={handleImageDelete}
+            handleChange={handleChange}
+            handleBlur={handleBlur}
+            formErrors={formErrors}
+          />
 
-        <section className="mt-12 flex flex-col gap-4">
-          {formIsValid === false && (
-            <Notification type="error">
-              Please fix the errors in the form before submitting.
-            </Notification>
-          )}
-          {isError && <Notification type="error">{error.message}</Notification>}
-          <Button onClick={handleSubmit} type="submit">
-            {isEditing ? "Edit venue" : "Add venue"}
-          </Button>
-          <Button
-            type="button"
-            disabled={isPending}
-            variant="secondary"
-            onClick={handleCancel}
-          >
-            Cancel
-          </Button>
-        </section>
-      </form>
+          <section className="mt-12 flex flex-col gap-4">
+            {formIsValid === false && (
+              <Notification type="error">
+                Please fix the errors in the form before submitting.
+              </Notification>
+            )}
+            {isError && (
+              <Notification type="error">{error.message}</Notification>
+            )}
+            <Button onClick={handleSubmit} type="submit">
+              {isEditing ? "Edit venue" : "Add venue"}
+            </Button>
+            <Button
+              type="button"
+              disabled={isPending}
+              variant="secondary"
+              onClick={handleCancel}
+            >
+              Cancel
+            </Button>
+          </section>
+        </form>
+      )}
     </div>
   );
 }
