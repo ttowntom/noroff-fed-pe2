@@ -26,6 +26,7 @@ export default function MainMenu({ isOpen, onClose }) {
 
   function handleToggleTheme() {
     toggleTheme(theme, setTheme);
+    onClose();
   }
 
   return (
