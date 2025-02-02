@@ -7,6 +7,7 @@ import useProfileData from "../hooks/useProfileData.js";
 import Notification from "../components/Notification.jsx";
 import Bio from "../components/profile/Bio.jsx";
 import BookingCard from "../components/profile/BookingCard.jsx";
+import VenueCard from "../components/venue/VenueCard.jsx";
 
 export default function Profile() {
   const { name } = useParams();
@@ -42,14 +43,25 @@ export default function Profile() {
       {profile && (
         <div>
           <Bio data={profile} isSelf={isSelf} />
-          <section>
-            <h2>Venues</h2>
-          </section>
+          {venues?.data?.length > 0 && (
+            <section>
+              <div className="mt-12 flex flex-wrap justify-between gap-2">
+                <h2 className="mb-2 text-3xl font-bold text-light-text-primary dark:text-dark-text-primary">
+                  Venues
+                </h2>
+              </div>
+              <div className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] justify-items-center gap-4 md:grid-cols-[repeat(auto-fit,minmax(min(100%/4,300px),1fr))]">
+                {venues?.data?.map((venue) => (
+                  <VenueCard key={venue.id} venue={venue} />
+                ))}
+              </div>
+            </section>
+          )}
           {isSelf && bookings?.data?.length > 0 && (
             <section>
-              <div className="mt-6 flex flex-wrap justify-between gap-2">
+              <div className="mt-12 flex flex-wrap justify-between gap-2">
                 <h2 className="mb-2 text-3xl font-bold text-light-text-primary dark:text-dark-text-primary">
-                  Bookings
+                  Your Bookings
                 </h2>
                 {hasPastBookings && (
                   <div className="mb-2 flex w-full items-center gap-2 sm:flex-row-reverse">

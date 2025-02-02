@@ -7,11 +7,13 @@ import useUserStore from "../../store/userStore.js";
 import { putFn, queryClient } from "../../utils/http.js";
 import Modal from "../Modal.jsx";
 import InputTextField from "../InputTextField.jsx";
+import InputTextArea from "../InputTextArea.jsx";
 import Button from "../Button.jsx";
 import Notification from "../Notification.jsx";
 
 export default function bio({ data, isSelf }) {
   const user = useUserStore((state) => state.user);
+  const [avatarUrl, setAvatarUrl] = useState(data.data.avatar.url);
   const login = useUserStore((state) => state.login);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const defaultImg =
@@ -46,6 +48,11 @@ export default function bio({ data, isSelf }) {
     setIsModalOpen(false);
   }
 
+  function handleAvatarUrlChange(e) {
+    const newUrl = e.target.value;
+    setAvatarUrl(newUrl || NO_USER_IMG_URL);
+  }
+
   function handleEditProfile(e) {
     e.preventDefault();
     const form = e.target;
@@ -75,7 +82,7 @@ export default function bio({ data, isSelf }) {
               : data.data.avatar.url
           }
           alt={data.data.name}
-          className="h-16 w-16 rounded-full"
+          className="h-16 w-16 rounded-full object-cover"
         />
         <h1 className="font-notoSerif text-4xl font-semibold sm:text-5xl">
           {data.data.name}
@@ -91,19 +98,29 @@ export default function bio({ data, isSelf }) {
           <div className="flex flex-col gap-4">
             <h2 className="text-2xl font-semibold">Edit Profile</h2>
             <form onSubmit={handleEditProfile} className="flex flex-col gap-4">
-              <InputTextField
-                label="Avatar"
-                name="avatar"
-                type="text"
-                defaultValue={data.data.avatar.url}
-              />
-              <label htmlFor="bio" className="font-medium">
-                Bio
-              </label>
-              <textarea
-                className="h-40 w-full rounded-lg bg-light-bg-secondary p-4 text-light-text-primary dark:bg-dark-bg-secondary dark:text-dark-text-primary"
-                defaultValue={data.data.bio}
+              <div className="flex items-end gap-4">
+                <div className="flex flex-grow">
+                  <InputTextField
+                    label="Avatar"
+                    name="avatar"
+                    type="text"
+                    defaultValue={
+                      avatarUrl === NO_USER_IMG_URL ? "" : avatarUrl
+                    }
+                    onChange={handleAvatarUrlChange}
+                    placeholder="Enter image URL"
+                  />
+                </div>
+                <img
+                  src={avatarUrl}
+                  alt={data.data.name}
+                  className="h-16 w-16 rounded-full object-cover"
+                />
+              </div>
+              <InputTextArea
+                label="Bio"
                 name="bio"
+                defaultValue={data.data.bio}
               />
               {isError && (
                 <Notification type="error">
