@@ -7,7 +7,7 @@ export default function VenueCard({ venue }) {
   return (
     <Link
       to={`venues/${venue.id}`}
-      className="group mb-2 flex w-full flex-col gap-1 text-light-text-primary dark:text-dark-text-primary"
+      className="group mb-2 flex w-full flex-col gap-1 overflow-hidden text-light-text-primary dark:text-dark-text-primary"
     >
       <div className="overflow-hidden rounded-lg">
         <img

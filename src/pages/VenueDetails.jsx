@@ -26,7 +26,7 @@ export default function VenueDetails() {
           {isLoading && <p>Loading...</p>}
 
           <Gallery venue={venue} />
-          <div className="flex flex-col gap-4 md:flex-row md:justify-between md:gap-12 lg:gap-24">
+          <div className="flex flex-col gap-4 overflow-hidden md:flex-row md:justify-between md:gap-12 lg:gap-24">
             <div className="w-full lg:w-2/3">
               <h1 className="mb-4 font-notoSerif text-4xl font-semibold md:text-5xl">
                 {venue.name}
