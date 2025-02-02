@@ -3,8 +3,12 @@ import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
 import DateBox from "../DateBox";
 
 export default function BookingCard({ booking }) {
+  const isPastBooking = new Date(booking.dateTo) < new Date();
+
   return (
-    <article className="flex flex-grow flex-col items-center justify-center gap-2 rounded-lg border border-light-border-primary bg-light-bg-secondary p-2 shadow-md dark:border-dark-border-primary dark:bg-dark-bg-secondary sm:px-6 sm:py-4">
+    <article
+      className={`flex flex-grow flex-col items-center justify-center gap-2 rounded-lg border bg-light-bg-secondary p-2 shadow-md dark:bg-dark-bg-secondary sm:px-6 sm:py-4 md:max-w-[30vw] ${isPastBooking ? "border-light-border-error" : "border-light-border-primary dark:border-dark-border-primary"}`}
+    >
       <h4 className="-mb-2 text-lg font-bold">{booking.customer.name}</h4>
       <p>{booking.customer.email}</p>
       <div className="flex flex-col items-center justify-center gap-2 xs:flex-row">

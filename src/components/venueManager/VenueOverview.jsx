@@ -99,8 +99,8 @@ export default function VenueOverview({ venue }) {
         </div>
       </section>
       <section className="flex flex-col gap-4">
-        <div className="flex flex-col justify-between sm:flex-row">
-          <h3 className="mb-2 text-left text-3xl font-bold">
+        <div className="flex flex-col gap-2 sm:gap-4">
+          <h3 className="mb-2 min-w-fit text-left text-3xl font-bold">
             Bookings{" "}
             <span className="text-2xl font-normal">
               ({venue.bookings.length})
