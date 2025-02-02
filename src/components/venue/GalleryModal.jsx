@@ -61,6 +61,7 @@ export default function GalleryModal({ venue, activeImageUrl, onClose }) {
           modules={[Navigation, Pagination, A11y]}
           spaceBetween={10}
           slidesPerView={1}
+          loop={true}
           navigation={false}
           pagination={{
             clickable: true,
