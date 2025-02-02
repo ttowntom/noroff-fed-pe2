@@ -57,16 +57,18 @@ export default function BookingCard({ booking }) {
             className="text-sm text-light-text-primary dark:text-dark-text-primary"
           />
         </Link>
-        <button
-          onClick={handleClickDelete}
-          className="flex items-center gap-2 text-sm text-light-text-error hover:underline dark:text-dark-text-error"
-        >
-          Delete booking
-          <FontAwesomeIcon
-            icon={byPrefixAndName.fas["cancel"]}
-            className="text-sm text-color-system-error-red dark:text-color-system-error-red"
-          />
-        </button>
+        {!hasExpired && (
+          <button
+            onClick={handleClickDelete}
+            className="flex items-center gap-2 text-sm text-light-text-error hover:underline dark:text-dark-text-error"
+          >
+            Delete booking
+            <FontAwesomeIcon
+              icon={byPrefixAndName.fas["cancel"]}
+              className="text-sm text-color-system-error-red dark:text-color-system-error-red"
+            />
+          </button>
+        )}
       </div>
       <div className="flex flex-col items-center justify-center gap-2 xs:flex-row">
         <DateBox date={booking.dateFrom} />
