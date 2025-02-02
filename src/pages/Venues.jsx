@@ -1,15 +1,11 @@
-import { useState, useEffect, useRef } from "react";
-import { useSearchParams } from "react-router-dom";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useRef } from "react";
 import { useInfiniteScroll } from "../hooks/useInfiniteScroll.js";
 import { useVenues } from "../hooks/useVenues.js";
-import { fetchFn } from "../utils/http.js";
 import Notification from "../components/Notification.jsx";
 import VenueCard from "../components/venue/VenueCard.jsx";
 import VenueSearch from "../components/venue/VenueSearch.jsx";
 import VenueSorting from "../components/venue/VenueSorting.jsx";
 import Cta from "../components/Cta.jsx";
-import Button from "../components/Button.jsx";
 import VenueOfTheMonth from "../components/venue/VenueOfTheMonth.jsx";
 
 export default function Venues() {

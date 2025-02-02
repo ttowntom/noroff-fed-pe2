@@ -20,7 +20,7 @@ export default function Owner({ venue }) {
         <img
           src={avatar}
           alt={venue.owner.name}
-          className="h-16 w-16 rounded-full"
+          className="h-16 w-16 rounded-full object-cover"
         />
         <div>
           <h2>Owner</h2>
