@@ -36,7 +36,7 @@ export default function BookingCard({ booking }) {
 
   return (
     <div
-      className={`${hasExpired && "border border-light-border-error bg-light-bg-error dark:bg-dark-bg-primary"} ${!hasExpired && "bg-light-bg-secondary dark:bg-dark-bg-secondary"} group flex w-full max-w-fit flex-col gap-2 rounded-md border p-4 text-light-text-primary hover:shadow-md dark:text-dark-text-primary`}
+      className={`${hasExpired && "border border-light-border-error bg-light-bg-error dark:bg-dark-bg-primary"} ${!hasExpired && "bg-light-bg-secondary dark:bg-dark-bg-secondary"} group flex w-full flex-col gap-2 rounded-md border p-4 text-light-text-primary hover:shadow-md dark:text-dark-text-primary`}
     >
       <div className="overflow-hidden rounded-sm">
         <img
