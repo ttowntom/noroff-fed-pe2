@@ -5,7 +5,6 @@ import {
   Navigate,
 } from "react-router-dom";
 import { QueryClientProvider } from "@tanstack/react-query";
-import Hotjar from "@hotjar/browser";
 
 import useUserStore from "./store/userStore";
 import { queryClient } from "./utils/http";
@@ -25,10 +24,6 @@ import Error from "./pages/Error";
 function App() {
   const user = useUserStore((state) => state.user);
   const setTheme = useUserStore((state) => state.setTheme);
-
-  const siteId = import.meta.env.VITE_HOTJAR_SITE_ID;
-  const hotjarVersion = 6;
-  Hotjar.init(siteId, hotjarVersion);
 
   useEffect(() => {
     const user = loadLocal("user");
