@@ -29,7 +29,11 @@ export default function Navbar() {
     <header className="relative z-20 mx-auto w-full max-w-[1536px] space-y-4 bg-light-bg-primary px-2 pb-0 pt-4 dark:bg-dark-bg-secondary sm:px-4">
       <div className="flex items-center justify-between gap-2">
         <Link to="/">
-          <img src="/holidazeLogo.svg" alt="Holidaze Logo" className="w-28" />
+          <img
+            src={`${import.meta.env.BASE_URL}/holidazeLogo.svg`}
+            alt="Holidaze Logo"
+            className="w-28"
+          />
         </Link>
         {/* Not logged in */}
         {!user && (

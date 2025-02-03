@@ -13,7 +13,11 @@ export default function Footer() {
     <footer className="relative z-10 mx-auto w-full max-w-[1536px] space-y-4 bg-light-bg-alternate px-2 py-8 dark:bg-dark-bg-secondary sm:px-4">
       <div className="absolute inset-0 -top-12 -z-10 h-44 skew-y-[-3deg] transform bg-gradient-to-r from-light-bg-alternate to-light-bg-alternate dark:from-dark-bg-secondary dark:to-dark-bg-secondary"></div>
       <div>
-        <img src="/holidazeLogo.svg" alt="Holidaze Logo" className="w-32" />
+        <img
+          src={`${import.meta.env.BASE_URL}/holidazeLogo.svg`}
+          alt="Holidaze Logo"
+          className="w-32"
+        />
       </div>
       <div className="flex flex-col gap-4 pb-6 text-light-text-alternate dark:text-dark-text-primary sm:flex-row sm:gap-[10vw]">
         <div>
