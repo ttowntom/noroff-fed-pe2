@@ -65,7 +65,7 @@ export default function Profile() {
                   Your Bookings
                 </h2>
                 {hasPastBookings && (
-                  <div className="mb-2 flex w-full items-center gap-2 sm:flex-row-reverse">
+                  <div className="mb-2 flex w-full items-center gap-2 text-light-text-primary dark:text-dark-text-primary sm:flex-row-reverse">
                     <button onClick={handleToggleExpired}>
                       {showExpired ? (
                         <FontAwesomeIcon
