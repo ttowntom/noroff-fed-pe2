@@ -7,6 +7,7 @@ import VenueSearch from "../components/venue/VenueSearch.jsx";
 import VenueSorting from "../components/venue/VenueSorting.jsx";
 import Cta from "../components/Cta.jsx";
 import VenueOfTheMonth from "../components/venue/VenueOfTheMonth.jsx";
+import Loading from "../components/Loading.jsx";
 
 export default function Venues() {
   const loadMoreRef = useRef();
@@ -87,7 +88,7 @@ export default function Venues() {
         />
       )}
       <div className="mx-auto mt-4 flex max-w-[55ch] flex-col items-center gap-4 dark:text-dark-text-primary">
-        {isLoading && <div>Loading...</div>}
+        {isLoading && <Loading />}
         {isError && (
           <Notification type="error">
             <p>{error.message}</p>
@@ -125,7 +126,7 @@ export default function Venues() {
             ))}
             {/* Infinite scroll trigger */}
             <div ref={loadMoreRef} className="col-span-full h-10">
-              {isFetchingNextPage && <div>Loading more...</div>}
+              {isFetchingNextPage && <Loading />}
             </div>
           </div>
         </>

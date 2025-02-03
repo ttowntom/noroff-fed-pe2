@@ -8,6 +8,7 @@ import LinkButton from "../LinkButton";
 import Modal from "../Modal";
 import Notification from "../Notification";
 import useUserStore from "../../store/userStore.js";
+import Loading from "../Loading.jsx";
 
 export default function BookingModal({
   venue,
@@ -86,9 +87,13 @@ export default function BookingModal({
               >
                 Cancel booking
               </button>
-              <Button onClick={handleConfirm} disabled={isPending}>
-                Book now
-              </Button>
+              {!isPending ? (
+                <Button onClick={handleConfirm} disabled={isPending}>
+                  Book now
+                </Button>
+              ) : (
+                <Loading />
+              )}
             </div>
           </div>
         </div>

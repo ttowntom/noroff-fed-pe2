@@ -8,6 +8,7 @@ import Notification from "../components/Notification.jsx";
 import Bio from "../components/profile/Bio.jsx";
 import BookingCard from "../components/profile/BookingCard.jsx";
 import VenueCard from "../components/venue/VenueCard.jsx";
+import Loading from "../components/Loading.jsx";
 
 export default function Profile() {
   const { name } = useParams();
@@ -33,7 +34,7 @@ export default function Profile() {
   return (
     <>
       <div className="mx-auto flex max-w-[55ch] flex-col items-center gap-4 dark:text-dark-text-primary">
-        {isLoading && <div>Loading...</div>}
+        {isLoading && <Loading />}
         {isError && (
           <Notification type="error">
             <p>{errors[0]?.message}</p>

@@ -13,6 +13,7 @@ import BookingCard from "../venueManager/BookingCard";
 import Notification from "../Notification";
 import Modal from "../Modal";
 import Button from "../Button";
+import Loading from "../Loading";
 
 export default function VenueOverview({ venue }) {
   const user = useUserStore((state) => state.user);
@@ -103,7 +104,7 @@ export default function VenueOverview({ venue }) {
           <h3 className="mb-2 min-w-fit text-left text-3xl font-bold">
             Bookings{" "}
             <span className="text-2xl font-normal">
-              ({venue.bookings.length})
+              ({filteredBookings.length})
             </span>
           </h3>
           {hasPastBookings && (
@@ -158,13 +159,17 @@ export default function VenueOverview({ venue }) {
                   >
                     No, don't delete
                   </button>
-                  <Button
-                    variant="danger"
-                    onClick={handleDeleteVenue}
-                    disabled={isPending}
-                  >
-                    Delete
-                  </Button>
+                  {!isPending ? (
+                    <Button
+                      variant="danger"
+                      onClick={handleDeleteVenue}
+                      disabled={isPending}
+                    >
+                      Delete
+                    </Button>
+                  ) : (
+                    <Loading />
+                  )}
                 </div>
               </div>
             </div>

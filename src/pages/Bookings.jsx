@@ -7,6 +7,7 @@ import { fetchFn } from "../utils/http.js";
 import useUserStore from "../store/userStore";
 import Notification from "../components/Notification.jsx";
 import BookingCard from "../components/profile/BookingCard.jsx";
+import Loading from "../components/Loading.jsx";
 
 export default function Bookings() {
   const { name } = useParams();
@@ -81,7 +82,7 @@ export default function Bookings() {
         </Notification>
       )}
 
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <Loading />}
       {isError && (
         <Notification type="error">
           <p>{error?.message || "Could not load booking data"}</p>

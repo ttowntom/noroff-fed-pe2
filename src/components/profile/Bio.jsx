@@ -10,6 +10,7 @@ import InputTextField from "../InputTextField.jsx";
 import InputTextArea from "../InputTextArea.jsx";
 import Button from "../Button.jsx";
 import Notification from "../Notification.jsx";
+import Loading from "../Loading.jsx";
 
 export default function bio({ data, isSelf }) {
   const user = useUserStore((state) => state.user);
@@ -134,9 +135,13 @@ export default function bio({ data, isSelf }) {
                 >
                   Cancel
                 </button>
-                <Button type="submit" disabled={isPending}>
-                  Save
-                </Button>
+                {!isPending ? (
+                  <Button type="submit" disabled={isPending}>
+                    Save
+                  </Button>
+                ) : (
+                  <Loading />
+                )}
               </div>
             </form>
           </div>

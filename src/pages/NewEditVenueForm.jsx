@@ -15,14 +15,13 @@ import AmenitiesSection from "../components/venueManager/AmenitiesSection";
 import LocationSection from "../components/venueManager/LocationSection";
 import VenueDetailsSection from "../components/venueManager/VenueDetailsSection";
 import PriceCapacitySection from "../components/venueManager/PriceCapacitySection";
+import Loading from "../components/Loading";
 
 export default function NewEditVenueForm() {
   const user = useUserStore((state) => state.user);
   const navigate = useNavigate();
   const { id } = useParams();
   const isEditing = Boolean(id);
-  const [rating, setRating] = useState(0);
-  const [hover, setHover] = useState(0);
   const [formIsValid, setFormIsValid] = useState(undefined);
   const { transformToApiFormat } = useVenueTransform();
 
@@ -110,18 +109,6 @@ export default function NewEditVenueForm() {
     }));
   }
 
-  // const { mutate, isPending, isError, error } = useMutation({
-  //   mutationFn: ({ venueData, token }) =>
-  //     postFn({
-  //       url: "/holidaze/venues",
-  //       body: venueData,
-  //       token,
-  //     }),
-  //   onSuccess: (data) => {
-  //     navigate(`/venues/${data.data.id}`);
-  //   },
-  // });
-
   // Use mutation for either creating or updating
   const { mutate, isPending, isError, error } = useMutation({
     mutationFn: ({ venueData, token }) => {
@@ -181,7 +168,7 @@ export default function NewEditVenueForm() {
         </p>
       </div>
       {isEditing && isLoading ? (
-        <p>Loading...</p>
+        <Loading />
       ) : (
         <form className="mx-auto mt-6 flex w-full max-w-[65ch] flex-col gap-4">
           <VenueDetailsSection
@@ -234,9 +221,13 @@ export default function NewEditVenueForm() {
             {isError && (
               <Notification type="error">{error.message}</Notification>
             )}
-            <Button onClick={handleSubmit} type="submit">
-              {isEditing ? "Edit venue" : "Add venue"}
-            </Button>
+            {!isPending ? (
+              <Button onClick={handleSubmit} type="submit">
+                {isEditing ? "Edit venue" : "Add venue"}
+              </Button>
+            ) : (
+              <Loading />
+            )}
             <Button
               type="button"
               disabled={isPending}

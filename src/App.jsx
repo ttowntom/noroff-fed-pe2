@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -8,6 +9,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import useUserStore from "./store/userStore";
 import { queryClient } from "./utils/http";
 import "./App.css";
+import { loadLocal } from "./utils/localStorage";
 import RootLayout from "./pages/RootLayout";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
@@ -21,6 +23,20 @@ import Error from "./pages/Error";
 
 function App() {
   const user = useUserStore((state) => state.user);
+  const setTheme = useUserStore((state) => state.setTheme);
+
+  useEffect(() => {
+    const user = loadLocal("user");
+    if (user?.preferredTheme) {
+      setTheme(user.preferredTheme);
+      if (user.preferredTheme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    }
+  }, [setTheme]);
+
   const router = createBrowserRouter(
     [
       {

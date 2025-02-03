@@ -8,6 +8,7 @@ import loginSchema from "../schemas/login";
 import InputTextField from "../components/InputTextField";
 import Button from "../components/Button";
 import Notification from "../components/Notification";
+import Loading from "../components/Loading";
 
 export default function Login() {
   const { formData, formErrors, handleBlur, handleChange, setFormErrors } =
@@ -73,9 +74,13 @@ export default function Login() {
             error={formErrors.password}
           />
 
-          <Button type="submit" onClick={handleSubmit} disabled={isPending}>
-            Log In
-          </Button>
+          {!isPending ? (
+            <Button type="submit" onClick={handleSubmit} disabled={isPending}>
+              Log In
+            </Button>
+          ) : (
+            <Loading />
+          )}
         </form>
         {isError && (
           <div className="mt-2">
