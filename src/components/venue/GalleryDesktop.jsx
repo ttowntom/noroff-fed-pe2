@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
 import GalleryModal from "./GalleryModal";
 
 export default function GalleryDesktop({ venue }) {
@@ -12,11 +10,6 @@ export default function GalleryDesktop({ venue }) {
   function handleImageClick(imageUrl) {
     setActiveImageUrl(imageUrl);
     setIsOpen(true);
-  }
-
-  function handleClose() {
-    setIsOpen(false);
-    setActiveImageUrl(null);
   }
 
   return (
