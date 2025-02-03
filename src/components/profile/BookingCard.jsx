@@ -9,13 +9,15 @@ import { deleteFn, queryClient } from "../../utils/http.js";
 import Modal from "../Modal.jsx";
 import Button from "../Button.jsx";
 import DateBox from "../DateBox.jsx";
+import Loading from "../Loading.jsx";
+import Notification from "../Notification.jsx";
 
 export default function BookingCard({ booking }) {
   const user = useUserStore((state) => state.user);
   const [showModal, setShowModal] = useState(false);
   const hasExpired = new Date(booking.dateTo) < new Date();
 
-  const { mutate } = useMutation({
+  const { mutate, isPending, isError, error } = useMutation({
     mutationFn: () =>
       deleteFn({ url: `/holidaze/bookings/${booking.id}`, token: user?.token }),
     onSuccess: () => {
@@ -86,6 +88,11 @@ export default function BookingCard({ booking }) {
               Please confirm that you want to delete your booking at{" "}
               <span className="font-semibold">{booking.venue.name}</span>
             </p>
+            {isError && (
+              <Notification type="error">
+                <p>{error?.message || "Could not delete booking"}</p>
+              </Notification>
+            )}
             <div className="flex flex-col gap-4">
               <div className="mt-4 flex justify-end gap-4">
                 <button
@@ -94,9 +101,13 @@ export default function BookingCard({ booking }) {
                 >
                   Cancel
                 </button>
-                <Button variant="danger" onClick={handleConfirmDelete}>
-                  Delete now
-                </Button>
+                {!isPending ? (
+                  <Button variant="danger" onClick={handleConfirmDelete}>
+                    Delete now
+                  </Button>
+                ) : (
+                  <Loading />
+                )}
               </div>
             </div>
           </div>

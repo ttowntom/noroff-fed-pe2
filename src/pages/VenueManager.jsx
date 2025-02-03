@@ -8,6 +8,7 @@ import Notification from "../components/Notification.jsx";
 import NotManagerMsg from "../components/venueManager/NotManagerMsg.jsx";
 import LinkButton from "../components/LinkButton.jsx";
 import VenueOverview from "../components/venueManager/VenueOverview.jsx";
+import Loading from "../components/Loading.jsx";
 
 export default function VenueManager() {
   const user = useUserStore((state) => state.user);
@@ -34,6 +35,12 @@ export default function VenueManager() {
             Venue Manager
           </h1>
           <p>View and update your venue listings in one place.</p>
+          {isLoading && <Loading />}
+          {isError && (
+            <Notification type="error">
+              <p>{error.message}</p>
+            </Notification>
+          )}
         </div>
         {!user.venueManager && <NotManagerMsg />}
         {user.venueManager && (

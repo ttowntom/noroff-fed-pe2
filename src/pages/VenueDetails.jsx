@@ -7,6 +7,7 @@ import Location from "../components/venue/Location";
 import BookingCard from "../components/venue/BookingCard";
 import Notification from "../components/Notification";
 import Gallery from "../components/venue/Gallery";
+import Loading from "../components/Loading";
 
 export default function VenueDetails() {
   const venueId = useParams().id;
@@ -23,7 +24,7 @@ export default function VenueDetails() {
               <p>{error.message}</p>
             </Notification>
           )}
-          {isLoading && <p>Loading...</p>}
+          {isLoading && <Loading />}
 
           <Gallery venue={venue} />
           <div className="flex flex-col gap-4 overflow-visible md:flex-row md:justify-between md:gap-12 lg:gap-24">

@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
@@ -11,6 +11,7 @@ import signupSchema from "../schemas/signup";
 import InputTextField from "../components/InputTextField";
 import Button from "../components/Button";
 import Notification from "../components/Notification";
+import Loading from "../components/Loading";
 
 export default function Signup() {
   const [venueManager, setVenueManager] = useState(false);
@@ -137,9 +138,13 @@ export default function Signup() {
               )}
             </button>
           </div>
-          <Button type="submit" onClick={handleSubmit} disabled={isPending}>
-            Sign up
-          </Button>
+          {!isPending ? (
+            <Button type="submit" onClick={handleSubmit} disabled={isPending}>
+              Sign up
+            </Button>
+          ) : (
+            <Loading />
+          )}
         </form>
         {isError && (
           <div className="mt-2">
