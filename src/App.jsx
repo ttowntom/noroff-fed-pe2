@@ -21,40 +21,45 @@ import Error from "./pages/Error";
 
 function App() {
   const user = useUserStore((state) => state.user);
-  const router = createBrowserRouter([
+  const router = createBrowserRouter(
+    [
+      {
+        path: "/",
+        element: <RootLayout />,
+        children: [
+          { index: true, element: <Venues /> },
+          { path: "signup", element: <Signup /> },
+          { path: "login", element: <Login /> },
+          {
+            path: "venues/new-edit",
+            element: user ? <NewEditVenueForm /> : <Navigate to="/login" />,
+          },
+          {
+            path: "venues/new-edit/:id",
+            element: user ? <NewEditVenueForm /> : <Navigate to="/login" />,
+          },
+          { path: "venues", element: <Venues /> },
+          { path: "venues/:id", element: <VenueDetails /> },
+          {
+            path: "profile/:name",
+            element: user ? <Profile /> : <Navigate to="/login" />,
+          },
+          {
+            path: "profile/:name/bookings",
+            element: user ? <Bookings /> : <Navigate to="/login" />,
+          },
+          {
+            path: "profile/:name/venue-manager",
+            element: user ? <VenueManager /> : <Navigate to="/login" />,
+          },
+          { path: "*", element: <Error /> },
+        ],
+      },
+    ],
     {
-      path: "/",
-      element: <RootLayout />,
-      children: [
-        { index: true, element: <Venues /> },
-        { path: "signup", element: <Signup /> },
-        { path: "login", element: <Login /> },
-        {
-          path: "venues/new-edit",
-          element: user ? <NewEditVenueForm /> : <Navigate to="/login" />,
-        },
-        {
-          path: "venues/new-edit/:id",
-          element: user ? <NewEditVenueForm /> : <Navigate to="/login" />,
-        },
-        { path: "venues", element: <Venues /> },
-        { path: "venues/:id", element: <VenueDetails /> },
-        {
-          path: "profile/:name",
-          element: user ? <Profile /> : <Navigate to="/login" />,
-        },
-        {
-          path: "profile/:name/bookings",
-          element: user ? <Bookings /> : <Navigate to="/login" />,
-        },
-        {
-          path: "profile/:name/venue-manager",
-          element: user ? <VenueManager /> : <Navigate to="/login" />,
-        },
-        { path: "*", element: <Error /> },
-      ],
-    },
-  ]);
+      basename: import.meta.env.BASE_URL,
+    }
+  );
 
   return (
     <QueryClientProvider client={queryClient}>

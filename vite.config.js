@@ -3,11 +3,11 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "tailwindcss";
 
 export default defineConfig({
-	base: "/",
-	plugins: [react()],
-	css: {
-		postcss: {
-			plugins: [tailwindcss],
-		},
-	},
+  base: "/noroff-fed-pe2/",
+  plugins: [react()],
+  css: {
+    postcss: {
+      plugins: [tailwindcss],
+    },
+  },
 });
