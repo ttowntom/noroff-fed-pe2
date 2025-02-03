@@ -46,7 +46,7 @@ export default function VenueOfTheMonth({ venueId }) {
             </li>
           </ul>
 
-          <div>
+          <div className="w-fit">
             <LinkButton to={`venues/${venueId}`}>View Venue details</LinkButton>
           </div>
         </div>
