@@ -16,7 +16,7 @@ export default function Gallery({ venue }) {
   }
 
   return (
-    <section className={`${numImgs > 5 && "xl:mb-12"}`}>
+    <section>
       <GalleryMobile venue={venue} />
       <GalleryDesktop venue={venue} />
     </section>

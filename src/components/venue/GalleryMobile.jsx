@@ -26,9 +26,7 @@ export default function GalleryMobile({ venue, desktopHidden = true }) {
 
   return (
     <div
-      className={`relative mb-4 w-full ${
-        desktopHidden === true ? "md:hidden" : ""
-      }`}
+      className={`relative w-full ${desktopHidden === true ? "md:hidden" : ""}`}
     >
       <Swiper
         onSwiper={(swiper) => {

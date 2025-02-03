@@ -13,15 +13,15 @@ export default function GalleryDesktop({ venue }) {
   }
 
   return (
-    <div className="mb-8 hidden max-h-[600px] gap-4 md:grid md:grid-cols-2">
+    <div className="hidden gap-4 md:grid md:grid-cols-2">
       <img
         src={venue.media[0].url}
         alt={venue.name}
         onClick={() => handleImageClick(venue.media[0].url)}
-        className="h-full max-h-[600px] w-full cursor-pointer rounded-md object-cover"
+        className="h-[600px] w-full cursor-pointer rounded-md object-cover"
       />
       <div
-        className={`grid max-h-[600px] ${numImgs < 5 && "grid-cols-1"} ${numImgs > 4 && "grid-cols-2"} gap-4`}
+        className={`grid h-[600px] ${numImgs < 5 && "grid-cols-1"} ${numImgs > 3 && "grid-cols-2"} gap-4`}
       >
         {venue.media.slice(1, 5).map((img, idx) => (
           <img
