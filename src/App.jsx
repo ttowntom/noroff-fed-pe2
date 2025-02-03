@@ -17,6 +17,7 @@ import VenueDetails from "./pages/VenueDetails";
 import Bookings from "./pages/Bookings";
 import VenueManager from "./pages/VenueManager";
 import NewEditVenueForm from "./pages/NewEditVenueForm";
+import Error from "./pages/Error";
 
 function App() {
   const user = useUserStore((state) => state.user);
@@ -50,6 +51,7 @@ function App() {
           path: "profile/:name/venue-manager",
           element: user ? <VenueManager /> : <Navigate to="/login" />,
         },
+        { path: "*", element: <Error /> },
       ],
     },
   ]);
