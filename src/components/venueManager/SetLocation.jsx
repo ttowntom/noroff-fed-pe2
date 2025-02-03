@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { API_MAPBOX } from "../../constants.js";
 import Map, { Marker } from "react-map-gl";
-import { useReverseGeocoding } from "../../hooks/useReverseGeocoding";
+import { useReverseGeocoding } from "../../hooks/useReverseGeoCoding";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 export default function SetLocation({ onLocationSet, initialLat, initialLng }) {
