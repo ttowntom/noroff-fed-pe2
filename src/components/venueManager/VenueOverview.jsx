@@ -6,6 +6,7 @@ import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
 import { deleteFn } from "../../utils/http";
 import { queryClient } from "../../utils/http";
 import useUserStore from "../../store/userStore";
+import priceFormatter from "../../utils/priceFormatter";
 import GalleryMobile from "../venue/GalleryMobile";
 import RatingStars from "../venue/RatingStars";
 import Amenities from "../venue/Amenities";
@@ -78,7 +79,9 @@ export default function VenueOverview({ venue }) {
           <p>{venue.description}</p>
           <div className="my-6">
             <p>
-              <span className="text-xl font-bold">{`$${venue.price}`}</span>{" "}
+              <span className="text-xl font-bold">
+                {priceFormatter(venue.price)}
+              </span>{" "}
               /night
             </p>
             <div className="flex gap-2">

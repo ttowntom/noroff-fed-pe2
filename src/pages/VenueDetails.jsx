@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useVenueDetails } from "../hooks/useVenueDetails";
+import priceFormatter from "../utils/priceFormatter";
 import RatingStars from "../components/venue/RatingStars";
 import Amenities from "../components/venue/Amenities";
 import Owner from "../components/venue/Owner";
@@ -33,7 +34,9 @@ export default function VenueDetails() {
                 {venue.name}
               </h1>
               <p>
-                <span className="text-xl font-bold">{`$${venue.price}`}</span>
+                <span className="text-xl font-bold">
+                  {priceFormatter(venue.price)}
+                </span>
                 /night
               </p>
               <div className="flex items-center gap-2">

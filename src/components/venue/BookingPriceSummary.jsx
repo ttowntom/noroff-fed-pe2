@@ -1,3 +1,5 @@
+import priceFormatter from "../../utils/priceFormatter";
+
 export default function BookingPriceSummary({ nights = 0, pricePerNight }) {
   const beforeVat = nights * pricePerNight;
   const vat = beforeVat * 0.25;
@@ -12,11 +14,11 @@ export default function BookingPriceSummary({ nights = 0, pricePerNight }) {
 
       <p className="flex justify-between">
         <span>VAT (25%)</span>
-        <span>${vat.toFixed(2)}</span>
+        <span>{priceFormatter(vat)}</span>
       </p>
       <p className="flex justify-between font-semibold">
         <span>Total</span>
-        <span>${total.toFixed(2)}</span>
+        <span>{priceFormatter(total)}</span>
       </p>
     </div>
   );

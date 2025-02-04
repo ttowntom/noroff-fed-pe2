@@ -31,7 +31,7 @@ export default function PriceCapacitySection({
       <h2 className="mt-4 text-xl font-bold sm:text-2xl">Price and capacity</h2>
       <div className="flex flex-col gap-4 sm:flex-row">
         <InputTextField
-          label="Price per night"
+          label="Price per night ($USD)"
           name="price"
           type="number"
           value={formData.price}

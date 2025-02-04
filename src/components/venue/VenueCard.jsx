@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import priceFormatter from "../../utils/priceFormatter.js";
 import { NO_VENUE_IMG_URL } from "../../constants.js";
 import RatingStars from "./RatingStars.jsx";
 
@@ -22,11 +22,14 @@ export default function VenueCard({ venue }) {
         {venue.location.city ? (
           <p>
             in <span className="font-medium">{venue.location.city}</span> for{" "}
-            <span className="font-medium">${venue.price}</span>/night
+            <span className="font-medium">{priceFormatter(venue.price)}</span>
+            /night
           </p>
         ) : (
           <p>
-            for <span className="font-medium">${venue.price}</span>/night
+            for{" "}
+            <span className="font-medium">{priceFormatter(venue.price)}</span>
+            /night
           </p>
         )}
       </div>
