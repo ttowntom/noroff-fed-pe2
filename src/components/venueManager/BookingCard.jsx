@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
+
 import DateBox from "../DateBox";
 
 export default function BookingCard({ booking }) {

@@ -1,10 +1,12 @@
 import { useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
+
 import { useLogout } from "../../hooks/useLogout";
 import useUserStore from "../../store/userStore";
-import MainMenuNavLink from "./NavLink";
 import toggleTheme from "../../utils/toggleTheme.js";
+
+import MainMenuNavLink from "./NavLink";
 
 export default function MainMenu({ isOpen, onClose }) {
   const user = useUserStore((state) => state.user);

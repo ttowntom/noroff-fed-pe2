@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+
 import priceFormatter from "../../utils/priceFormatter.js";
 import { NO_VENUE_IMG_URL } from "../../constants.js";
+
 import RatingStars from "./RatingStars.jsx";
 
 export default function VenueCard({ venue }) {

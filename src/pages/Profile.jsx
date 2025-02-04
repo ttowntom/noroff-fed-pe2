@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
+
 import useUserStore from "../store/userStore.js";
 import useProfileData from "../hooks/useProfileData.js";
 import Notification from "../components/Notification.jsx";

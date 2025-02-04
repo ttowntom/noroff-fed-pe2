@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
 import { z } from "zod";
+
 import { useFormValidation } from "../hooks/useFormValidation";
 import { useLoginMutation } from "../hooks/useLoginMutation";
 import loginSchema from "../schemas/login";
@@ -90,7 +91,7 @@ export default function Login() {
           </div>
         )}
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <p>Don't have a user? </p>
+          <p>Don&apos;t have a user? </p>
           <Link
             to="/signup"
             className="font-medium text-dark-link-primary hover:underline"

@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+
 import { useVenueDetails } from "../hooks/useVenueDetails";
 import priceFormatter from "../utils/priceFormatter";
 import RatingStars from "../components/venue/RatingStars";

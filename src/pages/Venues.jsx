@@ -1,4 +1,5 @@
 import { useRef } from "react";
+
 import { useInfiniteScroll } from "../hooks/useInfiniteScroll.js";
 import { useVenues } from "../hooks/useVenues.js";
 import Notification from "../components/Notification.jsx";
@@ -27,7 +28,6 @@ export default function Venues() {
     setSearchInput,
     searchQuery,
     setSearchQuery,
-    setSearchParams,
   } = useVenues();
 
   useInfiniteScroll(loadMoreRef, () => {

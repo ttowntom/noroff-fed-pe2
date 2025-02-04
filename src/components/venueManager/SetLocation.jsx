@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { API_MAPBOX } from "../../constants.js";
 import Map, { Marker } from "react-map-gl";
+
+import { API_MAPBOX } from "../../constants.js";
 import { useReverseGeocoding } from "../../hooks/useReverseGeoCoding";
 import "mapbox-gl/dist/mapbox-gl.css";
 
@@ -29,7 +30,7 @@ export default function SetLocation({ onLocationSet, initialLat, initialLng }) {
         latitude: initialLat,
       });
     }
-  }, [initialLat, initialLng]);
+  }, [initialLat, initialLng, marker?.longitude, marker?.latitude]);
 
   function handleMapClick(event) {
     const { lng, lat } = event.lngLat;
@@ -43,7 +44,7 @@ export default function SetLocation({ onLocationSet, initialLat, initialLng }) {
     if (locationData && !isLoading) {
       onLocationSet(locationData);
     }
-  }, [locationData, isLoading]);
+  }, [locationData, isLoading, onLocationSet]);
 
   return (
     <div className="text-light-text-primary dark:text-dark-text-primary">

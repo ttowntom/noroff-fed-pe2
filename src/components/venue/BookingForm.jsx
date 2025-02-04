@@ -1,9 +1,11 @@
 import { enGB } from "date-fns/locale";
 import DatePicker from "react-datepicker";
+
 import Button from "../Button";
+import LinkButton from "../LinkButton";
+
 import GuestCounter from "./GuestCounter";
 import BookingPriceSummary from "./BookingPriceSummary";
-import LinkButton from "../LinkButton";
 
 export default function BookingForm({
   user,

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
+
 import { NO_VENUE_IMG_URL } from "../../constants.js";
 import useUserStore from "../../store/userStore.js";
 import { deleteFn, queryClient } from "../../utils/http.js";

@@ -1,4 +1,5 @@
 import { NO_VENUE_IMG_URL } from "../../constants";
+
 import GalleryDesktop from "./GalleryDesktop";
 import GalleryMobile from "./GalleryMobile";
 

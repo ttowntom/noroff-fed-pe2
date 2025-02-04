@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
+
 import { useVenueDetails } from "../../hooks/useVenueDetails.js";
 import LinkButton from "../LinkButton.jsx";
 
