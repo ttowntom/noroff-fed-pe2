@@ -33,14 +33,6 @@ export default function Profile() {
 
   return (
     <>
-      <div className="mx-auto flex max-w-[55ch] flex-col items-center gap-4 dark:text-dark-text-primary">
-        {isLoading && <Loading />}
-        {isError && (
-          <Notification type="error">
-            <p>{errors[0]?.message}</p>
-          </Notification>
-        )}
-      </div>
       {profile && (
         <div>
           <Bio data={profile} isSelf={isSelf} />
@@ -58,6 +50,14 @@ export default function Profile() {
               </div>
             </section>
           )}
+          <div className="mx-auto flex max-w-[55ch] flex-col items-center gap-4 dark:text-dark-text-primary">
+            {isLoading && <Loading />}
+            {isError && (
+              <Notification type="error">
+                <p>{errors[0]?.message}</p>
+              </Notification>
+            )}
+          </div>
           {isSelf && bookings?.data?.length > 0 && (
             <section>
               <div className="mt-12 flex flex-wrap justify-between gap-2">
