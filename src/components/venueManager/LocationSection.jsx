@@ -1,5 +1,6 @@
-import SetLocation from "./SetLocation";
 import InputTextField from "../InputTextField";
+
+import SetLocation from "./SetLocation";
 
 export default function LocationSection({
   formData,

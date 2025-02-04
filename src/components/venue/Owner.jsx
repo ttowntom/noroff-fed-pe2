@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 import { NO_USER_IMG_URL } from "../../constants.js";
 
 export default function Owner({ venue }) {

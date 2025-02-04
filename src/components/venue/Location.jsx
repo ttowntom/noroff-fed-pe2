@@ -1,5 +1,6 @@
-import { API_MAPBOX } from "../../constants.js";
 import Map, { Marker } from "react-map-gl";
+
+import { API_MAPBOX } from "../../constants.js";
 import { useGeocoding } from "../../hooks/useGeocoding.js";
 import "mapbox-gl/dist/mapbox-gl.css";
 
@@ -39,7 +40,7 @@ export default function Location({ venue }) {
             initialViewState={{
               longitude: mapCoordinates.lng,
               latitude: mapCoordinates.lat,
-              zoom: 13,
+              zoom: { zoomLevel },
             }}
             style={{
               width: "100%",

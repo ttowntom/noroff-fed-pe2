@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
+
 import { fetchFn } from "../utils/http.js";
 import useUserStore from "../store/userStore";
 import Notification from "../components/Notification.jsx";
@@ -15,7 +16,10 @@ export default function VenueManager() {
   const [openVenues, setOpenVenues] = useState({});
 
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: [`/holidaze/profiles/${user.name}/venues?_bookings=true`],
+    queryKey: [
+      `/holidaze/profiles/${user.name}/venues?_bookings=true`,
+      user.token,
+    ],
     queryFn: () =>
       fetchFn({
         queryKey: [`/holidaze/profiles/${user.name}/venues?_bookings=true`],

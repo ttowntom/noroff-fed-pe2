@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
-import MainMenu from "./mainMenu/MainMenu";
+
 import useUserStore from "../store/userStore";
 import { NO_USER_IMG_URL } from "../constants.js";
+
+import MainMenu from "./mainMenu/MainMenu";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

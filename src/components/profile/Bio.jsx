@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
+
 import { NO_USER_IMG_URL } from "../../constants.js";
 import useUserStore from "../../store/userStore.js";
 import { putFn, queryClient } from "../../utils/http.js";
@@ -12,7 +13,7 @@ import Button from "../Button.jsx";
 import Notification from "../Notification.jsx";
 import Loading from "../Loading.jsx";
 
-export default function bio({ data, isSelf }) {
+export default function Bio({ data, isSelf }) {
   const user = useUserStore((state) => state.user);
   const [avatarUrl, setAvatarUrl] = useState(data.data.avatar.url);
   const login = useUserStore((state) => state.login);

@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import GalleryModal from "./GalleryModal";
 
 export default function GalleryDesktop({ venue }) {

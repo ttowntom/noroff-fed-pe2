@@ -1,11 +1,12 @@
 import { useQueries } from "@tanstack/react-query";
+
 import { fetchFn } from "../utils/http";
 
 export default function useProfileData(name, token) {
   const queries = useQueries({
     queries: [
       {
-        queryKey: [`/holidaze/profiles/${name}`],
+        queryKey: [`/holidaze/profiles/${name}`, token],
         queryFn: () =>
           fetchFn({
             queryKey: [`/holidaze/profiles/${name}`],
@@ -13,7 +14,7 @@ export default function useProfileData(name, token) {
           }),
       },
       {
-        queryKey: [`/holidaze/profiles/${name}/venues`],
+        queryKey: [`/holidaze/profiles/${name}/venues`, token],
         queryFn: () =>
           fetchFn({
             queryKey: [`/holidaze/profiles/${name}/venues`],
@@ -21,7 +22,7 @@ export default function useProfileData(name, token) {
           }),
       },
       {
-        queryKey: ["bookings", name],
+        queryKey: ["bookings", name, token],
         queryFn: () =>
           fetchFn({
             queryKey: [

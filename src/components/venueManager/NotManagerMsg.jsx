@@ -1,13 +1,8 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
-import useUserStore from "../../store/userStore";
 import { useLogout } from "../../hooks/useLogout";
 import Notification from "../../components/Notification.jsx";
 import Button from "../../components/Button.jsx";
 
 export default function NotManagerMsg() {
-  const user = useUserStore((state) => state.user);
-
   return (
     <div className="mt-2 w-full max-w-[65ch] sm:mt-6">
       <Notification type="info">

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
+
 import { deleteFn } from "../../utils/http";
 import { queryClient } from "../../utils/http";
 import useUserStore from "../../store/userStore";
@@ -146,8 +147,8 @@ export default function VenueOverview({ venue }) {
               <h2 className="text-2xl font-semibold">Delete venue</h2>
               <p>
                 Are you sure you want to delete{" "}
-                <span className="font-semibold">{venue.name}</span> and all it's
-                content?
+                <span className="font-semibold">{venue.name}</span> and all
+                it&apos;s content?
               </p>
               <div className="flex flex-col gap-4">
                 {isError && (
@@ -160,7 +161,7 @@ export default function VenueOverview({ venue }) {
                     onClick={handleToggleModal}
                     className="text-light-text-primary hover:underline dark:text-dark-text-primary"
                   >
-                    No, don't delete
+                    No, don&apos;t delete
                   </button>
                   {!isPending ? (
                     <Button

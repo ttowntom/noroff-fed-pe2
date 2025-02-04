@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
+
 import { fetchFn } from "../utils/http.js";
 import useUserStore from "../store/userStore";
 import Notification from "../components/Notification.jsx";
@@ -15,7 +16,7 @@ export default function Bookings() {
   const user = useUserStore((state) => state.user);
 
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["bookings", name],
+    queryKey: ["bookings", name, user.token],
     queryFn: () =>
       fetchFn({
         queryKey: [

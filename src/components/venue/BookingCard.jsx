@@ -1,6 +1,8 @@
 import { useState } from "react";
+
 import { getBookedRanges } from "../../utils/bookingLogic";
 import useUserStore from "../../store/userStore.js";
+
 import BookingModal from "./BookingModal";
 import BookingForm from "./BookingForm.jsx";
 import "react-datepicker/dist/react-datepicker.css";
