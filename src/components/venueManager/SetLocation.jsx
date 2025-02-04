@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Map, { Marker } from "react-map-gl";
 
 import { API_MAPBOX } from "../../constants.js";
@@ -19,32 +19,40 @@ export default function SetLocation({ onLocationSet, initialLat, initialLng }) {
     marker?.latitude
   );
 
+  // Only update marker on mount or when initial coords change significantly
   useEffect(() => {
     if (
       initialLat &&
       initialLng &&
-      (marker?.latitude !== initialLat || marker?.longitude !== initialLng)
+      (!marker ||
+        marker.latitude !== initialLat ||
+        marker.longitude !== initialLng)
     ) {
       setMarker({
         longitude: initialLng,
         latitude: initialLat,
       });
     }
-  }, [initialLat, initialLng, marker?.longitude, marker?.latitude]);
+  }, [initialLat, initialLng]);
 
-  function handleMapClick(event) {
+  // Separate effect for location updates
+  useEffect(() => {
+    let isMounted = true;
+    if (locationData && !isLoading && isMounted) {
+      onLocationSet(locationData);
+    }
+    return () => {
+      isMounted = false;
+    };
+  }, [locationData, isLoading]);
+
+  const handleMapClick = useCallback((event) => {
     const { lng, lat } = event.lngLat;
     setMarker({
       longitude: lng,
       latitude: lat,
     });
-  }
-
-  useEffect(() => {
-    if (locationData && !isLoading) {
-      onLocationSet(locationData);
-    }
-  }, [locationData, isLoading, onLocationSet]);
+  }, []);
 
   return (
     <div className="text-light-text-primary dark:text-dark-text-primary">

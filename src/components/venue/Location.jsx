@@ -21,6 +21,10 @@ export default function Location({ venue }) {
   const mapCoordinates = hasLatLong ? { lng, lat } : coordinates;
   const zoomLevel = address ? 13 : 10;
 
+  if (!mapCoordinates) {
+    return null;
+  }
+
   if (hasCityCountry) {
     return (
       <div className="text-light-text-primary dark:text-dark-text-primary">
@@ -40,7 +44,7 @@ export default function Location({ venue }) {
             initialViewState={{
               longitude: mapCoordinates.lng,
               latitude: mapCoordinates.lat,
-              zoom: { zoomLevel },
+              zoom: zoomLevel,
             }}
             style={{
               width: "100%",
