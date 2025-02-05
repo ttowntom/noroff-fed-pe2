@@ -3,7 +3,7 @@
   "description": "Front-end for Holidaze. Made as a project for the final exam in the course Front End Development at Noroff.",
   "author": "Torgeir Helgesen Riseth",
   "private": true,
-  "version": "1.13.2",
+  "version": "1.13.3",
   "type": "module",
   "homepage": "https://ttowntom.github.io/noroff-fed-pe2/",
   "repository": {
