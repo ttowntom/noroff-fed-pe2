@@ -5,6 +5,25 @@ import { NO_VENUE_IMG_URL } from "../../constants.js";
 
 import RatingStars from "./RatingStars.jsx";
 
+/**
+ * Card component displaying venue preview with image, rating, and price
+ * @component
+ * @param {Object} props
+ * @param {Venue} props.venue - Venue data to display
+ * @returns {JSX.Element} Link wrapper containing venue preview card
+ *
+ * @example
+ * const venue = {
+ *   id: "123",
+ *   name: "Cozy Cabin",
+ *   price: 1000,
+ *   rating: 4.5,
+ *   location: { city: "Oslo" },
+ *   media: [{ url: "image.jpg" }]
+ * };
+ *
+ * <VenueCard venue={venue} />
+ */
 export default function VenueCard({ venue }) {
   return (
     <Link

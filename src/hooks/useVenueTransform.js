@@ -1,3 +1,9 @@
+/**
+ * Custom hook for transforming venue form data into API-compatible format
+ * @function useVenueTransform
+ * @returns {Object} Transform utilities
+ * @property {Function} transformToApiFormat - Converts form data to API format
+ */
 export function useVenueTransform() {
   function transformToApiFormat(formData) {
     return {

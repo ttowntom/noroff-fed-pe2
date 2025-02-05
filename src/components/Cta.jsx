@@ -1,3 +1,23 @@
+/**
+ * Call-to-action component with angled background styling
+ * @component
+ * @param {Object} props
+ * @param {React.ReactNode} props.children - Content to display in CTA section
+ * @returns {JSX.Element} Section with angled gradient background
+ *
+ * @example
+ * // Basic usage
+ * <Cta>
+ *   <h2>Special Offer!</h2>
+ *   <p>Book now and save 20%</p>
+ * </Cta>
+ *
+ * // With nested components
+ * <Cta>
+ *   <VenueHighlight />
+ *   <BookingButton />
+ * </Cta>
+ */
 export default function Cta({ children }) {
   return (
     <div className="relative z-10 my-8 bg-light-bg-alternate dark:bg-dark-bg-secondary">

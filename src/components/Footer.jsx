@@ -8,6 +8,21 @@ import {
   faXTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 
+/**
+ * Footer component containing company information and social media links
+ * @component
+ * @returns {JSX.Element} Footer with contact info, address and social links
+ *
+ * @example
+ * function App() {
+ *   return (
+ *     <div className="app">
+ *       <main>Content</main>
+ *       <Footer />
+ *     </div>
+ *   );
+ * }
+ */
 export default function Footer() {
   return (
     <footer className="relative z-10 mx-auto w-full max-w-[1536px] space-y-4 bg-light-bg-alternate px-2 py-8 dark:bg-dark-bg-secondary sm:px-4">

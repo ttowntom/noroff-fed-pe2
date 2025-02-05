@@ -1,3 +1,27 @@
+/**
+ * Reusable button component with configurable styles
+ * @component
+ * @param {Object} props
+ * @param {Function} [props.onClick] - Click event handler
+ * @param {React.ReactNode} props.children - Button content
+ * @param {'button'|'submit'|'reset'} [props.type='button'] - Button type attribute
+ * @param {boolean} [props.disabled=false] - Disabled state
+ * @param {ButtonVariant} [props.variant='primary'] - Visual style variant
+ * @returns {JSX.Element} Styled button element
+ *
+ * @example
+ * // Primary button (default)
+ * <Button onClick={() => console.log('clicked')}>Click me</Button>
+ *
+ * // Secondary button
+ * <Button variant="secondary">Cancel</Button>
+ *
+ * // Danger button
+ * <Button variant="danger" onClick={handleDelete}>Delete</Button>
+ *
+ * // Submit button
+ * <Button type="submit">Save Changes</Button>
+ */
 export default function Button({
   onClick,
   children,

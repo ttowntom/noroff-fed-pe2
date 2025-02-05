@@ -1,6 +1,31 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
 
+/**
+ * Sorting controls for venue listings with field selection and order toggle
+ * @component
+ * @param {Object} props
+ * @param {SortByOption} props.sortBy - Current sort field
+ * @param {Function} props.onSortChange - Handler for sort field changes
+ * @param {SortOrder} props.sortOrder - Current sort direction
+ * @param {Function} props.onSortOrderChange - Handler for sort direction changes
+ * @returns {JSX.Element} Sorting controls with dropdown and direction buttons
+ *
+ * @example
+ * function VenuesPage() {
+ *   const [sortBy, setSortBy] = useState('created');
+ *   const [sortOrder, setSortOrder] = useState('desc');
+ *
+ *   return (
+ *     <VenueSorting
+ *       sortBy={sortBy}
+ *       onSortChange={(e) => setSortBy(e.target.value)}
+ *       sortOrder={sortOrder}
+ *       onSortOrderChange={setSortOrder}
+ *     />
+ *   );
+ * }
+ */
 export default function VenueSorting({
   sortBy,
   onSortChange,

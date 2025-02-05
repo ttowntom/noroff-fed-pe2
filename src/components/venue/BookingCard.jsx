@@ -8,6 +8,21 @@ import BookingForm from "./BookingForm.jsx";
 import "react-datepicker/dist/react-datepicker.css";
 import "../../styles/datepicker.css";
 
+/**
+ * BookingCard component that handles venue reservation functionality
+ * @component
+ * @param {Object} props
+ * @param {Venue} props.venue - Venue data including existing bookings
+ *
+ * @example
+ * function VenuePage({ venue }) {
+ *   return (
+ *     <div className="venue-details">
+ *       <BookingCard venue={venue} />
+ *     </div>
+ *   );
+ * }
+ */
 export default function BookingCard({ venue }) {
   const user = useUserStore((state) => state.user);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,6 +33,9 @@ export default function BookingCard({ venue }) {
 
   const bookedRanges = getBookedRanges(venue.bookings);
 
+  /**
+   * Opens the booking modal
+   */
   function openModal() {
     setIsModalOpen(true);
   }
@@ -32,6 +50,10 @@ export default function BookingCard({ venue }) {
     return dates;
   });
 
+  /**
+   * Handles form submission and opens booking modal
+   * @param {Event} e - Form submission event
+   */
   function handleSubmit(e) {
     e.preventDefault();
     openModal();

@@ -2,6 +2,22 @@ import { Link } from "react-router-dom";
 
 import { NO_USER_IMG_URL } from "../../constants.js";
 
+/**
+ * Owner component that displays venue owner information with avatar and bio
+ * @component
+ * @param {Object} props
+ * @param {Venue} props.venue - Venue data containing owner information
+ * @returns {JSX.Element} Section displaying owner details with link to profile
+ *
+ * @example
+ * function VenuePage({ venue }) {
+ *   return (
+ *     <div className="venue-details">
+ *       <Owner venue={venue} />
+ *     </div>
+ *   );
+ * }
+ */
 export default function Owner({ venue }) {
   let avatar = venue.owner.avatar.url;
   if (

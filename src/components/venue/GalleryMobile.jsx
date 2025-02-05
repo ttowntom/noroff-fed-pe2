@@ -10,16 +10,43 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "../../styles/swiperSlider.css";
 
+/**
+ * Mobile-friendly gallery component with swiper functionality
+ * @component
+ * @param {Object} props
+ * @param {Venue} props.venue - Venue data containing media array
+ * @param {boolean} [props.desktopHidden=true] - Whether to hide on desktop viewports
+ * @returns {JSX.Element} Swiper-based mobile gallery with modal viewer
+ *
+ * @example
+ * function VenuePage({ venue }) {
+ *   return (
+ *     <div className="venue-details">
+ *       <GalleryMobile
+ *         venue={venue}
+ *         desktopHidden={true}
+ *       />
+ *     </div>
+ *   );
+ * }
+ */
 export default function GalleryMobile({ venue, desktopHidden = true }) {
   const swiperRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const [activeImageUrl, setActiveImageUrl] = useState(null);
 
+  /**
+   * Opens modal with selected image
+   * @param {string} imageUrl - URL of clicked image
+   */
   function handleImageClick(imageUrl) {
     setActiveImageUrl(imageUrl);
     setIsOpen(true);
   }
 
+  /**
+   * Closes modal and resets active image
+   */
   function handleClose() {
     setIsOpen(false);
     setActiveImageUrl(null);

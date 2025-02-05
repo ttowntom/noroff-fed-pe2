@@ -1,5 +1,31 @@
 import InputCheckRadio from "../InputCheckRadio";
 
+/**
+ * Section component for managing venue amenities in a form
+ * @component
+ * @param {Object} props
+ * @param {FormData} props.formData - Current form data values
+ * @param {Function} props.handleChange - Change event handler
+ * @param {Function} props.handleBlur - Blur event handler
+ * @param {FormErrors} props.formErrors - Form validation errors
+ *
+ * @example
+ * function VenueForm() {
+ *   const [formData, setFormData] = useState({ wifi: false, parking: false });
+ *   const [formErrors, setFormErrors] = useState({});
+ *
+ *   return (
+ *     <form>
+ *       <AmenitiesSection
+ *         formData={formData}
+ *         handleChange={handleChange}
+ *         handleBlur={handleBlur}
+ *         formErrors={formErrors}
+ *       />
+ *     </form>
+ *   );
+ * }
+ */
 export default function AmenitiesSection({
   formData,
   handleChange,

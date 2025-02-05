@@ -2,6 +2,39 @@ import { useState, useEffect } from "react";
 
 import { API_MAPBOX } from "../constants";
 
+/**
+ * Custom hook that converts address information into geographic coordinates using Mapbox API
+ *
+ * @param {string} address - Street address to geocode (optional)
+ * @param {string} city - City name (required)
+ * @param {string} country - Country name (required)
+ *
+ * @returns {Object} Geocoding result object
+ * @property {Object|null} coordinates - The latitude and longitude coordinates
+ * @property {number} coordinates.lat - Latitude coordinate
+ * @property {number} coordinates.lng - Longitude coordinate
+ * @property {boolean} isLoading - Indicates if geocoding request is in progress
+ * @property {string|null} error - Error message if geocoding failed, null otherwise
+ *
+ * @example
+ * const MyComponent = () => {
+ *   const { coordinates, isLoading, error } = useGeocoding(
+ *     "123 Main St",
+ *     "Oslo",
+ *     "Norway"
+ *   );
+ *
+ *   if (isLoading) return <div>Loading...</div>;
+ *   if (error) return <div>Error: {error}</div>;
+ *   if (coordinates) {
+ *     return (
+ *       <div>
+ *         Location: {coordinates.lat}, {coordinates.lng}
+ *       </div>
+ *     );
+ *   }
+ * };
+ */
 export function useGeocoding(address, city, country) {
   const [coordinates, setCoordinates] = useState(null);
   const [isLoading, setIsLoading] = useState(false);

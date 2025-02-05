@@ -11,6 +11,27 @@ import LinkButton from "../components/LinkButton.jsx";
 import VenueOverview from "../components/venueManager/VenueOverview.jsx";
 import Loading from "../components/Loading.jsx";
 
+/**
+ * Venue manager dashboard displaying user's venues and bookings
+ * @component
+ * @returns {JSX.Element} Dashboard with venue list and management controls
+ *
+ * @example
+ * function App() {
+ *   return (
+ *     <Routes>
+ *       <Route
+ *         path="/venue-manager"
+ *         element={
+ *           <ProtectedRoute>
+ *             <VenueManager />
+ *           </ProtectedRoute>
+ *         }
+ *       />
+ *     </Routes>
+ *   );
+ * }
+ */
 export default function VenueManager() {
   const user = useUserStore((state) => state.user);
   const [openVenues, setOpenVenues] = useState({});

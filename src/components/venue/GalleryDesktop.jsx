@@ -2,12 +2,32 @@ import { useState } from "react";
 
 import GalleryModal from "./GalleryModal";
 
+/**
+ * Desktop gallery component with grid layout and modal viewer
+ * @component
+ * @param {Object} props
+ * @param {Venue} props.venue - Venue data containing media array
+ * @returns {JSX.Element} Responsive grid gallery with modal viewer
+ *
+ * @example
+ * function VenuePage({ venue }) {
+ *   return (
+ *     <div className="venue-details">
+ *       <GalleryDesktop venue={venue} />
+ *     </div>
+ *   );
+ * }
+ */
 export default function GalleryDesktop({ venue }) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeImageUrl, setActiveImageUrl] = useState(null);
 
   const numImgs = venue.media.length;
 
+  /**
+   * Handles image click to open modal viewer
+   * @param {string} imageUrl - URL of clicked image
+   */
   function handleImageClick(imageUrl) {
     setActiveImageUrl(imageUrl);
     setIsOpen(true);

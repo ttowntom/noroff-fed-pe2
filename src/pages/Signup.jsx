@@ -14,6 +14,20 @@ import Button from "../components/Button";
 import Notification from "../components/Notification";
 import Loading from "../components/Loading";
 
+/**
+ * Signup page component with registration form
+ * @component
+ * @returns {JSX.Element} Registration form with validation
+ *
+ * @example
+ * function App() {
+ *   return (
+ *     <Routes>
+ *       <Route path="/signup" element={<Signup />} />
+ *     </Routes>
+ *   );
+ * }
+ */
 export default function Signup() {
   const [venueManager, setVenueManager] = useState(false);
   const checkboxRef = useRef(null);

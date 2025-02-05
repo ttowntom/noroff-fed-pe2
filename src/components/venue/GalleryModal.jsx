@@ -9,6 +9,33 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "../../styles/swiperSlider.css";
 
+/**
+ * Modal component for displaying venue images in a fullscreen swiper gallery
+ * @component
+ * @param {Object} props
+ * @param {Venue} props.venue - Venue data containing media array
+ * @param {number} props.activeImageUrl - Index of initial slide to display
+ * @param {Function} [props.onClose] - Optional callback when modal closes
+ * @returns {ReactPortal} Portal containing modal dialog with swiper gallery
+ *
+ * @example
+ * function Gallery({ venue }) {
+ *   const [isOpen, setIsOpen] = useState(false);
+ *   const [activeSlide, setActiveSlide] = useState(0);
+ *
+ *   return (
+ *     <>
+ *       {isOpen && (
+ *         <GalleryModal
+ *           venue={venue}
+ *           activeImageUrl={activeSlide}
+ *           onClose={() => setIsOpen(false)}
+ *         />
+ *       )}
+ *     </>
+ *   );
+ * }
+ */
 export default function GalleryModal({ venue, activeImageUrl, onClose }) {
   const dialog = useRef();
   const swiperRef = useRef();
@@ -27,6 +54,10 @@ export default function GalleryModal({ venue, activeImageUrl, onClose }) {
     };
   }, []);
 
+  /**
+   * Handles closing the modal dialog
+   * @private
+   */
   const handleClose = () => {
     dialog.current.close();
     if (onClose) {
@@ -34,6 +65,11 @@ export default function GalleryModal({ venue, activeImageUrl, onClose }) {
     }
   };
 
+  /**
+   * Handles clicks on the modal backdrop
+   * @private
+   * @param {MouseEvent} e - Click event
+   */
   const handleBackdropClick = (e) => {
     if (e.target === dialog.current) {
       handleClose();

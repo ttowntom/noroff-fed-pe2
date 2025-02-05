@@ -1,6 +1,16 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
 
+/**
+ * Displays a rating as star icons, supporting full and half stars
+ * @component
+ * @param {Object} props
+ * @param {number} props.rating - Rating value between 0 and 5
+ * @returns {JSX.Element} Star rating display
+ *
+ * @example
+ * <RatingStar rating={3} />
+ */
 export default function RatingStar({ rating }) {
   const maxStars = 5;
   const filledStars = Math.floor(rating);

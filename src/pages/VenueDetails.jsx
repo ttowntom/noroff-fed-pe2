@@ -11,6 +11,20 @@ import Notification from "../components/Notification";
 import Gallery from "../components/venue/Gallery";
 import Loading from "../components/Loading";
 
+/**
+ * Venue details page displaying comprehensive venue information
+ * @component
+ * @returns {JSX.Element} Detailed venue view with gallery, booking, and info sections
+ *
+ * @example
+ * function App() {
+ *   return (
+ *     <Routes>
+ *       <Route path="/venues/:id" element={<VenueDetails />} />
+ *     </Routes>
+ *   );
+ * }
+ */
 export default function VenueDetails() {
   const venueId = useParams().id;
   const { data, error, isLoading, isError } = useVenueDetails(venueId);

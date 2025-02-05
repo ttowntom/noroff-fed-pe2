@@ -4,6 +4,22 @@ import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
 import { useVenueDetails } from "../../hooks/useVenueDetails.js";
 import LinkButton from "../LinkButton.jsx";
 
+/**
+ * Featured venue component displaying spotlight venue with details and image
+ * @component
+ * @param {Object} props
+ * @param {string} props.venueId - ID of the featured venue
+ * @returns {JSX.Element|null} Featured venue section or null if data not loaded
+ *
+ * @example
+ * function HomePage() {
+ *   return (
+ *     <main>
+ *       <VenueOfTheMonth venueId="featured-123" />
+ *     </main>
+ *   );
+ * }
+ */
 export default function VenueOfTheMonth({ venueId }) {
   const { data } = useVenueDetails(venueId);
 

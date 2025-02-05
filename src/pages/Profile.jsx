@@ -11,6 +11,20 @@ import BookingCard from "../components/profile/BookingCard.jsx";
 import VenueCard from "../components/venue/VenueCard.jsx";
 import Loading from "../components/Loading.jsx";
 
+/**
+ * Profile page component displaying user information and associated venues/bookings
+ * @component
+ * @returns {JSX.Element} Profile page with bio, venues list and bookings
+ *
+ * @example
+ * function App() {
+ *   return (
+ *     <Routes>
+ *       <Route path="/profile/:name" element={<Profile />} />
+ *     </Routes>
+ *   );
+ * }
+ */
 export default function Profile() {
   const { name } = useParams();
   const [showExpired, setShowExpired] = useState(false);

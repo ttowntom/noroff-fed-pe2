@@ -11,6 +11,20 @@ import Button from "../components/Button";
 import Notification from "../components/Notification";
 import Loading from "../components/Loading";
 
+/**
+ * Login page component with authentication form
+ * @component
+ * @returns {JSX.Element} Login form with email/password inputs
+ *
+ * @example
+ * function App() {
+ *   return (
+ *     <Routes>
+ *       <Route path="/login" element={<Login />} />
+ *     </Routes>
+ *   );
+ * }
+ */
 export default function Login() {
   const { formData, formErrors, handleBlur, handleChange, setFormErrors } =
     useFormValidation(
@@ -23,6 +37,10 @@ export default function Login() {
 
   const { mutate, isPending, isError, error } = useLoginMutation();
 
+  /**
+   * Handles form submission and authentication
+   * @param {Event} e - Form submission event
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

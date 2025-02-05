@@ -10,6 +10,20 @@ import Cta from "../components/Cta.jsx";
 import VenueOfTheMonth from "../components/venue/VenueOfTheMonth.jsx";
 import Loading from "../components/Loading.jsx";
 
+/**
+ * Venues listing page with search, sort and infinite scroll
+ * @component
+ * @returns {JSX.Element} Grid of venue cards with search/sort controls
+ *
+ * @example
+ * function App() {
+ *   return (
+ *     <Routes>
+ *       <Route path="/venues" element={<Venues />} />
+ *     </Routes>
+ *   );
+ * }
+ */
 export default function Venues() {
   const loadMoreRef = useRef();
   const {
@@ -48,6 +62,10 @@ export default function Venues() {
   const firstVenues = allVenues.slice(0, 8);
   const restOfVenues = allVenues.slice(8);
 
+  /**
+   * Handles sort selection change
+   * @param {Event} e - Select change event
+   */
   const handleSortChange = (e) => {
     setSortBy(e.target.value);
   };
@@ -56,6 +74,10 @@ export default function Venues() {
     setSearchInput(e.target.value);
   };
 
+  /**
+   * Handles search form submission
+   * @param {Event} e - Form submission event
+   */
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     setSearchQuery(searchInput);

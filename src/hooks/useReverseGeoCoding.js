@@ -2,6 +2,16 @@ import { useState, useEffect } from "react";
 
 import { API_MAPBOX } from "../constants";
 
+/**
+ * Custom hook that converts coordinates to address using Mapbox Reverse Geocoding API
+ * @function useReverseGeocoding
+ * @param {number} lng - Longitude coordinate
+ * @param {number} lat - Latitude coordinate
+ * @returns {Object} Location data and status
+ * @property {LocationData|null} locationData - Resolved address information
+ * @property {boolean} isLoading - Loading state
+ * @property {Error|null} error - Error object if request failed
+ */
 export function useReverseGeocoding(lng, lat) {
   const [locationData, setLocationData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);

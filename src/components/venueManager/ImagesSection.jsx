@@ -3,6 +3,40 @@ import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
 
 import InputTextField from "../InputTextField";
 
+/**
+ * Section component for managing venue images in a form
+ * @component
+ * @param {Object} props
+ * @param {Array<string>} props.images - Array of image URLs
+ * @param {Function} props.onImageAdd - Handler for adding new image
+ * @param {Function} props.onImageDelete - Handler for deleting image by index
+ * @param {Function} props.handleChange - Input change handler
+ * @param {Function} props.handleBlur - Input blur handler
+ * @param {FormErrors} props.formErrors - Form validation errors
+ *
+ * @example
+ * function VenueForm() {
+ *   const [images, setImages] = useState([]);
+ *
+ *   const handleImageAdd = (url) => {
+ *     setImages([...images, url]);
+ *   };
+ *
+ *   return (
+ *     <ImagesSection
+ *       images={images}
+ *       onImageAdd={handleImageAdd}
+ *       onImageDelete={(index) => {
+ *         const newImages = images.filter((_, i) => i !== index);
+ *         setImages(newImages);
+ *       }}
+ *       handleChange={handleChange}
+ *       handleBlur={handleBlur}
+ *       formErrors={{}}
+ *     />
+ *   );
+ * }
+ */
 export default function ImagesSection({
   images,
   onImageAdd,

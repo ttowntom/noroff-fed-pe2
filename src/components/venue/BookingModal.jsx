@@ -11,6 +11,39 @@ import Notification from "../Notification";
 import useUserStore from "../../store/userStore.js";
 import Loading from "../Loading.jsx";
 
+/**
+ * BookingModal component for handling venue booking confirmation and submission
+ * @component
+ * @param {Object} props
+ * @param {Venue} props.venue - Venue being booked
+ * @param {boolean} props.isModalOpen - Modal visibility state
+ * @param {Function} props.setIsModalOpen - Function to update modal visibility
+ * @param {boolean} props.isBookingSuccess - Booking success state
+ * @param {Function} props.setIsBookingSuccess - Function to update booking success
+ * @param {Array<Date|null>} props.dateRange - Selected date range [startDate, endDate]
+ * @param {Function} props.setDateRange - Function to update date range
+ * @param {number} props.guests - Number of guests
+ * @param {Function} props.setGuests - Function to update guest count
+ *
+ * @example
+ * function VenuePage({ venue }) {
+ *   const [isModalOpen, setIsModalOpen] = useState(false);
+ *   const [dateRange, setDateRange] = useState([null, null]);
+ *   const [guests, setGuests] = useState(1);
+ *
+ *   return (
+ *     <BookingModal
+ *       venue={venue}
+ *       isModalOpen={isModalOpen}
+ *       setIsModalOpen={setIsModalOpen}
+ *       dateRange={dateRange}
+ *       setDateRange={setDateRange}
+ *       guests={guests}
+ *       setGuests={setGuests}
+ *     />
+ *   );
+ * }
+ */
 export default function BookingModal({
   venue,
   isModalOpen,

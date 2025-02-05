@@ -18,6 +18,30 @@ import VenueDetailsSection from "../components/venueManager/VenueDetailsSection"
 import PriceCapacitySection from "../components/venueManager/PriceCapacitySection";
 import Loading from "../components/Loading";
 
+/**
+ * Form component for creating and editing venues
+ * @component
+ * @returns {JSX.Element} Multi-section form for venue management
+ *
+ * @example
+ * // Create new venue
+ * function VenueManager() {
+ *   return (
+ *     <Routes>
+ *       <Route path="/venues/new" element={<NewEditVenueForm />} />
+ *     </Routes>
+ *   );
+ * }
+ *
+ * // Edit existing venue
+ * function VenueManager() {
+ *   return (
+ *     <Routes>
+ *       <Route path="/venues/edit/:id" element={<NewEditVenueForm />} />
+ *     </Routes>
+ *   );
+ * }
+ */
 export default function NewEditVenueForm() {
   const user = useUserStore((state) => state.user);
   const navigate = useNavigate();

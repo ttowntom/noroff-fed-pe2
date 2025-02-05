@@ -2,6 +2,36 @@ import InputTextField from "../InputTextField";
 
 import SetLocation from "./SetLocation";
 
+/**
+ * Section component for managing venue location in a form
+ * @component
+ * @param {Object} props
+ * @param {FormData} props.formData - Current form values
+ * @param {FormErrors} props.formErrors - Form validation errors
+ * @param {Function} props.handleBlur - Input blur handler
+ * @param {Function} props.handleChange - Input change handler
+ *
+ * @example
+ * function VenueForm() {
+ *   const [formData, setFormData] = useState({
+ *     address: '',
+ *     city: '',
+ *     country: '',
+ *     zip: '',
+ *     lat: 0,
+ *     lng: 0
+ *   });
+ *
+ *   return (
+ *     <LocationSection
+ *       formData={formData}
+ *       formErrors={{}}
+ *       handleBlur={handleBlur}
+ *       handleChange={handleChange}
+ *     />
+ *   );
+ * }
+ */
 export default function LocationSection({
   formData,
   formErrors,
