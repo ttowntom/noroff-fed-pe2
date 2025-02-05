@@ -5,12 +5,14 @@ import { API_MAPBOX } from "../constants";
 export function useGeocoding(address, city, country) {
   const [coordinates, setCoordinates] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function getCoordinates() {
       if (!city || !country) return;
 
       setIsLoading(true);
+      setError(null);
       const searchQuery = address
         ? `${address}, ${city}, ${country}`
         : `${city}, ${country}`;
@@ -28,7 +30,8 @@ export function useGeocoding(address, city, country) {
           setCoordinates({ lng, lat });
         }
       } catch (error) {
-        console.error("Geocoding failed:", error);
+        setError(error.message || "Failed to get location coordinates");
+        setCoordinates(null);
       } finally {
         setIsLoading(false);
       }
@@ -37,5 +40,5 @@ export function useGeocoding(address, city, country) {
     getCoordinates();
   }, [address, city, country]);
 
-  return { coordinates, isLoading };
+  return { coordinates, isLoading, error };
 }

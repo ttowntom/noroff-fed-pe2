@@ -16,7 +16,11 @@ export default function Location({ venue }) {
     lat !== 0 &&
     lng !== 0;
 
-  const { coordinates, isLoading } = useGeocoding(address, city, country);
+  const { coordinates, isLoading, error } = useGeocoding(
+    address,
+    city,
+    country
+  );
 
   const mapCoordinates = hasLatLong ? { lng, lat } : coordinates;
   const zoomLevel = address ? 13 : 10;
@@ -39,6 +43,7 @@ export default function Location({ venue }) {
           {continent && `, ${continent}`}
         </p>
         {isLoading && <p>Loading map location...</p>}
+        {error && <p>{error}</p>}
         {mapCoordinates && (
           <Map
             initialViewState={{
