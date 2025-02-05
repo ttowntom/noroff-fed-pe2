@@ -13,6 +13,23 @@ import DateBox from "../DateBox.jsx";
 import Loading from "../Loading.jsx";
 import Notification from "../Notification.jsx";
 
+/**
+ * BookingCard component that displays booking details and allows deletion
+ * @component
+ * @param {Object} props
+ * @param {Booking} props.booking - Booking data
+ *
+ * @example
+ * function BookingsList({ bookings }) {
+ *   return (
+ *     <div>
+ *       {bookings.map(booking => (
+ *         <BookingCard key={booking.id} booking={booking} />
+ *       ))}
+ *     </div>
+ *   );
+ * }
+ */
 export default function BookingCard({ booking }) {
   const user = useUserStore((state) => state.user);
   const [showModal, setShowModal] = useState(false);
@@ -29,10 +46,16 @@ export default function BookingCard({ booking }) {
     },
   });
 
+  /**
+   * Opens the delete confirmation modal
+   */
   function handleClickDelete() {
     setShowModal(true);
   }
 
+  /**
+   * Confirms the deletion of the booking
+   */
   function handleConfirmDelete() {
     mutate();
   }

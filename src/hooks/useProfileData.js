@@ -2,6 +2,13 @@ import { useQueries } from "@tanstack/react-query";
 
 import { fetchFn } from "../utils/http";
 
+/**
+ * Custom hook that fetches a user's profile data, venues, and bookings
+ * @function useProfileData
+ * @param {string} name - Username to fetch data for
+ * @param {string} token - Authentication token
+ * @returns {ProfileData} Combined profile data and status
+ */
 export default function useProfileData(name, token) {
   const queries = useQueries({
     queries: [

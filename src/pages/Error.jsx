@@ -3,6 +3,20 @@ import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
 
 import LinkButton from "../components/LinkButton";
 
+/**
+ * 404 Error page component with navigation back to home
+ * @component
+ * @returns {JSX.Element} Error page with icon and back button
+ *
+ * @example
+ * function App() {
+ *   return (
+ *     <Routes>
+ *       <Route path="*" element={<Error />} />
+ *     </Routes>
+ *   );
+ * }
+ */
 export default function Error() {
   return (
     <section className="mx-auto mt-12 flex flex-col items-center gap-6 text-light-text-primary dark:text-dark-text-primary">

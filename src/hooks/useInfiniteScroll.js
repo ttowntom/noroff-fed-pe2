@@ -1,6 +1,17 @@
 import { useEffect, useCallback } from "react";
 
+/**
+ * Custom hook for implementing infinite scroll functionality using Intersection Observer
+ * @param {React.RefObject} targetRef - Reference to the target element to observe
+ * @param {Function} callback - Function to call when target becomes visible
+ * @param {Array} [deps=[]] - Optional dependency array for the callback
+ */
 export function useInfiniteScroll(targetRef, callback, deps = []) {
+  /**
+   * Intersection Observer callback that triggers when target element becomes visible
+   * @param {IntersectionObserverEntry[]} entries - Array of intersection entries
+   * @private
+   */
   const handleObserver = useCallback(
     (entries) => {
       const [entry] = entries;

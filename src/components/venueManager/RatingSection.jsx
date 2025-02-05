@@ -2,6 +2,30 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
 
+/**
+ * Rating section component with interactive star selection
+ * @component
+ * @param {Object} props
+ * @param {Function} props.onRatingChange - Callback when rating changes
+ * @param {FormData} props.formData - Form data containing rating value
+ * @returns {JSX.Element} Rating section with interactive star buttons
+ *
+ * @example
+ * function VenueForm() {
+ *   const [formData, setFormData] = useState({ rating: 0 });
+ *
+ *   const handleRatingChange = (value) => {
+ *     setFormData(prev => ({ ...prev, rating: value }));
+ *   };
+ *
+ *   return (
+ *     <RatingSection
+ *       onRatingChange={handleRatingChange}
+ *       formData={formData}
+ *     />
+ *   );
+ * }
+ */
 export default function RatingSection({ onRatingChange, formData }) {
   const [rating, setRating] = useState(formData.rating || 0);
   const [hover, setHover] = useState(0);

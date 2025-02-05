@@ -5,6 +5,37 @@ import { API_MAPBOX } from "../../constants.js";
 import { useReverseGeocoding } from "../../hooks/useReverseGeoCoding";
 import "mapbox-gl/dist/mapbox-gl.css";
 
+/**
+ * Interactive map component for setting venue location
+ * @component
+ * @param {Object} props
+ * @param {Function} props.onLocationSet - Callback with location data when marker placed
+ * @param {number} [props.initialLat] - Initial latitude coordinate
+ * @param {number} [props.initialLng] - Initial longitude coordinate
+ * @returns {JSX.Element} Mapbox map with marker placement
+ *
+ * @example
+ * function VenueForm() {
+ *   const handleLocationSet = (location) => {
+ *     setFormData(prev => ({
+ *       ...prev,
+ *       address: location.address,
+ *       city: location.city,
+ *       country: location.country,
+ *       lat: location.lat,
+ *       lng: location.lng
+ *     }));
+ *   };
+ *
+ *   return (
+ *     <SetLocation
+ *       onLocationSet={handleLocationSet}
+ *       initialLat={59.9139}
+ *       initialLng={10.7522}
+ *     />
+ *   );
+ * }
+ */
 export default function SetLocation({ onLocationSet, initialLat, initialLng }) {
   const [marker, setMarker] = useState(
     initialLat && initialLng

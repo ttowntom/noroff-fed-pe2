@@ -6,6 +6,14 @@ const baseUrl = `${API_BASE_URL}`;
 
 export const queryClient = new QueryClient();
 
+/**
+ * Makes an authenticated GET request to the API
+ * @param {Object} params - Request parameters
+ * @param {Array} params.queryKey - Query key array where first element is the URL
+ * @param {string} params.token - Authentication token
+ * @returns {Promise<Object>} API response data
+ * @throws {Error} If request fails or response is not ok
+ */
 export async function fetchFn({ queryKey, token }) {
   const [url] = queryKey;
 
@@ -31,6 +39,15 @@ export async function fetchFn({ queryKey, token }) {
   }
 }
 
+/**
+ * Makes an authenticated POST request to the API
+ * @param {Object} params - Request parameters
+ * @param {string} params.url - API endpoint URL
+ * @param {Object} params.body - Request body data
+ * @param {string} params.token - Authentication token
+ * @returns {Promise<Object>} API response data
+ * @throws {Error} If request fails or response is not ok
+ */
 export async function postFn({ url, body, token }) {
   try {
     const response = await fetch(`${baseUrl}${url}`, {
@@ -57,6 +74,15 @@ export async function postFn({ url, body, token }) {
   }
 }
 
+/**
+ * Makes an authenticated PUT request to the API
+ * @param {RequestParams} params - Request parameters
+ * @param {string} params.url - API endpoint URL
+ * @param {Object} params.body - Request body data
+ * @param {string} params.token - Authentication token
+ * @returns {Promise<Object>} API response data
+ * @throws {Error} If request fails or response is not ok
+ */
 export async function putFn({ url, body, token }) {
   try {
     const response = await fetch(`${baseUrl}${url}`, {
@@ -83,6 +109,14 @@ export async function putFn({ url, body, token }) {
   }
 }
 
+/**
+ * Makes an authenticated DELETE request to the API
+ * @param {Object} params
+ * @param {string} params.url - API endpoint URL
+ * @param {string} params.token - Authentication token
+ * @returns {Promise<Object>} API response data
+ * @throws {Error} If request fails or response is not ok
+ */
 export async function deleteFn({ url, token }) {
   try {
     const response = await fetch(`${baseUrl}${url}`, {

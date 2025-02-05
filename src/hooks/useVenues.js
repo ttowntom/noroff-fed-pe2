@@ -4,6 +4,18 @@ import { useSearchParams } from "react-router-dom";
 
 import { fetchFn } from "../utils/http";
 
+/**
+ * Custom hook for data fetching and infinite scrolling of venues
+ * @property {Object} data - Paginated venue data
+ * @property {Function} fetchNextPage - Function to load next page
+ * @property {boolean} hasNextPage - Whether more pages exist
+ * @property {boolean} isFetchingNextPage - Loading state for next page
+ * @property {string} sortBy - Current sort field
+ * @property {Function} setSortBy - Update sort field
+ * @property {string} sortOrder - Current sort direction
+ * @property {Function} setSortOrder - Update sort direction
+ * @returns {Object} Venues data and controls
+ */
 export function useVenues() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [sortBy, setSortBy] = useState(searchParams.get("sort") || "created");

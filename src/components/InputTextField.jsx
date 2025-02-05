@@ -1,5 +1,41 @@
 import Notification from "./Notification";
 
+/**
+ * Text input component with label and error handling
+ * @component
+ * @param {Object} props
+ * @param {string} props.label - Input label text
+ * @param {string} props.name - Input name attribute
+ * @param {InputType} props.type - Input type
+ * @param {string} [props.defaultValue] - Default input value
+ * @param {string} [props.placeholder] - Placeholder text
+ * @param {Function} props.onChange - Change event handler
+ * @param {Function} props.onBlur - Blur event handler
+ * @param {string} [props.error] - Error message to display
+ * @param {boolean} [props.required] - Whether input is required
+ * @returns {JSX.Element} Labeled input field with optional error message
+ *
+ * @example
+ * // Basic text input
+ * <InputTextField
+ *   label="Venue Name"
+ *   name="venueName"
+ *   type="text"
+ *   onChange={handleChange}
+ *   onBlur={handleBlur}
+ * />
+ *
+ * // Required number input with error
+ * <InputTextField
+ *   label="Price"
+ *   name="price"
+ *   type="number"
+ *   required
+ *   error="Price is required"
+ *   onChange={handleChange}
+ *   onBlur={handleBlur}
+ * />
+ */
 export default function InputTextField({
   label,
   name,

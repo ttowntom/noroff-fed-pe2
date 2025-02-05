@@ -7,9 +7,42 @@ import LinkButton from "../LinkButton";
 import GuestCounter from "./GuestCounter";
 import BookingPriceSummary from "./BookingPriceSummary";
 
+/**
+ * BookingForm component that handles venue reservation inputs
+ * @component
+ * @param {Object} props
+ * @param {User} props.user - Currently logged in user
+ * @param {Date|null} props.startDate - Selected start date
+ * @param {Date|null} props.endDate - Selected end date
+ * @param {Function} props.setDateRange - Function to update date range
+ * @param {number} props.guests - Number of guests
+ * @param {Function} props.setGuests - Function to update guest count
+ * @param {Array<Date>} props.excludeDates - Array of unavailable dates
+ * @param {Function} props.handleSubmit - Form submission handler
+ * @param {Venue} props.venue - Venue data
+ *
+ * @example
+ * function BookingCard({ venue }) {
+ *   const [dateRange, setDateRange] = useState([null, null]);
+ *   const [guests, setGuests] = useState(1);
+ *
+ *   return (
+ *     <BookingForm
+ *       user={user}
+ *       startDate={dateRange[0]}
+ *       endDate={dateRange[1]}
+ *       setDateRange={setDateRange}
+ *       guests={guests}
+ *       setGuests={setGuests}
+ *       excludeDates={excludeDates}
+ *       handleSubmit={handleSubmit}
+ *       venue={venue}
+ *     />
+ *   );
+ * }
+ */
 export default function BookingForm({
   user,
-
   startDate,
   endDate,
   setDateRange,

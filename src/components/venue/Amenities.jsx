@@ -1,6 +1,16 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
 
+/**
+ * Meta component that displays a single amenity with an icon and text
+ * @component
+ * @param {Object} props
+ * @param {boolean} props.meta - Whether the amenity is available
+ * @param {string} props.metaKey - The name of the amenity
+ * @param {string} props.icon - The icon name for the amenity
+ * @param {string} props.iconType - The icon type (e.g., "fas", "fad")
+ * @returns {JSX.Element} List item displaying the amenity
+ */
 function Meta({ meta, metaKey, icon, iconType }) {
   const text = meta ? "Yes" : "No";
 
@@ -33,6 +43,23 @@ function Meta({ meta, metaKey, icon, iconType }) {
   }
 }
 
+/**
+ * Amenities component that displays a list of venue amenities
+ * @component
+ * @param {Object} props
+ * @param {Venue} props.venue - Venue data containing amenities information
+ * @returns {JSX.Element} Section displaying the venue amenities
+ *
+ * @example
+ * function VenueDetails({ venue }) {
+ *   return (
+ *     <div>
+ *       <h2>Amenities</h2>
+ *       <Amenities venue={venue} />
+ *     </div>
+ *   );
+ * }
+ */
 export default function Amenities({ venue }) {
   return (
     <section>

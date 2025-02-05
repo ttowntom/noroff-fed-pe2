@@ -1,5 +1,31 @@
 import InputTextField from "../InputTextField";
 
+/**
+ * Section component for managing venue price and capacity inputs
+ * @component
+ * @param {Object} props
+ * @param {FormData} props.formData - Current form values
+ * @param {Function} props.handleChange - Input change handler
+ * @param {Function} props.handleBlur - Input blur handler
+ * @param {FormErrors} props.formErrors - Form validation errors
+ *
+ * @example
+ * function VenueForm() {
+ *   const [formData, setFormData] = useState({
+ *     price: 0,
+ *     maxGuests: 1
+ *   });
+ *
+ *   return (
+ *     <PriceCapacitySection
+ *       formData={formData}
+ *       handleChange={handleChange}
+ *       handleBlur={handleBlur}
+ *       formErrors={{}}
+ *     />
+ *   );
+ * }
+ */
 export default function PriceCapacitySection({
   formData,
   handleChange,

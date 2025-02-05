@@ -10,6 +10,21 @@ import Notification from "../components/Notification.jsx";
 import BookingCard from "../components/profile/BookingCard.jsx";
 import Loading from "../components/Loading.jsx";
 
+/**
+ * Bookings page component displaying user's venue bookings
+ * @component
+ * @param {Object} props
+ * @returns {JSX.Element} Bookings list with filtering options
+ *
+ * @example
+ * function App() {
+ *   return (
+ *     <Routes>
+ *       <Route path="/bookings/:name" element={<Bookings />} />
+ *     </Routes>
+ *   );
+ * }
+ */
 export default function Bookings() {
   const { name } = useParams();
   const [showExpired, setShowExpired] = useState(false);

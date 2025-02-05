@@ -1,3 +1,17 @@
+/**
+ * Displays a formatted date in a styled box layout
+ * @component
+ * @param {Object} props
+ * @param {string|Date} props.date - Date to display
+ * @returns {JSX.Element} Box containing formatted date parts
+ *
+ * @example
+ * // With date string
+ * <DateBox date="2024-03-15" />
+ *
+ * // With Date object
+ * <DateBox date={new Date()} />
+ */
 export default function RenderDate({ date }) {
   const dateObj = new Date(date);
 

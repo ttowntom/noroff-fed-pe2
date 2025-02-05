@@ -13,6 +13,26 @@ import Button from "../Button.jsx";
 import Notification from "../Notification.jsx";
 import Loading from "../Loading.jsx";
 
+/**
+ * Bio component that displays and allows editing of a user's profile information
+ * @component
+ * @param {Object} props
+ * @param {Object} props.data - Query result containing profile data
+ * @param {ProfileData} props.data.data - Profile information
+ * @param {boolean} props.isSelf - Whether the profile belongs to the current user
+ *
+ * @example
+ * function ProfilePage() {
+ *   const { data, isSelf } = useProfile(username);
+ *
+ *   return (
+ *     <Bio
+ *       data={data}
+ *       isSelf={isSelf}
+ *     />
+ *   );
+ * }
+ */
 export default function Bio({ data, isSelf }) {
   const user = useUserStore((state) => state.user);
   const [avatarUrl, setAvatarUrl] = useState(data.data.avatar.url);
@@ -42,19 +62,33 @@ export default function Bio({ data, isSelf }) {
     },
   });
 
+  /**
+   * Opens the edit profile modal
+   */
   function openModal() {
     setIsModalOpen(true);
   }
 
+  /**
+   * Closes the edit profile modal
+   */
   function closeModal() {
     setIsModalOpen(false);
   }
 
+  /**
+   * Handles avatar URL changes and validation
+   * @param {Event} e - Input change event
+   */
   function handleAvatarUrlChange(e) {
     const newUrl = e.target.value;
     setAvatarUrl(newUrl || NO_USER_IMG_URL);
   }
 
+  /**
+   * Handles profile edit form submission
+   * @param {Event} e - Form submission event
+   */
   function handleEditProfile(e) {
     e.preventDefault();
     const form = e.target;

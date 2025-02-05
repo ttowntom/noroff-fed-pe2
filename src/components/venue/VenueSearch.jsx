@@ -1,6 +1,39 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
 
+/**
+ * Search component for filtering venues by name
+ * @component
+ * @param {Object} props
+ * @param {string} props.searchInput - Current search input value
+ * @param {Function} props.onSearchChange - Handler for search input changes
+ * @param {Function} props.onSearchSubmit - Handler for search form submission
+ * @param {Function} props.onSearchReset - Handler for clearing search
+ * @param {string|null} props.searchQuery - Active search query
+ * @returns {JSX.Element} Search form with input and submit/reset buttons
+ *
+ * @example
+ * function VenuesPage() {
+ *   const [searchInput, setSearchInput] = useState("");
+ *   const [searchQuery, setSearchQuery] = useState(null);
+ *
+ *   return (
+ *     <VenueSearch
+ *       searchInput={searchInput}
+ *       onSearchChange={(e) => setSearchInput(e.target.value)}
+ *       onSearchSubmit={(e) => {
+ *         e.preventDefault();
+ *         setSearchQuery(searchInput);
+ *       }}
+ *       onSearchReset={() => {
+ *         setSearchInput("");
+ *         setSearchQuery(null);
+ *       }}
+ *       searchQuery={searchQuery}
+ *     />
+ *   );
+ * }
+ */
 export default function VenueSearch({
   searchInput,
   onSearchChange,

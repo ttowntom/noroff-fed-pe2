@@ -1,6 +1,19 @@
 import { useState } from "react";
 import { z } from "zod";
 
+/**
+ * Custom hook for form validation using Zod schemas
+ * @param {Object} initialState - Initial form data state
+ * @param {Object} schema - Zod validation schema
+ * @returns {Object} Form validation utilities
+ * @property {Object} formData - Current form data
+ * @property {Object} formErrors - Current validation errors
+ * @property {Object} touched - Fields that have been touched/blurred
+ * @property {Function} setFormData - Update form data
+ * @property {Function} setFormErrors - Update form errors
+ * @property {Function} handleBlur - Handle input blur events
+ * @property {Function} handleChange - Handle input change events
+ */
 export function useFormValidation(initialState, schema) {
   const [formData, setFormData] = useState(initialState);
   const [formErrors, setFormErrors] = useState({});

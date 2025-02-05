@@ -4,6 +4,19 @@ import { API_MAPBOX } from "../../constants.js";
 import { useGeocoding } from "../../hooks/useGeocoding.js";
 import "mapbox-gl/dist/mapbox-gl.css";
 
+/**
+ * Location component that displays address information and an interactive map
+ * @component
+ * @param {Object} props
+ * @param {string} props.address - Street address of the venue
+ * @param {string} props.city - City where the venue is located
+ * @param {string} props.country - Country where the venue is located
+ * @param {string} [props.zip] - Optional postal/ZIP code
+ * @param {string} [props.continent] - Optional continent name
+ * @param {number} [props.lat] - Optional latitude coordinate
+ * @param {number} [props.lng] - Optional longitude coordinate
+ * @returns {JSX.Element|null} Returns the location display with map or null if coordinates are missing
+ */
 export default function Location({ venue }) {
   const { address, city, continent, country, lat, lng, zip } = venue.location;
 

@@ -1,3 +1,20 @@
+/**
+ * Loading animation component with bouncing dots
+ * @component
+ * @returns {JSX.Element} Centered loading dots animation
+ *
+ * @example
+ * // Basic usage
+ * function DataComponent() {
+ *   const { data, isLoading } = useQuery(...);
+ *
+ *   if (isLoading) {
+ *     return <Loading />;
+ *   }
+ *
+ *   return <div>{data}</div>;
+ * }
+ */
 export default function Loading() {
   return (
     <div className="flex justify-center">

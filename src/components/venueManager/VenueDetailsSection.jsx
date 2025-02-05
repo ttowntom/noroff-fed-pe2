@@ -1,6 +1,32 @@
 import InputTextField from "../InputTextField";
 import InputTextArea from "../InputTextArea";
 
+/**
+ * Section component for managing venue name and description inputs
+ * @component
+ * @param {Object} props
+ * @param {FormData} props.formData - Current form values
+ * @param {Function} props.handleChange - Input change handler
+ * @param {Function} props.handleBlur - Input blur handler
+ * @param {FormErrors} props.formErrors - Form validation errors
+ *
+ * @example
+ * function VenueForm() {
+ *   const [formData, setFormData] = useState({
+ *     venueName: '',
+ *     description: ''
+ *   });
+ *
+ *   return (
+ *     <VenueDetailsSection
+ *       formData={formData}
+ *       handleChange={handleChange}
+ *       handleBlur={handleBlur}
+ *       formErrors={{}}
+ *     />
+ *   );
+ * }
+ */
 export default function VenueDetailsSection({
   formData,
   handleChange,

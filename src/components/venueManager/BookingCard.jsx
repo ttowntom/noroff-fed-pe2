@@ -4,6 +4,25 @@ import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
 
 import DateBox from "../DateBox";
 
+/**
+ * Card component for displaying booking information in venue manager dashboard
+ * @component
+ * @param {Object} props
+ * @param {Booking} props.booking - Booking information to display
+ * @returns {JSX.Element} Article containing booking details
+ *
+ * @example
+ * const booking = {
+ *   dateFrom: "2024-03-20",
+ *   dateTo: "2024-03-25",
+ *   customer: {
+ *     name: "John Doe",
+ *     email: "john@example.com"
+ *   }
+ * };
+ *
+ * <BookingCard booking={booking} />
+ */
 export default function BookingCard({ booking }) {
   const isPastBooking = new Date(booking.dateTo) < new Date();
 

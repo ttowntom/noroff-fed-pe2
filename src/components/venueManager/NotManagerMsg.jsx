@@ -2,6 +2,22 @@ import { useLogout } from "../../hooks/useLogout";
 import Notification from "../../components/Notification.jsx";
 import Button from "../../components/Button.jsx";
 
+/**
+ * Message component displayed when non-manager users attempt to access manager features
+ * @component
+ * @returns {JSX.Element} Notification with logout button and instructions
+ *
+ * @example
+ * function VenueManagerPage() {
+ *   const { isVenueManager } = useUserStore();
+ *
+ *   if (!isVenueManager) {
+ *     return <NotManagerMsg />;
+ *   }
+ *
+ *   return <VenueManagerDashboard />;
+ * }
+ */
 export default function NotManagerMsg() {
   return (
     <div className="mt-2 w-full max-w-[65ch] sm:mt-6">

@@ -1,5 +1,30 @@
 import Notification from "./Notification";
 
+/**
+ * Textarea input component with label and error handling
+ * @component
+ * @param {Object} props
+ * @param {string} props.label - Input label text
+ * @param {string} props.name - Input name attribute
+ * @param {string} [props.defaultValue] - Default textarea value
+ * @param {string} [props.placeholder] - Placeholder text
+ * @param {Function} props.onChange - Change event handler
+ * @param {Function} props.onBlur - Blur event handler
+ * @param {string} [props.error] - Error message to display
+ * @param {boolean} [props.required] - Whether input is required
+ * @returns {JSX.Element} Labeled textarea with optional error message
+ *
+ * @example
+ * <InputTextArea
+ *   label="Description"
+ *   name="description"
+ *   defaultValue={venue.description}
+ *   placeholder="Enter venue description..."
+ *   onChange={handleChange}
+ *   onBlur={handleBlur}
+ *   required
+ * />
+ */
 export default function InputTextArea({
   label,
   name,

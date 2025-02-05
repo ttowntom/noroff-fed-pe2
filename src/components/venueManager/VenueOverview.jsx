@@ -17,6 +17,24 @@ import Modal from "../Modal";
 import Button from "../Button";
 import Loading from "../Loading";
 
+/**
+ * Venue overview component displaying venue details and booking management
+ * @component
+ * @param {Object} props
+ * @param {Venue} props.venue - Venue data to display
+ * @returns {JSX.Element} Venue overview with gallery, details and booking management
+ *
+ * @example
+ * function VenueManagerPage() {
+ *   const { venue } = useVenue(venueId);
+ *
+ *   return (
+ *     <div className="venue-manager">
+ *       <VenueOverview venue={venue} />
+ *     </div>
+ *   );
+ * }
+ */
 export default function VenueOverview({ venue }) {
   const user = useUserStore((state) => state.user);
   const [showExpired, setShowExpired] = useState(false);

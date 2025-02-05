@@ -8,6 +8,26 @@ import { NO_USER_IMG_URL } from "../constants.js";
 
 import MainMenu from "./mainMenu/MainMenu";
 
+/**
+ * Navigation bar component with responsive menu and authentication state
+ * @component
+ * @param {Object} props
+ * @param {User} props.user - Current user object
+ * @param {boolean} props.isLoggedIn - Authentication state
+ * @returns {JSX.Element} Navigation bar with logo, links and user menu
+ *
+ * @example
+ * function App() {
+ *   const { user, isLoggedIn } = useUserStore();
+ *
+ *   return (
+ *     <>
+ *       <Navbar user={user} isLoggedIn={isLoggedIn} />
+ *       <main>Content</main>
+ *     </>
+ *   );
+ * }
+ */
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const user = useUserStore((state) => state.user);

@@ -8,6 +8,13 @@ import toggleTheme from "../../utils/toggleTheme.js";
 
 import MainMenuNavLink from "./NavLink";
 
+/**
+ * MainMenu component that displays a navigation menu with user-specific links and actions
+ * @component
+ * @param {Object} props
+ * @param {boolean} props.isOpen - Indicates if the menu is open
+ * @param {Function} props.onClose - Function to close the menu
+ */
 export default function MainMenu({ isOpen, onClose }) {
   const user = useUserStore((state) => state.user);
   const theme = useUserStore((state) => state.theme);
