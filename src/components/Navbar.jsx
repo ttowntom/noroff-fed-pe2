@@ -7,6 +7,7 @@ import useUserStore from "../store/userStore";
 import { NO_USER_IMG_URL } from "../constants.js";
 
 import MainMenu from "./mainMenu/MainMenu";
+import LinkButton from "./LinkButton.jsx";
 
 /**
  * Navigation bar component with responsive menu and authentication state
@@ -66,12 +67,7 @@ export default function Navbar() {
             >
               Sign up
             </Link>
-            <Link
-              to="/login"
-              className="font-medium text-light-link-primary hover:underline dark:text-dark-link-primary xs:rounded-full xs:border xs:border-light-border-secondary xs:bg-light-button-primary xs:px-4 xs:py-2 xs:font-normal xs:text-light-text-alternate xs:hover:cursor-pointer xs:hover:bg-light-button-border-primary xs:hover:shadow-md xs:dark:border-dark-border-primary xs:dark:bg-dark-bg-primary xs:dark:text-dark-text-primary xs:dark:hover:bg-color-neutral-neutral-darkest"
-            >
-              Log in
-            </Link>
+            <LinkButton to="/login">Log in</LinkButton>
           </div>
         )}
         {/* Logged in */}

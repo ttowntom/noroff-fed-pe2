@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import { postFn } from "../utils/http";
 import { saveLocal } from "../utils/localStorage";
@@ -32,7 +32,9 @@ import useUserStore from "../store/userStore";
  */
 export function useLoginMutation() {
   const navigate = useNavigate();
+  const location = useLocation();
   const loginUser = useUserStore((state) => state.login);
+  const baseUrl = import.meta.env.BASE_URL;
 
   let userData = {};
 
@@ -50,7 +52,13 @@ export function useLoginMutation() {
       loginUser(userData);
       saveLocal("user", userData);
 
-      navigate("/");
+      // Use saved 'from' or default to home
+      const from = location.state?.from || "/";
+      const cleanPath = from.replace(new RegExp(`^${baseUrl}`), "");
+      const redirectPath = cleanPath.startsWith("/")
+        ? cleanPath
+        : `/${cleanPath}`;
+      navigate(redirectPath, { replace: true });
     },
   });
 }

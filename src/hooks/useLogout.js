@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import useUserStore from "../store/userStore";
 import { clearLocal } from "../utils/localStorage";
@@ -11,12 +11,18 @@ import { clearLocal } from "../utils/localStorage";
  */
 export function useLogout(onClose) {
   const navigate = useNavigate();
+  const location = useLocation();
   const logout = useUserStore((state) => state.logout);
+  const baseUrl = import.meta.env.BASE_URL;
 
   const handleLogout = () => {
+    const currentPath = location.pathname;
+    const cleanPath = currentPath.replace(baseUrl, "");
+
     clearLocal();
     logout();
-    navigate("/");
+    navigate(cleanPath);
+
     if (onClose) {
       onClose();
     }
