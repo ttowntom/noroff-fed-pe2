@@ -52,7 +52,7 @@ export default function InputCheckRadio({
     <div className="flex flex-row gap-2">
       <input
         type={type}
-        id={label}
+        id={name}
         name={name}
         value={value}
         checked={checked}

@@ -16,9 +16,13 @@ export default function RatingStar({ rating }) {
   const filledStars = Math.floor(rating);
   const hasHalfStar = rating % 1 !== 0;
   const emptyStars = maxStars - filledStars - (hasHalfStar ? 1 : 0);
+  const formattedRating = rating.toFixed(1);
 
   let content = (
-    <div className="flex gap-2 text-sm">
+    <div
+      className="flex gap-2 text-sm"
+      aria-label={`Venue rating: ${formattedRating} out of ${maxStars} stars`}
+    >
       <div>
         {[...Array(filledStars)].map((_, index) => (
           <FontAwesomeIcon

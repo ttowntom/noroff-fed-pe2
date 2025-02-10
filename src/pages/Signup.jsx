@@ -130,6 +130,9 @@ export default function Signup() {
           />
           <div className="flex items-center justify-between gap-4">
             <p>Sign up as a Venue Manager</p>
+            <label htmlFor="venueManager" className="sr-only">
+              Toggle Venue Manager
+            </label>
             <input
               type="checkbox"
               name="venueManager"
@@ -139,14 +142,20 @@ export default function Signup() {
               checked={venueManager}
               onChange={(e) => setVenueManager(e.target.checked)}
             />
-            <button type="button" onClick={handleToggleManager}>
+            <button
+              type="button"
+              aria-label="Toggle venue manager"
+              onClick={handleToggleManager}
+            >
               {venueManager ? (
                 <FontAwesomeIcon
+                  aria-hidden="true"
                   icon={byPrefixAndName.fas["toggle-on"]}
                   className="text-2xl"
                 />
               ) : (
                 <FontAwesomeIcon
+                  aria-hidden="true"
                   icon={byPrefixAndName.fat["toggle-off"]}
                   className="text-2xl"
                 />

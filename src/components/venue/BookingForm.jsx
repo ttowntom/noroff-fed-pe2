@@ -59,6 +59,7 @@ export default function BookingForm({
       </label>
       <DatePicker
         selectsRange
+        id="dates"
         startDate={startDate}
         endDate={endDate}
         name="dates"
@@ -80,6 +81,7 @@ export default function BookingForm({
           </label>
           <GuestCounter
             guests={guests}
+            id="guests"
             maxGuests={venue.maxGuests}
             onIncrease={() =>
               setGuests((prev) => Math.min(prev + 1, venue.maxGuests))

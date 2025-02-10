@@ -60,33 +60,38 @@ export default function Footer() {
             </a>
           </p>
           <div className="mt-4 flex gap-4">
-            <a href="#">
+            <a href="/#">
               <FontAwesomeIcon
                 icon={faFacebook}
+                aria-label="Facebook"
                 className="hover:text-color-neutral-neutral-lighter"
               />
             </a>
-            <a href="#">
+            <a href="/#">
               <FontAwesomeIcon
                 icon={faInstagram}
+                aria-label="Instagram"
                 className="hover:text-color-neutral-neutral-lighter"
               />
             </a>
-            <a href="#">
+            <a href="/#">
               <FontAwesomeIcon
                 icon={faXTwitter}
+                aria-label="Twitter"
                 className="hover:text-color-neutral-neutral-lighter"
               />
             </a>
-            <a href="#">
+            <a href="/#">
               <FontAwesomeIcon
                 icon={faLinkedin}
+                aria-label="LinkedIn"
                 className="hover:text-color-neutral-neutral-lighter"
               />
             </a>
-            <a href="#">
+            <a href="/#">
               <FontAwesomeIcon
                 icon={faYoutube}
+                aria-label="YouTube"
                 className="hover:text-color-neutral-neutral-lighter"
               />
             </a>
