@@ -81,7 +81,11 @@ export default function Navbar() {
               className="text-light-text-primary dark:text-dark-text-primary"
             />
             {user != null ? (
-              <img src={avatar} className="h-4 w-4 rounded-full object-cover" />
+              <img
+                src={avatar}
+                alt={user.name}
+                className="h-4 w-4 rounded-full object-cover"
+              />
             ) : (
               <FontAwesomeIcon
                 icon={byPrefixAndName.fas["circle-user"]}
