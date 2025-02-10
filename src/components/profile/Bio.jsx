@@ -124,7 +124,7 @@ export default function Bio({ data, isSelf }) {
           alt={data.data.name}
           className="h-16 w-16 rounded-full object-cover"
         />
-        <h1 className="font-notoSerif text-4xl font-semibold sm:text-5xl">
+        <h1 className="break-all font-notoSerif text-4xl font-semibold sm:text-5xl">
           {data.data.name}
         </h1>
       </div>
@@ -150,8 +150,8 @@ export default function Bio({ data, isSelf }) {
               onSubmit={handleEditProfile}
               className="flex flex-col gap-4"
             >
-              <div className="flex items-end gap-4">
-                <div className="flex flex-grow">
+              <div className="flex flex-wrap items-end gap-4">
+                <div className="flex max-w-full flex-grow">
                   <InputTextField
                     label="Avatar"
                     name="avatar"
