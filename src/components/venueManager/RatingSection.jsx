@@ -45,7 +45,7 @@ export default function RatingSection({ onRatingChange, formData }) {
       <div
         role="radiogroup"
         aria-label="Rating stars"
-        className="flex items-center gap-2"
+        className="flex flex-wrap items-center gap-2"
       >
         {rating > 0 && (
           <button
