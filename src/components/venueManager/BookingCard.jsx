@@ -34,9 +34,11 @@ export default function BookingCard({ booking }) {
         to={`/profile/${booking.customer.name}`}
         className="hover:underline"
       >
-        <h4 className="-mb-2 text-lg font-bold">{booking.customer.name}</h4>
+        <h4 className="-mb-2 break-all text-lg font-bold">
+          {booking.customer.name}
+        </h4>
       </Link>
-      <p>{booking.customer.email}</p>
+      <p className="break-all">{booking.customer.email}</p>
       <div className="flex flex-col items-center justify-center gap-2 xs:flex-row">
         <DateBox date={booking.dateFrom} />
         <FontAwesomeIcon
