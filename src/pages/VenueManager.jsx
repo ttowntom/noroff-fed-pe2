@@ -73,6 +73,7 @@ export default function VenueManager() {
             {data?.data.map((venue) => (
               <div
                 key={venue.id}
+                aria-live="polite"
                 className="w-full rounded-sm border-t border-light-border-primary dark:border-dark-border-primary"
               >
                 <button

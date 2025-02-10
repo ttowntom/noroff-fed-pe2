@@ -37,30 +37,38 @@ export default function GuestCounter({
       <button
         type="button"
         onClick={onDecrease}
+        aria-label="Decrease guests"
         disabled={guests <= 1}
         className="disabled:opacity-50"
       >
         <FontAwesomeIcon
           icon={byPrefixAndName.fas["circle-minus"]}
+          aria-hidden="true"
           className="text-light-button-primary dark:text-dark-button-primary"
         />
       </button>
+
       <input
+        id="guests"
         type="number"
         name="guests"
         className="hidden"
         readOnly
         value={guests}
       />
-      <p className="font-semibold">{guests}</p>
+      <p aria-live="polite" className="font-semibold">
+        {guests}
+      </p>
       <button
         type="button"
+        aria-label="Increase guests"
         onClick={onIncrease}
         disabled={guests >= maxGuests}
         className="disabled:opacity-50"
       >
         <FontAwesomeIcon
           icon={byPrefixAndName.fas["circle-plus"]}
+          aria-hidden="true"
           className="text-light-button-primary dark:text-dark-button-primary"
         />
       </button>

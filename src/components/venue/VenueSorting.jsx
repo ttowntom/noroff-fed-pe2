@@ -34,7 +34,11 @@ export default function VenueSorting({
 }) {
   return (
     <div className="mt-8 flex items-center justify-end">
+      <label htmlFor="sort" className="sr-only">
+        Sort by
+      </label>
       <select
+        id="sort"
         value={sortBy}
         onChange={onSortChange}
         className="flex-grow rounded-md border border-light-border-secondary bg-light-bg-primary p-2 text-light-text-primary focus:outline-none focus:ring-1 focus:ring-light-border-primary dark:border-dark-border-primary dark:bg-dark-bg-primary dark:text-dark-text-primary sm:w-48 sm:flex-grow-0"
@@ -48,9 +52,11 @@ export default function VenueSorting({
         <button
           onClick={() => onSortOrderChange("asc")}
           className="focus:outline-none"
+          aria-label={`Sort ${sortBy} ascending`}
         >
           <FontAwesomeIcon
             icon={byPrefixAndName.fas["chevron-up"]}
+            aria-hidden="true"
             className={`text-light-text-primary dark:text-dark-text-primary ${
               sortOrder === "asc"
                 ? "text-primary"
@@ -61,9 +67,11 @@ export default function VenueSorting({
         <button
           onClick={() => onSortOrderChange("desc")}
           className="focus:outline-none"
+          aria-label={`Sort ${sortBy} descending`}
         >
           <FontAwesomeIcon
             icon={byPrefixAndName.fas["chevron-down"]}
+            aria-hidden="true"
             className={`text-light-text-primary dark:text-dark-text-primary ${
               sortOrder === "desc"
                 ? "text-primary"

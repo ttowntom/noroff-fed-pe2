@@ -54,7 +54,7 @@ export default function InputTextField({
       </label>
       <input
         type={type}
-        id={label}
+        id={name}
         name={name}
         defaultValue={defaultValue}
         placeholder={placeholder}

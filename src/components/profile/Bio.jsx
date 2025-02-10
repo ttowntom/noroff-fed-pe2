@@ -103,7 +103,11 @@ export default function Bio({ data, isSelf }) {
   return (
     <div className="relative flex flex-col items-center gap-4 dark:text-dark-text-primary">
       {isSelf && (
-        <button onClick={openModal} className="absolute -top-2 right-4">
+        <button
+          onClick={openModal}
+          aria-label="Edit profile"
+          className="absolute -top-2 right-4"
+        >
           <FontAwesomeIcon
             icon={byPrefixAndName.fas[`pen-to-square`]}
             className="text-xl text-light-link-primary hover:opacity-80 dark:text-dark-link-primary"
@@ -131,9 +135,21 @@ export default function Bio({ data, isSelf }) {
       </p>
       {isModalOpen && (
         <Modal onClose={closeModal}>
-          <div className="flex flex-col gap-4">
-            <h2 className="text-2xl font-semibold">Edit Profile</h2>
-            <form onSubmit={handleEditProfile} className="flex flex-col gap-4">
+          <div
+            role="dialog"
+            aria-labelledby="modal-title"
+            aria-describedby="modal-description"
+            aria-modal="true"
+            className="flex flex-col gap-4"
+          >
+            <h2 id="modal-title" className="text-2xl font-semibold">
+              Edit Profile
+            </h2>
+            <form
+              id="modal-description"
+              onSubmit={handleEditProfile}
+              className="flex flex-col gap-4"
+            >
               <div className="flex items-end gap-4">
                 <div className="flex flex-grow">
                   <InputTextField

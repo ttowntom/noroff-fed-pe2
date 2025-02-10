@@ -72,23 +72,39 @@ export default function Navbar() {
         )}
         {/* Logged in */}
         {user && (
-          <div
+          <button
             onClick={toggleMenu}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                toggleMenu();
+              }
+            }}
+            aria-expanded={isMenuOpen}
+            aria-controls="main-menu"
+            aria-label="Toggle menu"
             className="flex space-x-4 rounded-full border border-light-border-secondary bg-light-bg-primary px-4 py-2 hover:cursor-pointer hover:shadow-md dark:border-dark-border-tertiary dark:bg-dark-bg-primary dark:hover:bg-color-neutral-neutral-darkest"
           >
             <FontAwesomeIcon
               icon={byPrefixAndName.fas["bars"]}
+              aria-hidden="true"
               className="text-light-text-primary dark:text-dark-text-primary"
             />
             {user != null ? (
-              <img src={avatar} className="h-4 w-4 rounded-full object-cover" />
+              <img
+                src={avatar}
+                alt={user.name}
+                aria-hidden="true"
+                className="h-4 w-4 rounded-full object-cover"
+              />
             ) : (
               <FontAwesomeIcon
                 icon={byPrefixAndName.fas["circle-user"]}
+                aria-hidden="true"
                 className="text-light-text-primary dark:text-dark-text-primary"
               />
             )}
-          </div>
+          </button>
         )}
         <MainMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
       </div>

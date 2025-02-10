@@ -68,7 +68,10 @@ export default function Bookings() {
         <div className="mt-4 w-full space-y-2">
           {hasPastBookings && (
             <div className="flex w-full items-center gap-2 sm:flex-row-reverse">
-              <button onClick={handleToggleExpired}>
+              <button
+                aria-label="Toggle previous bookings"
+                onClick={handleToggleExpired}
+              >
                 {showExpired ? (
                   <FontAwesomeIcon
                     icon={byPrefixAndName.fas["toggle-on"]}

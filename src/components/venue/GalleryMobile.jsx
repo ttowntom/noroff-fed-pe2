@@ -85,6 +85,7 @@ export default function GalleryMobile({ venue, desktopHidden = true }) {
       </Swiper>
       <button
         onClick={() => swiperRef.current?.slidePrev()}
+        aria-label="Previous image"
         className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-light-bg-primary p-2 shadow-md dark:bg-dark-bg-primary"
       >
         <div className="flex h-4 w-4 items-center justify-center gap-1">
@@ -96,6 +97,7 @@ export default function GalleryMobile({ venue, desktopHidden = true }) {
       </button>
       <button
         onClick={() => swiperRef.current?.slideNext()}
+        aria-label="Next image"
         className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-light-bg-primary p-2 shadow-md dark:bg-dark-bg-primary"
       >
         <div className="flex h-4 w-4 items-center justify-center gap-1">

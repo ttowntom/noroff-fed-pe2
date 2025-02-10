@@ -45,10 +45,15 @@ export default function VenueSearch({
     <div className="mt-8 flex items-center sm:mx-auto sm:my-8 sm:w-[55ch]">
       <form
         onSubmit={onSearchSubmit}
+        name="search"
         className="relative flex w-full items-center justify-center"
       >
+        <label htmlFor="search" className="sr-only">
+          Search venues
+        </label>
         <input
           type="text"
+          id="search"
           value={searchInput}
           onChange={onSearchChange}
           placeholder="Search venues..."

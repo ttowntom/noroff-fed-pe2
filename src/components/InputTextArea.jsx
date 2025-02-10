@@ -41,7 +41,7 @@ export default function InputTextArea({
         {label}
       </label>
       <textarea
-        id={label}
+        id={name}
         name={name}
         defaultValue={defaultValue}
         placeholder={placeholder}

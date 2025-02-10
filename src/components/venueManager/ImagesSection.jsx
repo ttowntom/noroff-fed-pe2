@@ -48,7 +48,7 @@ export default function ImagesSection({
   return (
     <section className="mb-4 flex flex-col gap-4">
       <h2 className="mt-4 text-xl font-bold sm:text-2xl">Images</h2>
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap gap-4" aria-live="polite">
         {images.map((imageUrl, index) => (
           <div key={index} className="relative">
             <img
@@ -59,6 +59,7 @@ export default function ImagesSection({
             <button
               type="button"
               onClick={() => onImageDelete(index)}
+              aria-label="Delete image"
               className="absolute -right-2 -top-2 flex items-center justify-center rounded-full bg-color-neutral-white hover:opacity-80"
             >
               <FontAwesomeIcon

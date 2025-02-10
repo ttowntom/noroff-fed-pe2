@@ -69,11 +69,13 @@ export default function MainMenu({ isOpen, onClose }) {
             {theme === "dark" ? (
               <FontAwesomeIcon
                 icon={byPrefixAndName.fas["toggle-on"]}
+                aria-label="Toggle Dark Mode On"
                 className="text-2xl"
               />
             ) : (
               <FontAwesomeIcon
                 icon={byPrefixAndName.fat["toggle-off"]}
+                aria-label="Toggle Dark Mode Off"
                 className="text-2xl"
               />
             )}

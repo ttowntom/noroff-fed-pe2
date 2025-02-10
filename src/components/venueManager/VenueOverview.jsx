@@ -112,7 +112,7 @@ export default function VenueOverview({ venue }) {
             <Amenities venue={venue} />
           </div>
           <div className="my-4 flex flex-col">
-            <h4 className="mb-2 text-xl font-bold">Location</h4>
+            <h3 className="mb-2 text-xl font-bold">Location</h3>
             <p>{venue.location.address}</p>
             <p>
               {venue.location.zip} {venue.location.city}
@@ -131,7 +131,10 @@ export default function VenueOverview({ venue }) {
           </h3>
           {hasPastBookings && (
             <div className="flex w-full gap-2 sm:flex-row">
-              <button onClick={handleToggleExpired}>
+              <button
+                aria-label="Toggle previous bookings"
+                onClick={handleToggleExpired}
+              >
                 {showExpired ? (
                   <FontAwesomeIcon
                     icon={byPrefixAndName.fas["toggle-on"]}
