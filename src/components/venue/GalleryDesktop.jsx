@@ -50,7 +50,7 @@ export default function GalleryDesktop({ venue }) {
             src={img.url}
             alt={venue.name}
             onClick={() => handleImageClick(img.url)}
-            className={`h-full ${numImgs > 2 && "max-h-[292px]"} w-full cursor-pointer rounded-md object-cover`}
+            className={`h-full ${numImgs === 2 && "max-h-[600px]"} ${numImgs > 2 && "max-h-[292px]"} w-full cursor-pointer rounded-md object-cover`}
           />
         ))}
       </div>
