@@ -81,6 +81,8 @@ export default function GalleryModal({ venue, activeImageUrl, onClose }) {
       ref={dialog}
       onClose={handleClose}
       onClick={handleBackdropClick}
+      aria-modal="true"
+      aria-label="Gallery Modal"
       className="relative max-h-[90vh] min-w-[90%] max-w-[95%] rounded-lg bg-light-bg-primary backdrop:bg-black/50 dark:bg-dark-bg-primary"
     >
       <FontAwesomeIcon
@@ -122,6 +124,7 @@ export default function GalleryModal({ venue, activeImageUrl, onClose }) {
         </Swiper>
         <button
           onClick={() => swiperRef.current?.slidePrev()}
+          aria-label="Previous slide"
           className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-light-bg-primary p-2 shadow-md dark:bg-dark-bg-primary"
         >
           <div className="flex h-4 w-4 items-center justify-center gap-1">
@@ -133,6 +136,7 @@ export default function GalleryModal({ venue, activeImageUrl, onClose }) {
         </button>
         <button
           onClick={() => swiperRef.current?.slideNext()}
+          aria-label="Next slide"
           className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-light-bg-primary p-2 shadow-md dark:bg-dark-bg-primary"
         >
           <div className="flex h-4 w-4 items-center justify-center gap-1">
