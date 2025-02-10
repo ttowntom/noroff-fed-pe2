@@ -81,7 +81,9 @@ export default function VenueManager() {
                   className="group mb-6 flex w-full items-center justify-between rounded-md bg-light-bg-secondary p-4 hover:shadow-md dark:bg-dark-bg-secondary"
                 >
                   {!openVenues[venue.id] ? (
-                    <h2 className="text-xl font-semibold">{venue.name}</h2>
+                    <h2 className="break-words text-left text-xl font-semibold">
+                      {venue.name}
+                    </h2>
                   ) : (
                     <p className="group-hover:font-medium">
                       Close venue details
