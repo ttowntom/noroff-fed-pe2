@@ -71,7 +71,7 @@ export default function ImagesSection({
         ))}
       </div>
       <div className="flex flex-wrap items-end gap-4">
-        <div className="flex-grow">
+        <div className="max-w-full flex-grow">
           <InputTextField
             label="Image URL"
             name="imageUrl"
