@@ -156,8 +156,8 @@ export default function Venues() {
       {data && (
         <>
           <div className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] justify-items-center gap-4 md:grid-cols-[repeat(auto-fit,minmax(min(100%/4,300px),1fr))] md:px-4">
-            {firstVenues.map((venue, index) => (
-              <VenueCard key={venue.key} venue={venue} index={index} />
+            {firstVenues.map((venue) => (
+              <VenueCard key={venue.key} venue={venue} isAnimated="false" />
             ))}
           </div>
 
@@ -174,7 +174,7 @@ export default function Venues() {
             className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] justify-items-center gap-4 md:grid-cols-[repeat(auto-fit,minmax(min(100%/4,300px),1fr))] md:px-4"
           >
             {restOfVenues.map((venue) => (
-              <VenueCard key={venue.key} venue={venue} />
+              <VenueCard key={venue.key} venue={venue} isAnimated="false" />
             ))}
             {/* Infinite scroll trigger */}
             <div ref={loadMoreRef} className="col-span-full h-10">
