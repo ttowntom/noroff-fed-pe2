@@ -156,8 +156,8 @@ export default function Venues() {
       {data && (
         <>
           <div className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] justify-items-center gap-4 md:grid-cols-[repeat(auto-fit,minmax(min(100%/4,300px),1fr))] md:px-4">
-            {firstVenues.map((venue) => (
-              <VenueCard key={venue.key} venue={venue} isAnimated="false" />
+            {firstVenues.map((venue, index) => (
+              <VenueCard key={venue.key} venue={venue} index={index} />
             ))}
           </div>
 
