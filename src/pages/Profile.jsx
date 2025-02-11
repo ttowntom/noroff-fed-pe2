@@ -94,8 +94,8 @@ export default function Profile() {
                   </h2>
                 </div>
                 <div className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] justify-items-center gap-4 md:grid-cols-[repeat(auto-fit,minmax(min(100%/4,300px),1fr))]">
-                  {venues?.data?.map((venue) => (
-                    <VenueCard key={venue.id} venue={venue} />
+                  {venues?.data?.map((venue, index) => (
+                    <VenueCard key={venue.id} venue={venue} index={index} />
                   ))}
                 </div>
               </section>
@@ -138,8 +138,12 @@ export default function Profile() {
                 </div>
 
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                  {filteredBookings.map((booking) => (
-                    <BookingCard key={booking.id} booking={booking} />
+                  {filteredBookings.map((booking, index) => (
+                    <BookingCard
+                      key={booking.id}
+                      booking={booking}
+                      index={index}
+                    />
                   ))}
                 </div>
               </section>

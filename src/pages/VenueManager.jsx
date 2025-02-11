@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
+import { motion, AnimatePresence } from "framer-motion";
 
 import { fetchFn } from "../utils/http.js";
 import SEO from "../components/SEO.jsx";
@@ -110,18 +111,28 @@ export default function VenueManager() {
                       Close venue details
                     </p>
                   )}
-                  <FontAwesomeIcon
-                    icon={
-                      byPrefixAndName.fas[
-                        openVenues[venue.id]
-                          ? "circle-chevron-up"
-                          : "circle-chevron-down"
-                      ]
-                    }
-                    className="text-light-link-primary dark:text-dark-link-primary"
-                  />
+                  <motion.div
+                    animate={{ rotate: openVenues[venue.id] ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <FontAwesomeIcon
+                      icon={byPrefixAndName.fas["circle-chevron-down"]}
+                      className="text-light-link-primary dark:text-dark-link-primary"
+                    />
+                  </motion.div>
                 </button>
-                {openVenues[venue.id] && <VenueOverview venue={venue} />}
+                <AnimatePresence>
+                  {openVenues[venue.id] && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <VenueOverview venue={venue} />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             ))}
           </div>
