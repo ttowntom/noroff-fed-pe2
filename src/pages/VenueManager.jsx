@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
 
 import { fetchFn } from "../utils/http.js";
+import SEO from "../components/SEO.jsx";
 import useUserStore from "../store/userStore";
 import Notification from "../components/Notification.jsx";
 import NotManagerMsg from "../components/venueManager/NotManagerMsg.jsx";
@@ -54,6 +55,26 @@ export default function VenueManager() {
 
   return (
     <>
+      <SEO
+        title={`Venue Manager Dashboard | ${user.name} | Holidaze`}
+        description="Manage your venues and bookings. Update venue details, and track reservations all in one place."
+        type="website"
+        keywords="venue management, property manager, bookings, reservations, holiday rentals, property listings"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "ProfilePage",
+          mainEntity: {
+            "@type": "Organization",
+            name: `${user.name}'s Venues`,
+            member: {
+              "@type": "Person",
+              name: user.name,
+              image: user.avatar,
+            },
+            numberOfItems: data?.data?.length || 0,
+          },
+        }}
+      />
       <div className="flex flex-col items-center justify-center gap-6 text-light-text-primary dark:text-dark-text-primary">
         <div className="space-y-4 text-center">
           <h1 className="font-notoSerif text-4xl font-semibold sm:text-5xl">

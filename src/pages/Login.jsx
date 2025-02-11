@@ -5,6 +5,7 @@ import { z } from "zod";
 
 import { useFormValidation } from "../hooks/useFormValidation";
 import { useLoginMutation } from "../hooks/useLoginMutation";
+import SEO from "../components/SEO";
 import loginSchema from "../schemas/login";
 import InputTextField from "../components/InputTextField";
 import Button from "../components/Button";
@@ -62,66 +63,90 @@ export default function Login() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center text-light-text-primary dark:text-dark-text-primary">
-      <div className="space-y-4 text-center">
-        <p className="font-semibold">Welcome back!</p>
-        <h1 className="font-notoSerif text-4xl font-semibold sm:text-5xl">
-          Log In
-        </h1>
-        <p>
-          Get access to your bookings, venue management and book new adventures!
-        </p>
-      </div>
-      <div className="mt-12 flex w-full max-w-[50ch] flex-col gap-8">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <InputTextField
-            label="Email"
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={formErrors.email}
-          />
-          <InputTextField
-            label="Password"
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={formErrors.password}
-          />
-
-          {!isPending ? (
-            <Button type="submit" onClick={handleSubmit} disabled={isPending}>
-              Log In
-            </Button>
-          ) : (
-            <Loading />
-          )}
-        </form>
-        {isError && (
-          <div className="mt-2">
-            <Notification type="error">
-              <p>{error.message}</p>
-            </Notification>
-          </div>
-        )}
-        <div className="flex flex-wrap items-center justify-center gap-4">
-          <p>Don&apos;t have a user? </p>
-          <Link
-            to="/signup"
-            className="font-medium text-dark-link-primary hover:underline"
-          >
-            Sign up
-            <FontAwesomeIcon
-              icon={byPrefixAndName.fas["chevron-right"]}
-              className="ml-2 text-light-text-primary dark:text-dark-text-primary"
+    <>
+      <SEO
+        title="Log In to Holidaze | Access Your Account"
+        description="Log in to your Holidaze account to manage your bookings, list properties, or plan your next stay."
+        type="website"
+        robots="noindex, nofollow"
+        keywords="login, sign in, account access, holidaze account"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Log In to Holidaze",
+          description: "Access your Holidaze account",
+          mainEntity: {
+            "@type": "LoginAction",
+            target: {
+              "@type": "EntryPoint",
+              urlTemplate: "https://holidaze.com/login",
+              actionPlatform: ["http://schema.org/DesktopWebPlatform"],
+            },
+          },
+        }}
+      />
+      <div className="flex flex-col items-center justify-center text-light-text-primary dark:text-dark-text-primary">
+        <div className="space-y-4 text-center">
+          <p className="font-semibold">Welcome back!</p>
+          <h1 className="font-notoSerif text-4xl font-semibold sm:text-5xl">
+            Log In
+          </h1>
+          <p>
+            Get access to your bookings, venue management and book new
+            adventures!
+          </p>
+        </div>
+        <div className="mt-12 flex w-full max-w-[50ch] flex-col gap-8">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            <InputTextField
+              label="Email"
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={formErrors.email}
             />
-          </Link>
+            <InputTextField
+              label="Password"
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={formErrors.password}
+            />
+
+            {!isPending ? (
+              <Button type="submit" onClick={handleSubmit} disabled={isPending}>
+                Log In
+              </Button>
+            ) : (
+              <Loading />
+            )}
+          </form>
+          {isError && (
+            <div className="mt-2">
+              <Notification type="error">
+                <p>{error.message}</p>
+              </Notification>
+            </div>
+          )}
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <p>Don&apos;t have a user? </p>
+            <Link
+              to="/signup"
+              className="font-medium text-dark-link-primary hover:underline"
+            >
+              Sign up
+              <FontAwesomeIcon
+                icon={byPrefixAndName.fas["chevron-right"]}
+                className="ml-2 text-light-text-primary dark:text-dark-text-primary"
+              />
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -8,6 +8,7 @@ import { z } from "zod";
 import { useFormValidation } from "../hooks/useFormValidation";
 import { useLoginMutation } from "../hooks/useLoginMutation";
 import { postFn } from "../utils/http";
+import SEO from "../components/SEO";
 import signupSchema from "../schemas/signup";
 import InputTextField from "../components/InputTextField";
 import Button from "../components/Button";
@@ -82,115 +83,138 @@ export default function Signup() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center text-light-text-primary dark:text-dark-text-primary">
-      <div className="space-y-4 text-center">
-        <p className="font-semibold">Join</p>
-        <h1 className="font-notoSerif text-4xl font-semibold sm:text-5xl">
-          Get started
-        </h1>
-        <p>Create your account to start booking accommodations today.</p>
-      </div>
-      <div className="mt-12 flex w-full max-w-[50ch] flex-col gap-8">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <InputTextField
-            label="Name"
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={formErrors.name}
-          />
-          <InputTextField
-            label="Email"
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={formErrors.email}
-          />
-          <InputTextField
-            label="Password"
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={formErrors.password}
-          />
-          <InputTextField
-            label="Confirm Password"
-            type="password"
-            name="passwordConfirm"
-            value={formData.passwordConfirm}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={formErrors.passwordConfirm}
-          />
-          <div className="flex items-center justify-between gap-4">
-            <p>Sign up as a Venue Manager</p>
-            <label htmlFor="venueManager" className="sr-only">
-              Toggle Venue Manager
-            </label>
-            <input
-              type="checkbox"
-              name="venueManager"
-              id="venueManager"
-              className="hidden"
-              ref={checkboxRef}
-              checked={venueManager}
-              onChange={(e) => setVenueManager(e.target.checked)}
+    <>
+      <SEO
+        title="Sign Up for Holidaze | Create Your Account"
+        description="Join Holidaze today. Create an account to start booking accommodations or become a venue manager to list your properties."
+        type="website"
+        robots="noindex, nofollow"
+        keywords="signup, registration, create account, venue manager, accommodation booking"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Sign Up for Holidaze",
+          description: "Create your Holidaze account",
+          mainEntity: {
+            "@type": "CreateAction",
+            target: {
+              "@type": "EntryPoint",
+              urlTemplate: "https://holidaze.com/signup",
+              actionPlatform: ["http://schema.org/DesktopWebPlatform"],
+            },
+          },
+        }}
+      />
+      <div className="flex flex-col items-center justify-center text-light-text-primary dark:text-dark-text-primary">
+        <div className="space-y-4 text-center">
+          <p className="font-semibold">Join</p>
+          <h1 className="font-notoSerif text-4xl font-semibold sm:text-5xl">
+            Get started
+          </h1>
+          <p>Create your account to start booking accommodations today.</p>
+        </div>
+        <div className="mt-12 flex w-full max-w-[50ch] flex-col gap-8">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            <InputTextField
+              label="Name"
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={formErrors.name}
             />
-            <button
-              type="button"
-              aria-label="Toggle venue manager"
-              onClick={handleToggleManager}
-            >
-              {venueManager ? (
-                <FontAwesomeIcon
-                  aria-hidden="true"
-                  icon={byPrefixAndName.fas["toggle-on"]}
-                  className="text-2xl"
-                />
-              ) : (
-                <FontAwesomeIcon
-                  aria-hidden="true"
-                  icon={byPrefixAndName.fat["toggle-off"]}
-                  className="text-2xl"
-                />
-              )}
-            </button>
-          </div>
-          {!isPending ? (
-            <Button type="submit" onClick={handleSubmit} disabled={isPending}>
-              Sign up
-            </Button>
-          ) : (
-            <Loading />
+            <InputTextField
+              label="Email"
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={formErrors.email}
+            />
+            <InputTextField
+              label="Password"
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={formErrors.password}
+            />
+            <InputTextField
+              label="Confirm Password"
+              type="password"
+              name="passwordConfirm"
+              value={formData.passwordConfirm}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={formErrors.passwordConfirm}
+            />
+            <div className="flex items-center justify-between gap-4">
+              <p>Sign up as a Venue Manager</p>
+              <label htmlFor="venueManager" className="sr-only">
+                Toggle Venue Manager
+              </label>
+              <input
+                type="checkbox"
+                name="venueManager"
+                id="venueManager"
+                className="hidden"
+                ref={checkboxRef}
+                checked={venueManager}
+                onChange={(e) => setVenueManager(e.target.checked)}
+              />
+              <button
+                type="button"
+                aria-label="Toggle venue manager"
+                onClick={handleToggleManager}
+              >
+                {venueManager ? (
+                  <FontAwesomeIcon
+                    aria-hidden="true"
+                    icon={byPrefixAndName.fas["toggle-on"]}
+                    className="text-2xl"
+                  />
+                ) : (
+                  <FontAwesomeIcon
+                    aria-hidden="true"
+                    icon={byPrefixAndName.fat["toggle-off"]}
+                    className="text-2xl"
+                  />
+                )}
+              </button>
+            </div>
+            {!isPending ? (
+              <Button type="submit" onClick={handleSubmit} disabled={isPending}>
+                Sign up
+              </Button>
+            ) : (
+              <Loading />
+            )}
+          </form>
+          {isError && (
+            <div className="mt-2">
+              <Notification type="error">
+                <p>{error.message}</p>
+              </Notification>
+            </div>
           )}
-        </form>
-        {isError && (
-          <div className="mt-2">
-            <Notification type="error">
-              <p>{error.message}</p>
-            </Notification>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <p>Already have a user? </p>
+            <Link
+              to="/login"
+              className="font-medium text-dark-link-primary hover:underline"
+            >
+              Log in
+              <FontAwesomeIcon
+                icon={byPrefixAndName.fas["chevron-right"]}
+                className="ml-2 text-light-text-primary dark:text-dark-text-primary"
+              />
+            </Link>
           </div>
-        )}
-        <div className="flex flex-wrap items-center justify-center gap-4">
-          <p>Already have a user? </p>
-          <Link
-            to="/login"
-            className="font-medium text-dark-link-primary hover:underline"
-          >
-            Log in
-            <FontAwesomeIcon
-              icon={byPrefixAndName.fas["chevron-right"]}
-              className="ml-2 text-light-text-primary dark:text-dark-text-primary"
-            />
-          </Link>
         </div>
       </div>
-    </div>
+    </>
   );
 }

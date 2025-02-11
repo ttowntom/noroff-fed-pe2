@@ -2,6 +2,7 @@ import { useRef } from "react";
 
 import { useInfiniteScroll } from "../hooks/useInfiniteScroll.js";
 import { useVenues } from "../hooks/useVenues.js";
+import SEO from "../components/SEO.jsx";
 import Notification from "../components/Notification.jsx";
 import VenueCard from "../components/venue/VenueCard.jsx";
 import VenueSearch from "../components/venue/VenueSearch.jsx";
@@ -90,6 +91,32 @@ export default function Venues() {
 
   return (
     <>
+      <SEO
+        title="Find Your Perfect Getaway | Holidaze"
+        description="Browse and book from our curated selection of venues across the world. Find hotels, apartments, and unique stays for your next adventure."
+        type="website"
+        keywords="venues, accommodation, hotels, apartments, booking, travel"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "SearchResultsPage",
+          mainEntity: {
+            "@type": "ItemList",
+            numberOfItems: data?.pages[0]?.meta?.totalCount || 0,
+            itemListElement: firstVenues.map((venue, index) => ({
+              "@type": "LodgingBusiness",
+              position: index + 1,
+              name: venue.name,
+              image: venue.media[0]?.url,
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: venue.location.city,
+                addressCountry: venue.location.country,
+              },
+              priceRange: `${venue.price} NOK`,
+            })),
+          },
+        }}
+      />
       <h1 className="text-center font-notoSerif text-4xl font-semibold text-light-text-primary dark:text-dark-text-primary sm:text-5xl">
         Find Your Perfect Getaway
       </h1>
