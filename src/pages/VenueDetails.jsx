@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 
 import { useVenueDetails } from "../hooks/useVenueDetails";
+import SEO from "../components/SEO";
 import priceFormatter from "../utils/priceFormatter";
 import RatingStars from "../components/venue/RatingStars";
 import Amenities from "../components/venue/Amenities";
@@ -31,9 +32,37 @@ export default function VenueDetails() {
 
   if (data) {
     const venue = data.data;
+    const venueUrl = typeof window !== "undefined" ? window.location.href : "";
 
     return (
       <>
+        <SEO
+          title={`${venue.name} | Holidaze`}
+          description={venue.description.slice(0, 155) + "..."}
+          image={venue.media[0]?.url}
+          url={venueUrl}
+          type="article"
+          keywords={`vacation rental, ${venue.location.city}, ${venue.location.country}, ${venue.name}`}
+          canonical={venueUrl}
+          jsonLd={{
+            "@context": "https://schema.org",
+            "@type": "LodgingBusiness",
+            name: venue.name,
+            description: venue.description,
+            image: venue.media[0]?.url,
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: venue.location.city,
+              addressCountry: venue.location.country,
+            },
+            priceRange: `${venue.price} USD`,
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: venue.rating,
+              bestRating: "5",
+            },
+          }}
+        />
         <div className="flex flex-col gap-6 text-light-text-primary dark:text-dark-text-primary">
           {isError && (
             <Notification type="error">

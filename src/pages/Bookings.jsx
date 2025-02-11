@@ -6,6 +6,7 @@ import { byPrefixAndName } from "@awesome.me/kit-8d12afa6e5/icons";
 
 import { fetchFn } from "../utils/http.js";
 import useUserStore from "../store/userStore";
+import SEO from "../components/SEO.jsx";
 import Notification from "../components/Notification.jsx";
 import BookingCard from "../components/profile/BookingCard.jsx";
 import Loading from "../components/Loading.jsx";
@@ -56,57 +57,85 @@ export default function Bookings() {
     .sort((a, b) => new Date(a.dateFrom) - new Date(b.dateFrom));
 
   return (
-    <div className="flex flex-col items-center justify-center gap-6 text-light-text-primary dark:text-dark-text-primary">
-      <div className="space-y-4 text-center">
-        <h1 className="font-notoSerif text-4xl font-semibold sm:text-5xl">
-          Bookings
-        </h1>
-        <p>Here’s a quick look at your upcoming bookings.</p>
-      </div>
-
-      {data && data.data.length > 0 && (
-        <div className="mt-4 w-full space-y-2">
-          {hasPastBookings && (
-            <div className="flex w-full items-center gap-2 sm:flex-row-reverse">
-              <button
-                aria-label="Toggle previous bookings"
-                onClick={handleToggleExpired}
-              >
-                {showExpired ? (
-                  <FontAwesomeIcon
-                    icon={byPrefixAndName.fas["toggle-on"]}
-                    className="text-2xl"
-                  />
-                ) : (
-                  <FontAwesomeIcon
-                    icon={byPrefixAndName.fat["toggle-off"]}
-                    className="text-2xl"
-                  />
-                )}
-              </button>
-              <p className="text-sm">Show past bookings</p>
-            </div>
-          )}
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {filteredBookings.map((booking) => (
-              <BookingCard key={booking.id} booking={booking} />
-            ))}
-          </div>
+    <>
+      <SEO
+        title={`${name}'s Bookings | Holidaze`}
+        description={`View and manage your accommodation bookings on Holidaze. Track upcoming and past stays.`}
+        type="website"
+        robots="noindex, nofollow"
+        keywords="bookings, reservations, accommodation, travel plans, upcoming stays"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "ProfilePage",
+          mainEntity: {
+            "@type": "ItemList",
+            numberOfItems: data?.data?.length || 0,
+            itemListElement: filteredBookings?.map((booking, index) => ({
+              "@type": "Reservation",
+              position: index + 1,
+              reservationId: booking.id,
+              reservationFor: {
+                "@type": "LodgingReservation",
+                lodgingBusinessName: booking.venue.name,
+                checkinTime: booking.dateFrom,
+                checkoutTime: booking.dateTo,
+              },
+            })),
+          },
+        }}
+      />
+      <div className="flex flex-col items-center justify-center gap-6 text-light-text-primary dark:text-dark-text-primary">
+        <div className="space-y-4 text-center">
+          <h1 className="font-notoSerif text-4xl font-semibold sm:text-5xl">
+            Bookings
+          </h1>
+          <p>Here’s a quick look at your upcoming bookings.</p>
         </div>
-      )}
 
-      {data?.data?.length === 0 && (
-        <Notification type="info">
-          <p>You have no bookings.</p>
-        </Notification>
-      )}
+        {data && data.data.length > 0 && (
+          <div className="mt-4 w-full space-y-2">
+            {hasPastBookings && (
+              <div className="flex w-full items-center gap-2 sm:flex-row-reverse">
+                <button
+                  aria-label="Toggle previous bookings"
+                  onClick={handleToggleExpired}
+                >
+                  {showExpired ? (
+                    <FontAwesomeIcon
+                      icon={byPrefixAndName.fas["toggle-on"]}
+                      className="text-2xl"
+                    />
+                  ) : (
+                    <FontAwesomeIcon
+                      icon={byPrefixAndName.fat["toggle-off"]}
+                      className="text-2xl"
+                    />
+                  )}
+                </button>
+                <p className="text-sm">Show past bookings</p>
+              </div>
+            )}
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {filteredBookings.map((booking) => (
+                <BookingCard key={booking.id} booking={booking} />
+              ))}
+            </div>
+          </div>
+        )}
 
-      {isLoading && <Loading />}
-      {isError && (
-        <Notification type="error">
-          <p>{error?.message || "Could not load booking data"}</p>
-        </Notification>
-      )}
-    </div>
+        {data?.data?.length === 0 && (
+          <Notification type="info">
+            <p>You have no bookings.</p>
+          </Notification>
+        )}
+
+        {isLoading && <Loading />}
+        {isError && (
+          <Notification type="error">
+            <p>{error?.message || "Could not load booking data"}</p>
+          </Notification>
+        )}
+      </div>
+    </>
   );
 }
