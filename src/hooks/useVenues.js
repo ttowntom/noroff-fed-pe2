@@ -39,7 +39,7 @@ export function useVenues() {
       ...(searchQuery && { q: searchQuery }),
       sort: sortBy,
       sortOrder: sortOrder,
-      limit: "50",
+      limit: "20",
       page: pageParam.toString(),
     });
     return `${baseUrl}?${queryParams.toString()}`;
