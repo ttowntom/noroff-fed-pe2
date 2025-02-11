@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 
 import { useInfiniteScroll } from "../hooks/useInfiniteScroll.js";
 import { useVenues } from "../hooks/useVenues.js";
@@ -26,6 +26,7 @@ import Loading from "../components/Loading.jsx";
  * }
  */
 export default function Venues() {
+  const [cardsForFirstBatch, setCardsForFirstBatch] = useState(12);
   const loadMoreRef = useRef();
   const {
     data,
@@ -60,8 +61,22 @@ export default function Venues() {
       }))
     ) ?? [];
 
-  const firstVenues = allVenues.slice(0, 8);
-  const restOfVenues = allVenues.slice(8);
+  const firstBatch = allVenues.slice(0, cardsForFirstBatch);
+  const remainingVenues = allVenues.slice(cardsForFirstBatch);
+
+  // Update number of cards per row based on viewport width
+  useEffect(() => {
+    const calculateCards = () => {
+      const width = window.innerWidth;
+      // Adjust breakpoints: <=425: 1 column, <=620: 2 columns, otherwise 3 columns.
+      const columns = width <= 425 ? 1 : width <= 620 ? 2 : 4;
+      setCardsForFirstBatch(columns * 3);
+    };
+
+    calculateCards();
+    window.addEventListener("resize", calculateCards);
+    return () => window.removeEventListener("resize", calculateCards);
+  }, []);
 
   /**
    * Handles sort selection change
@@ -102,7 +117,7 @@ export default function Venues() {
           mainEntity: {
             "@type": "ItemList",
             numberOfItems: data?.pages[0]?.meta?.totalCount || 0,
-            itemListElement: firstVenues.map((venue, index) => ({
+            itemListElement: firstBatch.map((venue, index) => ({
               "@type": "LodgingBusiness",
               position: index + 1,
               name: venue.name,
@@ -156,7 +171,7 @@ export default function Venues() {
       {data && (
         <>
           <div className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] justify-items-center gap-4 md:grid-cols-[repeat(auto-fit,minmax(min(100%/4,300px),1fr))] md:px-4">
-            {firstVenues.map((venue, index) => (
+            {firstBatch.map((venue, index) => (
               <VenueCard key={venue.key} venue={venue} index={index} />
             ))}
           </div>
@@ -173,7 +188,7 @@ export default function Venues() {
             aria-live="polite"
             className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] justify-items-center gap-4 md:grid-cols-[repeat(auto-fit,minmax(min(100%/4,300px),1fr))] md:px-4"
           >
-            {restOfVenues.map((venue) => (
+            {remainingVenues.map((venue) => (
               <VenueCard key={venue.key} venue={venue} isAnimated="false" />
             ))}
             {/* Infinite scroll trigger */}
