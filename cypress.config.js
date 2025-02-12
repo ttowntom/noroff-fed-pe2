@@ -7,6 +7,7 @@ export default defineConfig({
   e2e: {
     baseUrl: "https://ttowntom.github.io/noroff-fed-pe2",
     env: {
+      cypressUser: process.env.VITE_CYPRESS_USER,
       cypressEmail: process.env.VITE_CYPRESS_EMAIL,
       cypressPassword: process.env.VITE_CYPRESS_PASSWORD,
     },
