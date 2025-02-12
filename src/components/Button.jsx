@@ -28,6 +28,7 @@ export default function Button({
   type = "button",
   disabled = false,
   variant = "primary",
+  ...props
 }) {
   const globalStyle = "rounded-full p-2 px-4 hover:opacity-80 ";
   const style = {
@@ -45,6 +46,7 @@ export default function Button({
       onClick={onClick}
       disabled={disabled}
       className={`${globalStyle} ${style[variant]}`}
+      {...props}
     >
       {children}
     </button>

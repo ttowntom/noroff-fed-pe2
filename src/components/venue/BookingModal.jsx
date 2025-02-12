@@ -122,7 +122,11 @@ export default function BookingModal({
                 Cancel booking
               </button>
               {!isPending ? (
-                <Button onClick={handleConfirm} disabled={isPending}>
+                <Button
+                  id="bookBtn"
+                  onClick={handleConfirm}
+                  disabled={isPending}
+                >
                   Book now
                 </Button>
               ) : (

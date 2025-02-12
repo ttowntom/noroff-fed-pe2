@@ -32,7 +32,7 @@ describe("Booking", () => {
 
     // Verify booking confirmation modal
     cy.get("h2").contains("Confirm Booking").should("be.visible");
-    cy.get("button").contains("Book now").click();
+    cy.get("#bookBtn").click();
 
     // Success verification
     cy.get("h2", { timeout: 10000 })
