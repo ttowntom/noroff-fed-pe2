@@ -37,11 +37,10 @@ describe("Booking", () => {
         // Verify booking confirmation modal
         cy.get("h2").contains("Confirm Booking").should("be.visible");
         cy.get("#bookBtn").click();
+        cy.wait(2000);
+        cy.get("#navBtn").click();
 
         // Success verification
-        cy.visit("/");
-        cy.get('button[aria-controls="main-menu"]').click();
-        cy.get("a").contains("Bookings").click();
         cy.wait(2000);
         cy.get("h2.text-xl.font-bold")
           .contains(venueTitle)

@@ -155,7 +155,7 @@ export default function BookingModal({
             >
               Close
             </button>
-            <LinkButton to={`/profile/${user.name}/bookings`}>
+            <LinkButton id="navBtn" to={`/profile/${user.name}/bookings`}>
               View bookings
             </LinkButton>
           </div>

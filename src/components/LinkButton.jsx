@@ -26,6 +26,7 @@ export default function LinkButton({
   children,
   variant = "primary",
   state,
+  ...props
 }) {
   const location = useLocation();
   const baseUrl = import.meta.env.BASE_URL;
@@ -52,6 +53,7 @@ export default function LinkButton({
       to={to}
       state={linkState}
       className={`${globalStyle} ${style[variant]}`}
+      {...props}
     >
       {children}
     </Link>
