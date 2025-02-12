@@ -42,6 +42,7 @@ describe("Booking", () => {
         cy.visit("/");
         cy.get('button[aria-controls="main-menu"]').click();
         cy.get("a").contains("Bookings").click();
+        cy.wait(2000);
         cy.get("h2.text-xl.font-bold")
           .contains(venueTitle)
           .should("be.visible");
