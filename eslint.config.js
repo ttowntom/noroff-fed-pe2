@@ -14,13 +14,13 @@ const [reactQueryConfig] = pluginQuery.configs["flat/recommended"];
 
 export default [
   {
-    ignores: ["dist"],
+    ignores: ["dist", "cypress/**/*"],
   },
   {
     files: ["**/*.{js,jsx,ts,tsx}"],
     languageOptions: {
       ecmaVersion: 2020,
-      globals: { ...globals.browser, ...globals.cypress, ...globals.node },
+      globals: { ...globals.browser, ...globals.node },
       parserOptions: {
         ecmaVersion: "latest",
         ecmaFeatures: { jsx: true },
