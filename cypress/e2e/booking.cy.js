@@ -16,30 +16,34 @@ describe("Booking", () => {
     cy.visit("/");
     cy.get('a[href^="/noroff-fed-pe2/venues/"]').first().click();
 
-    // Select dates
-    cy.get("#dates").click();
-    for (let i = 0; i < 24; i++) {
-      cy.get(
-        "span.react-datepicker__navigation-icon.react-datepicker__navigation-icon--next"
-      ).click();
-    }
-    cy.get('div[role="option"]').contains(startDate).click();
-    cy.get('div[role="option"]').contains(endDate).click();
+    cy.get("h1")
+      .should("be.visible")
+      .invoke("text")
+      .then((venueTitle) => {
+        // Select dates
+        cy.get("#dates").click();
+        for (let i = 0; i < 24; i++) {
+          cy.get(
+            "span.react-datepicker__navigation-icon.react-datepicker__navigation-icon--next"
+          ).click();
+        }
+        cy.get('div[role="option"]').contains(startDate).click();
+        cy.get('div[role="option"]').contains(endDate).click();
 
-    // Fill booking form and submit
-    cy.get("span").contains("2").click();
-    cy.get('button[type="submit"]').click();
+        // Fill booking form and submit
+        cy.get("span").contains("2").click();
+        cy.get('button[type="submit"]').click();
 
-    // Verify booking confirmation modal
-    cy.get("h2").contains("Confirm Booking").should("be.visible");
-    cy.get("#bookBtn").click();
+        // Verify booking confirmation modal
+        cy.get("h2").contains("Confirm Booking").should("be.visible");
+        cy.get("#bookBtn").click();
 
-    // Success verification
-    cy.get("h2", { timeout: 10000 })
-      .contains("Booking Successful")
-      .should("be.visible");
-    cy.contains("Congratulations").should("be.visible");
-    cy.get('svg[data-icon="party-horn"]').should("exist");
+        // Success verification
+        cy.visit("/");
+        cy.get('button[aria-controls="main-menu"]').click();
+        cy.get("a").contains("Bookings").click();
+        cy.get("h2").contains(venueTitle).should("be.visible");
+      });
   });
 
   it("allows a registered customer to view their upcoming bookings", () => {
