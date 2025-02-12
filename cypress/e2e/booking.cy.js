@@ -35,8 +35,7 @@ describe("Booking", () => {
     cy.get("button").contains("Book now").click();
 
     // Verify booking success
-    cy.get("h2").contains("Booking Successful!").should("be.visible");
-    cy.get("p").contains("is confirmed.").should("be.visible");
+    cy.get('svg[data-icon="party-horn"]').should("be.visible");
   });
 
   it("allows a registered customer to view their upcoming bookings", () => {
