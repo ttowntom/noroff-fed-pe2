@@ -42,7 +42,9 @@ describe("Booking", () => {
         cy.visit("/");
         cy.get('button[aria-controls="main-menu"]').click();
         cy.get("a").contains("Bookings").click();
-        cy.get("h2").contains(venueTitle).should("be.visible");
+        cy.get("h2.text-xl.font-bold")
+          .contains(venueTitle)
+          .should("be.visible");
       });
   });
 
