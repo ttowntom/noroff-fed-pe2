@@ -1,0 +1,24 @@
+import { defineConfig } from "cypress";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+export default defineConfig({
+  e2e: {
+    baseUrl: "https://ttowntom.github.io/noroff-fed-pe2",
+    env: {
+      cypressEmail: process.env.VITE_CYPRESS_EMAIL,
+      cypressPassword: process.env.VITE_CYPRESS_PASSWORD,
+    },
+    setupNodeEvents() {
+      // implement node event listeners here
+    },
+  },
+
+  component: {
+    devServer: {
+      framework: "react",
+      bundler: "vite",
+    },
+  },
+});
