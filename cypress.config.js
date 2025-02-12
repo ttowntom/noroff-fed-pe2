@@ -5,7 +5,6 @@ dotenv.config();
 
 export default defineConfig({
   e2e: {
-    // baseUrl: "https://ttowntom.github.io/noroff-fed-pe2",
     baseUrl: "http://localhost:4173/noroff-fed-pe2/",
     env: {
       cypressUser: process.env.VITE_CYPRESS_USER,
