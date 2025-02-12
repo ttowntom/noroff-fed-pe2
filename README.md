@@ -1,3 +1,7 @@
+[![Deploy static content to Pages](https://github.com/ttowntom/noroff-fed-pe2/actions/workflows/deploy.yml/badge.svg)](https://github.com/ttowntom/noroff-fed-pe2/actions/workflows/deploy.yml)
+
+[![Automated E2E Testing](https://github.com/ttowntom/noroff-fed-pe2/actions/workflows/test-e2e.yml/badge.svg)](https://github.com/ttowntom/noroff-fed-pe2/actions/workflows/test-e2e.yml)
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
