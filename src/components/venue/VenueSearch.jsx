@@ -52,7 +52,7 @@ export default function VenueSearch({
           Search venues
         </label>
         <input
-          type="text"
+          type="search"
           id="search"
           value={searchInput}
           onChange={onSearchChange}
