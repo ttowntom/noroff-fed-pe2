@@ -8,18 +8,19 @@ import importPlugin from "eslint-plugin-import";
 import tailwindcssPlugin from "eslint-plugin-tailwindcss";
 import prettierConfig from "eslint-config-prettier";
 import pluginQuery from "@tanstack/eslint-plugin-query";
+import cypressPlugin from "eslint-plugin-cypress";
 
 const [reactQueryConfig] = pluginQuery.configs["flat/recommended"];
 
 export default [
   {
-    ignores: ["dist"],
+    ignores: ["dist", "cypress/**/*"],
   },
   {
-    files: ["**/*.{js,jsx}"],
+    files: ["**/*.{js,jsx,ts,tsx}"],
     languageOptions: {
       ecmaVersion: 2020,
-      globals: globals.browser,
+      globals: { ...globals.browser, ...globals.node },
       parserOptions: {
         ecmaVersion: "latest",
         ecmaFeatures: { jsx: true },
@@ -28,13 +29,14 @@ export default [
     },
     settings: { react: { version: "18.3" } },
     plugins: {
-      // Merge your plugins with the React Query plugin(s)
+      // Merge plugins with the React Query plugin(s)
       react,
       "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
       prettier,
       import: importPlugin,
       tailwindcss: tailwindcssPlugin,
+      cypress: cypressPlugin,
       ...reactQueryConfig.plugins, // merges React Query plugins
     },
     rules: {
@@ -43,6 +45,9 @@ export default [
       ...react.configs.recommended.rules,
       ...react.configs["jsx-runtime"].rules,
       ...reactHooks.configs.recommended.rules,
+
+      // Merge Cypress recommended rules
+      ...cypressPlugin.configs.recommended.rules,
 
       // Merge React Query’s recommended rules
       ...reactQueryConfig.rules,
