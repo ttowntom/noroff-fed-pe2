@@ -30,12 +30,16 @@ describe("Booking", () => {
     cy.get("span").contains("2").click();
     cy.get('button[type="submit"]').click();
 
-    // Verify booking
+    // Verify booking confirmation modal
     cy.get("h2").contains("Confirm Booking").should("be.visible");
     cy.get("button").contains("Book now").click();
 
-    // Verify booking success
-    cy.get('svg[data-icon="party-horn"]').should("be.visible");
+    // Success verification
+    cy.get("h2", { timeout: 10000 })
+      .contains("Booking Successful")
+      .should("be.visible");
+    cy.contains("Congratulations").should("be.visible");
+    cy.get('svg[data-icon="party-horn"]').should("exist");
   });
 
   it("allows a registered customer to view their upcoming bookings", () => {
