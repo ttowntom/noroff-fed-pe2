@@ -23,6 +23,7 @@ jobs:
           VITE_CYPRESS_USER: ${{ secrets.VITE_CYPRESS_USER }}
           VITE_CYPRESS_EMAIL: ${{ secrets.VITE_CYPRESS_EMAIL }}
           VITE_CYPRESS_PASSWORD: ${{ secrets.VITE_CYPRESS_PASSWORD }}
+          VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
 
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
