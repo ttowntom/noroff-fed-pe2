@@ -8,13 +8,13 @@ A Noroff exam assignment, where the task was to create a website for a fictional
 
 ## Description
 
-This is a webapp created for the Noroff Project Exam 2 assignment. The website is be a booking site for hotels, B&Bs, and guesthouses around the world, with the goal of _"To take the skills learned over the last two years and take on an extensive project where the finished product should reflect the candidate’s general development capabilities, in addition to visual and technical skills."_
+This is a webapp created for the Noroff Project Exam 2 assignment. The website is a booking site for hotels, B&Bs, and guesthouses around the world, with the goal of _"To take the skills learned over the last two years and take on an extensive project where the finished product should reflect the candidate’s general development capabilities, in addition to visual and technical skills."_
 
 The assignment brief can be found [here](https://content.noroff.dev//project-exam-2/brief.html).
 
 The webapp is built with a mobile-first approach and is responsive to different screen sizes.
 
-The webapp interacts with the [Noroff Holidaze API](https://docs.noroff.dev/docs/v2/holidaze/bookings) for fetching data, and the [Noroff Auth API](https://docs.noroff.dev/docs/v2/authentication) for authentication.
+The webapp interacts with the [Noroff Holidaze API](https://docs.noroff.dev/docs/v2/holidaze/bookings) for performing CRUD operations on venue- and user data, and the [Noroff Auth API](https://docs.noroff.dev/docs/v2/authentication) for authentication.
 
 ### Project Links
 
@@ -58,23 +58,23 @@ src/
 
 The webapp is built with the following technologies on the frontend:
 
-- [React](https://reactjs.org/)
-- [React Router](https://reactrouter.com/)
-- [Tanstack Query](https://react-query.tanstack.com/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Vite](https://vitejs.dev/)
-- [Zustand](https://zustand.surge.sh/)
-- [Zod](https://zod.dev/)
-- [Mapbox](https://www.mapbox.com/)
-- [Swiper](https://swiperjs.com/)
-- [FontAwesome](https://fontawesome.com/)
+- [React](https://reactjs.org/) as the main library
+- [React Router](https://reactrouter.com/) for routing
+- [Tanstack Query](https://react-query.tanstack.com/) for data fetching and caching
+- [Tailwind CSS](https://tailwindcss.com/) for styling
+- [Vite](https://vitejs.dev/) for build tooling and development server
+- [Zustand](https://zustand.surge.sh/) for context state management
+- [Zod](https://zod.dev/) for schema validation
+- [Mapbox](https://www.mapbox.com/) for interactive maps and reverse geocoding
+- [Swiper](https://swiperjs.com/) for image sliders
+- [FontAwesome](https://fontawesome.com/) for icons
 
 In development:
 
-- [ESLint](https://eslint.org/)
-- [Prettier](https://prettier.io/)
-- [Husky](https://typicode.github.io/husky/#/)
-- [Cypress](https://www.cypress.io/)
+- [ESLint](https://eslint.org/) for linting
+- [Prettier](https://prettier.io/) for code formatting
+- [Husky](https://typicode.github.io/husky/#/) for pre-commit hooks
+- [Cypress](https://www.cypress.io/) for end-to-end testing
 
 ## Automations
 
