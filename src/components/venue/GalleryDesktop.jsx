@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 
-import GalleryModal from "./GalleryModal";
+import Loading from "../Loading";
+import LazyImage from "../LazyImage";
+const GalleryModal = lazy(() => import("./GalleryModal"));
 
 /**
  * Desktop gallery component with grid layout and modal viewer
@@ -35,46 +37,53 @@ export default function GalleryDesktop({ venue }) {
 
   return (
     <div className="hidden gap-4 md:grid md:grid-cols-2">
-      <img
+      <LazyImage
         src={venue.media[0].url}
         alt={venue.name}
-        onClick={() => handleImageClick(venue.media[0].url)}
         className="h-[600px] w-full cursor-pointer rounded-md object-cover"
+        onClick={() => handleImageClick(venue.media[0].url)}
       />
+
       <div
         className={`grid h-[600px] ${numImgs < 5 && "grid-cols-1"} ${numImgs > 3 && "grid-cols-2"} gap-4`}
       >
         {venue.media.slice(1, 5).map((img, idx) => (
-          <img
+          <LazyImage
             key={idx}
             src={img.url}
             alt={venue.name}
-            onClick={() => handleImageClick(img.url)}
             className={`h-full ${numImgs === 2 && "max-h-[600px]"} ${numImgs > 2 && "max-h-[292px]"} w-full cursor-pointer rounded-md object-cover`}
+            onClick={() => handleImageClick(img.url)}
           />
         ))}
       </div>
       {numImgs > 4 && (
         <div className="col-span-2 flex w-full flex-wrap gap-4">
           {venue.media.slice(5).map((img, idx) => (
-            <img
+            <LazyImage
               key={idx}
               src={img.url}
               alt={venue.name}
-              onClick={() => handleImageClick(img.url)}
               className={`h-32 w-32 cursor-pointer rounded-md object-cover`}
+              onClick={() => handleImageClick(img.url)}
             />
           ))}
         </div>
       )}
       {isOpen && (
-        <GalleryModal
-          venue={venue}
-          onClose={() => setIsOpen(false)}
-          activeImageUrl={activeImageUrl}
-        >
-          <img src={activeImageUrl} alt={venue.name} className="object-cover" />
-        </GalleryModal>
+        <Suspense fallback={<Loading />}>
+          <GalleryModal
+            venue={venue}
+            onClose={() => setIsOpen(false)}
+            activeImageUrl={activeImageUrl}
+          >
+            <img
+              src={activeImageUrl}
+              alt={venue.name}
+              className="object-cover"
+            />
+          </GalleryModal>
+        </Suspense>
       )}
     </div>
   );
