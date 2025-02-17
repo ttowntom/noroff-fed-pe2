@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -14,13 +14,15 @@ import { loadLocal } from "./utils/localStorage";
 import RootLayout from "./pages/RootLayout";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-import Venues from "./pages/Venues";
-import Profile from "./pages/Profile";
-import VenueDetails from "./pages/VenueDetails";
-import Bookings from "./pages/Bookings";
-import VenueManager from "./pages/VenueManager";
 import NewEditVenueForm from "./pages/NewEditVenueForm";
 import Error from "./pages/Error";
+import LoadingPage from "./components/LoadingPage";
+
+const Venues = lazy(() => import("./pages/Venues"));
+const Profile = lazy(() => import("./pages/Profile"));
+const VenueDetails = lazy(() => import("./pages/VenueDetails"));
+const Bookings = lazy(() => import("./pages/Bookings"));
+const VenueManager = lazy(() => import("./pages/VenueManager"));
 
 function App() {
   const user = useUserStore((state) => state.user);
@@ -81,7 +83,9 @@ function App() {
   return (
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+        <Suspense fallback={<LoadingPage />}>
+          <RouterProvider router={router} />
+        </Suspense>
       </QueryClientProvider>
     </HelmetProvider>
   );
