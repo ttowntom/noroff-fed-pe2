@@ -13,6 +13,7 @@ import Button from "../Button.jsx";
 import DateBox from "../DateBox.jsx";
 import Loading from "../Loading.jsx";
 import Notification from "../Notification.jsx";
+import LazyImage from "../LazyImage.jsx";
 
 /**
  * BookingCard component that displays booking details and allows deletion
@@ -75,7 +76,7 @@ export default function BookingCard({ booking, index = 0 }) {
         className={`${hasExpired && "border border-light-border-error bg-light-bg-error dark:bg-dark-bg-primary"} ${!hasExpired && "bg-light-bg-secondary dark:bg-dark-bg-secondary"} group flex w-full flex-col gap-2 rounded-md border p-4 text-light-text-primary hover:shadow-md dark:text-dark-text-primary`}
       >
         <div className="overflow-hidden rounded-sm">
-          <img
+          <LazyImage
             src={booking.venue.media[0]?.url || NO_VENUE_IMG_URL}
             alt={booking.venue.name}
             className="h-48 w-full rounded-sm object-cover transition-transform duration-300 group-hover:scale-110"

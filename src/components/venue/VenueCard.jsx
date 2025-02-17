@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
+import LazyImage from "../LazyImage.jsx";
 import priceFormatter from "../../utils/priceFormatter.js";
 import { NO_VENUE_IMG_URL } from "../../constants.js";
 
@@ -10,7 +11,7 @@ function Card({ venue }) {
   return (
     <Link to={`/venues/${venue.id}`}>
       <div className="overflow-hidden rounded-lg">
-        <img
+        <LazyImage
           src={venue.media[0]?.url || NO_VENUE_IMG_URL}
           alt={venue.name}
           className="h-56 w-full object-cover transition-transform duration-300 group-hover:scale-110 md:h-64"
