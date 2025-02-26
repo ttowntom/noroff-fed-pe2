@@ -2,7 +2,7 @@
 
 # Project Exam 2, Holidaze
 
-![image](https://i.ibb.co/0jK73QqT/Woodland-Haven-Holidaze-02-13-2025-09-50-AM.png)
+![image](https://i.ibb.co/Y44TsmF0/Holidaze3-1.png)
 
 A Noroff exam assignment, where the task was to create a website for a fictional company called Holidaze.
 
